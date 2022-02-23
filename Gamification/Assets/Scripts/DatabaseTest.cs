@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Npgsql;
+using UnityNpgsql;
 
 public class DatabaseTest : MonoBehaviour
 {
@@ -21,10 +21,11 @@ public class DatabaseTest : MonoBehaviour
         {
             NpgsqlCommand cmd;
             cmd = new NpgsqlCommand("INSERT INTO test (personid, namn) values(:personid, :namn)", conn);
-			cmd.Parameters.Add(new NpgsqlParameter("personid", counter));
-			cmd.Parameters.Add(new NpgsqlParameter("namn", "TestNamn" + counter++));
-			cmd.ExecuteNonQuery();
-		}
+            cmd.Parameters.Add(new NpgsqlParameter("personid", counter));
+            cmd.Parameters.Add(new NpgsqlParameter("namn", "TestNamn" + counter++));
+            cmd.ExecuteNonQuery();
+            Debug.Log("Added new test person");
+        }
     }
 
     private void ConnectToDatabase(string dataBase)
