@@ -443,13 +443,14 @@ GameObject:
   - component: {fileID: 119001556}
   - component: {fileID: 119001558}
   - component: {fileID: 119001557}
+  - component: {fileID: 119001559}
   m_Layer: 5
   m_Name: Panel_NewUser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &119001556
 RectTransform:
   m_ObjectHideFlags: 0
@@ -511,6 +512,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119001555}
   m_CullTransparentMesh: 1
+--- !u!114 &119001559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119001555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57edef6b8a3ea6e488e11a050745f987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emailInput: {fileID: 1784588752}
+  ageInput: {fileID: 874892555}
+  nLanguageInput: {fileID: 1824162440}
+  userNameInput: {fileID: 1550699380}
+  passwordInput: {fileID: 1105784596}
+  confirmPasswordInput: {fileID: 494894088}
 --- !u!1 &153422245
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,8 +1735,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -5357,8 +5376,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -5895,6 +5914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1201552083}
   - component: {fileID: 1201552084}
+  - component: {fileID: 1201552085}
   m_Layer: 5
   m_Name: ToggleGroup_languageLevel
   m_TagString: Untagged
@@ -5937,6 +5957,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 0
+--- !u!114 &1201552085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201552082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222509325d930414389674bec6fc5442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onActiveTogglesChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 119001559}
+        m_TargetAssemblyTypeName: RegisterUser, Assembly-CSharp
+        m_MethodName: OnLanguageLevelToggleChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _toggles:
+  - {fileID: 1819495974}
+  - {fileID: 1482928716}
+  - {fileID: 2008888370}
 --- !u!1 &1222313151
 GameObject:
   m_ObjectHideFlags: 0
@@ -8068,6 +8119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1651748041}
   - component: {fileID: 1651748042}
+  - component: {fileID: 1651748043}
   m_Layer: 5
   m_Name: ToggleGroup_gender
   m_TagString: Untagged
@@ -8110,6 +8162,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 0
+--- !u!114 &1651748043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651748040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222509325d930414389674bec6fc5442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onActiveTogglesChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 119001559}
+        m_TargetAssemblyTypeName: RegisterUser, Assembly-CSharp
+        m_MethodName: OnGenderToggleChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _toggles:
+  - {fileID: 722181441}
+  - {fileID: 659610097}
+  - {fileID: 1471887007}
 --- !u!1 &1665570780
 GameObject:
   m_ObjectHideFlags: 0
@@ -8852,14 +8935,14 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
+  m_ContentType: 6
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 7
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 7
   m_RegexValue: 
   m_GlobalPointSize: 14
   m_CharacterLimit: 0
@@ -9671,14 +9754,14 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
+  m_ContentType: 5
   m_InputType: 0
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 5
   m_RegexValue: 
   m_GlobalPointSize: 14
   m_CharacterLimit: 0
