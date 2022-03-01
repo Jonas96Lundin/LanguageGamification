@@ -146,7 +146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000035336147, y: 0.000091552734}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 58.8, y: 58.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222113545953569262
@@ -433,40 +433,70 @@ MonoBehaviour:
   wheelCircle: {fileID: 224131085478986710}
   wheelPiecePrefab: {fileID: 1013547879587396, guid: a10fef7bc23b5a64a929387e97c9b936, type: 3}
   wheelPiecesParent: {fileID: 224747704442984086}
-  audioSource: {fileID: 0}
-  tickAudioClip: {fileID: 0}
+  audioSource: {fileID: 82771466526599974}
+  tickAudioClip: {fileID: 8300000, guid: 43186eb953e63e546b2c31cb280f58d8, type: 3}
   volume: 0.5
   pitch: 1
-  spinDuration: 20
+  spinDuration: 2
   wheelSize: 1
   wheelPieces:
-  - Icon: {fileID: 21300000, guid: 6e980baa502e72148bbc79fb42c81d10, type: 3}
-    Label: Lorem
-    Amount: 10
-    Chance: 100
+  - Icon: {fileID: 3565401892052505685, guid: 1dab2889d0b413f43b9f7bb1b88366ed, type: 3}
+    Label: Rouge
+    answer: 
+    Chance: 10
     Index: 0
     _weight: 0
-  - Icon: {fileID: 21300002, guid: 6e980baa502e72148bbc79fb42c81d10, type: 3}
-    Label: Iposum
-    Amount: 20
-    Chance: 100
+  - Icon: {fileID: 2515576297457037910, guid: 1dab2889d0b413f43b9f7bb1b88366ed, type: 3}
+    Label: Vert
+    answer: 
+    Chance: 10
     Index: 0
     _weight: 0
-  - Icon: {fileID: 21300004, guid: 6e980baa502e72148bbc79fb42c81d10, type: 3}
-    Label: Tupala
-    Amount: 30
-    Chance: 60
+  - Icon: {fileID: 8081349633991729370, guid: 1dab2889d0b413f43b9f7bb1b88366ed, type: 3}
+    Label: Bleue
+    answer: 
+    Chance: 10
     Index: 0
     _weight: 0
-  - Icon: {fileID: 21300030, guid: 6e980baa502e72148bbc79fb42c81d10, type: 3}
-    Label: Consectetur
-    Amount: 40
-    Chance: 25
+  - Icon: {fileID: 5102608702023362459, guid: 1dab2889d0b413f43b9f7bb1b88366ed, type: 3}
+    Label: au Noir
+    answer: 
+    Chance: 10
     Index: 0
     _weight: 0
-  - Icon: {fileID: 21300008, guid: 6e980baa502e72148bbc79fb42c81d10, type: 3}
-    Label: Vallar
-    Amount: 60
+  - Icon: {fileID: 4815666043623338020, guid: 1dab2889d0b413f43b9f7bb1b88366ed, type: 3}
+    Label: Jaune
+    answer: 
+    Chance: 10
+    Index: 0
+    _weight: 0
+  - Icon: {fileID: 8657518732384054131, guid: 1dab2889d0b413f43b9f7bb1b88366ed, type: 3}
+    Label: Rose
+    answer: 
+    Chance: 10
+    Index: 0
+    _weight: 0
+  - Icon: {fileID: 2254597160482019287, guid: 1dab2889d0b413f43b9f7bb1b88366ed, type: 3}
+    Label: Violets
+    answer: 
+    Chance: 10
+    Index: 0
+    _weight: 0
+  - Icon: {fileID: 8635123900315274053, guid: 1dab2889d0b413f43b9f7bb1b88366ed, type: 3}
+    Label: Orange
+    answer: 
+    Chance: 10
+    Index: 0
+    _weight: 0
+  - Icon: {fileID: -7441527797706316190, guid: 1dab2889d0b413f43b9f7bb1b88366ed, type: 3}
+    Label: Marron
+    answer: 
+    Chance: 10
+    Index: 0
+    _weight: 0
+  - Icon: {fileID: -7585325638197918031, guid: 1dab2889d0b413f43b9f7bb1b88366ed, type: 3}
+    Label: Blanche
+    answer: 
     Chance: 10
     Index: 0
     _weight: 0
@@ -507,7 +537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 576, y: 576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222365574639651034
@@ -612,7 +642,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0.000091552734}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 537, y: 537}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222208328335284450
@@ -723,7 +753,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 86.4, y: 86.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222186190190373074
