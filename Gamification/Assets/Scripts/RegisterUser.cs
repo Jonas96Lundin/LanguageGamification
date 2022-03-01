@@ -117,7 +117,7 @@ public class RegisterUser : MonoBehaviour
 
     public void EditEmail(string newEmail)
     {
-        email = newEmail;
+        email = newEmail.ToLower();
         texts.transform.Find("Text_email").transform.Find("asterisk").gameObject.SetActive(false);
         Debug.Log(email);
     }
@@ -135,7 +135,7 @@ public class RegisterUser : MonoBehaviour
     }
     public void EditUsername(string newUsername)
     {
-        username = newUsername;
+        username = newUsername.ToLower();
         texts.transform.Find("Text_username").transform.Find("asterisk").gameObject.SetActive(false);
         Debug.Log(username);
     }

@@ -11,26 +11,27 @@ public class Repository : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ConnectToDatabase("aj8015");
+        //ConnectToDatabase("aj8015");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void ConnectToDatabase(string dataBase)
     {
-        conn = new NpgsqlConnection("Server=pgserver.mah.se; User Id=aj8015; Password=fbninmt0; Database=" + dataBase);
+        conn = new NpgsqlConnection("Server=pgserver.mau.se; User Id=aj8015; Password=mau; Database=" + dataBase);
         conn.Open();
     }
 
     public void CreateUser(string email, int age, string gender, string nativeLanguage, int languageLevel, string username, string password)
     {
+        ConnectToDatabase("aj8015");
         NpgsqlCommand cmd;
-        cmd = new NpgsqlCommand("INSERT INTO users (email, age, gender, nlanguage, username, password, languageLevel) VALUES(:email, :age, :gender, :nlanguage, :username, :password, :languageLevel)", conn);
-        //cmd = new NpgsqlCommand("insert into band (bandnamn, land, anstalldpnr) values(:bandnamn, :land, :kontakt)", conn);
+        cmd = new NpgsqlCommand("INSERT INTO users (email, age, gender, nlanguage, username, password, languageLevel) VALUES(:email, :age, :gender, :nlanguage, :username, crypt(:password, gen_salt('bf', 8)), :languageLevel)", conn);
+        //cmd = new NpgsqlCommand("INSERT INTO users (email, age, gender, nlanguage, username, password, languageLevel) VALUES(:email, :age, :gender, :nlanguage, :username, :password, :languageLevel)", conn);
         cmd.Parameters.Add(new NpgsqlParameter("email", email));
         cmd.Parameters.Add(new NpgsqlParameter("age", age));
         cmd.Parameters.Add(new NpgsqlParameter("gender", gender));
@@ -39,15 +40,31 @@ public class Repository : MonoBehaviour
         cmd.Parameters.Add(new NpgsqlParameter("password", password));
         cmd.Parameters.Add(new NpgsqlParameter("languageLevel", languageLevel));
         cmd.ExecuteNonQuery();
+        conn.Close();
     }
 
     public bool DoesUserExist(string username)
     {
+        ConnectToDatabase("aj8015");
         NpgsqlCommand cmd;
         cmd = new NpgsqlCommand("SELECT COUNT(*) from users WHERE username = @p", conn);
         cmd.Parameters.AddWithValue("p", username);
         Int64 count = (Int64)cmd.ExecuteScalar();
         Debug.Log("Users with that username: " + count);
+        conn.Close();
+        return (count > 0);
+    }
+
+    public bool UserLogin(string username, string password)
+    {
+        ConnectToDatabase("aj8015");
+        NpgsqlCommand cmd;
+        cmd = new NpgsqlCommand("SELECT COUNT(*) from users WHERE username = @u AND password = crypt(@p, password)", conn);
+        cmd.Parameters.AddWithValue("u", username);
+        cmd.Parameters.AddWithValue("p", password);
+        Int64 count = (Int64)cmd.ExecuteScalar();
+        Debug.Log("Users with that username and password: " + count);
+        conn.Close();
         return (count > 0);
     }
 }
