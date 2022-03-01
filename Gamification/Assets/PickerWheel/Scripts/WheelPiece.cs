@@ -1,18 +1,24 @@
-﻿using UnityEngine ;
+﻿using UnityEngine;
 
-namespace EasyUI.PickerWheelUI {
-   [System.Serializable]
-   public class WheelPiece {
-      public UnityEngine.Sprite Icon ;
-      public string Label ;
+namespace EasyUI.PickerWheelUI
+{
+	[System.Serializable]
+	public class WheelPiece
+	{
+		public UnityEngine.Sprite Icon;
+		public string Label;
 
-      [Tooltip ("Reward amount")] public int Amount ;
+		[SerializeField] private string answer;
 
-      [Tooltip ("Probability in %")] 
-      [Range (0f, 100f)] 
-      public float Chance = 100f ;
+		//[Tooltip("Reward amount")] public int Amount;
 
-      [HideInInspector] public int Index ;
-      [HideInInspector] public double _weight = 0f ;
-   }
+		[Tooltip("Probability in %")]
+		[Range(0f, 100f)]
+		public float Chance = 100f;
+
+		[HideInInspector] public int Index;
+		[HideInInspector] public double _weight = 0f;
+
+		public string Answer { get{ return answer; } set { answer = value; } }
+	}
 }

@@ -1,225 +1,276 @@
-﻿using UnityEngine ;
-using UnityEngine.UI ;
-using DG.Tweening ;
-using UnityEngine.Events ;
-using System.Collections.Generic ;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
+using UnityEngine.Events;
+using System.Collections.Generic;
 
-namespace EasyUI.PickerWheelUI {
+namespace EasyUI.PickerWheelUI
+{
 
-   public class PickerWheel : MonoBehaviour {
+	public class PickerWheel : MonoBehaviour
+	{
 
-      [Header ("References :")]
-      [SerializeField] private GameObject linePrefab ;
-      [SerializeField] private Transform linesParent ;
+		[Header("References :")]
+		[SerializeField] private GameObject linePrefab;
+		[SerializeField] private Transform linesParent;
 
-      [Space]
-      [SerializeField] private Transform PickerWheelTransform ;
-      [SerializeField] private Transform wheelCircle ;
-      [SerializeField] private GameObject wheelPiecePrefab ;
-      [SerializeField] private Transform wheelPiecesParent ;
+		[Space]
+		[SerializeField] private Transform PickerWheelTransform;
+		[SerializeField] private Transform wheelCircle;
+		[SerializeField] private GameObject wheelPiecePrefab;
+		[SerializeField] private Transform wheelPiecesParent;
 
-      [Space]
-      [Header ("Sounds :")]
-      [SerializeField] private AudioSource audioSource ;
-      [SerializeField] private AudioClip tickAudioClip ;
-      [SerializeField] [Range (0f, 1f)] private float volume = .5f ;
-      [SerializeField] [Range (-3f, 3f)] private float pitch = 1f ;
+		[Space]
+		[Header("Sounds :")]
+		[SerializeField] private AudioSource audioSource;
+		[SerializeField] private AudioClip tickAudioClip;
+		[SerializeField] [Range(0f, 1f)] private float volume = .5f;
+		[SerializeField] [Range(-3f, 3f)] private float pitch = 1f;
 
-      [Space]
-      [Header ("Picker wheel settings :")]
-      [Range (1, 20)] public int spinDuration = 8 ;
-      [SerializeField] [Range (.2f, 2f)] private float wheelSize = 1f ;
+		[Space]
+		[Header("Picker wheel settings :")]
+		[Range(1, 20)] public int spinDuration = 8;
+		[SerializeField] [Range(.2f, 2f)] private float wheelSize = 1f;
 
-      [Space]
-      [Header ("Picker wheel pieces :")]
-      public WheelPiece[] wheelPieces ;
+		[Space]
+		[Header("Picker wheel pieces :")]
+		public WheelPiece[] wheelPieces;
 
-      // Events
-      private UnityAction onSpinStartEvent ;
-      private UnityAction<WheelPiece> onSpinEndEvent ;
-
-
-      private bool _isSpinning = false ;
-
-      public bool IsSpinning { get { return _isSpinning ; } }
+		// Events
+		private UnityAction onSpinStartEvent;
+		private UnityAction<WheelPiece> onSpinEndEvent;
 
 
-      private Vector2 pieceMinSize = new Vector2 (81f, 146f) ;
-      private Vector2 pieceMaxSize = new Vector2 (144f, 213f) ;
-      private int piecesMin = 2 ;
-      private int piecesMax = 12 ;
+		private bool _isSpinning = false;
 
-      private float pieceAngle ;
-      private float halfPieceAngle ;
-      private float halfPieceAngleWithPaddings ;
+		public bool IsSpinning { get { return _isSpinning; } }
 
 
-      private double accumulatedWeight ;
-      private System.Random rand = new System.Random () ;
+		private Vector2 pieceMinSize = new Vector2(81f, 146f);
+		private Vector2 pieceMaxSize = new Vector2(144f, 213f);
+		private int piecesMin = 2;
+		private int piecesMax = 12;
 
-      private List<int> nonZeroChancesIndices = new List<int> () ;
-
-      private void Start () {
-         pieceAngle = 360 / wheelPieces.Length ;
-         halfPieceAngle = pieceAngle / 2f ;
-         halfPieceAngleWithPaddings = halfPieceAngle - (halfPieceAngle / 4f) ;
-
-         Generate () ;  
-
-         CalculateWeightsAndIndices () ;
-         if (nonZeroChancesIndices.Count == 0)
-            Debug.LogError ("You can't set all pieces chance to zero") ;
+		private float pieceAngle;
+		private float halfPieceAngle;
+		private float halfPieceAngleWithPaddings;
 
 
-         SetupAudio () ;
+		private double accumulatedWeight;
+		private System.Random rand = new System.Random();
 
-      }
+		private List<int> nonZeroChancesIndices = new List<int>();
 
-      private void SetupAudio () {
-         audioSource.clip = tickAudioClip ;
-         audioSource.volume = volume ;
-         audioSource.pitch = pitch ;
-      }
+		private void Start()
+		{
+			SetupAudio();
+			CreateWheel();
+		}
 
-      private void Generate () {
-         wheelPiecePrefab = InstantiatePiece () ;
+		private void SetupAudio()
+		{
+			audioSource.clip = tickAudioClip;
+			audioSource.volume = volume;
+			audioSource.pitch = pitch;
+		}
 
-         RectTransform rt = wheelPiecePrefab.transform.GetChild (0).GetComponent <RectTransform> () ;
-         float pieceWidth = Mathf.Lerp (pieceMinSize.x, pieceMaxSize.x, 1f - Mathf.InverseLerp (piecesMin, piecesMax, wheelPieces.Length)) ;
-         float pieceHeight = Mathf.Lerp (pieceMinSize.y, pieceMaxSize.y, 1f - Mathf.InverseLerp (piecesMin, piecesMax, wheelPieces.Length)) ;
-         rt.SetSizeWithCurrentAnchors (RectTransform.Axis.Horizontal, pieceWidth) ;
-         rt.SetSizeWithCurrentAnchors (RectTransform.Axis.Vertical, pieceHeight) ;
+		private void CreateWheel()
+		{
+			pieceAngle = 360 / wheelPieces.Length;
+			halfPieceAngle = pieceAngle / 2f;
+			halfPieceAngleWithPaddings = halfPieceAngle - (halfPieceAngle / 4f);
 
-         for (int i = 0; i < wheelPieces.Length; i++)
-            DrawPiece (i) ;
+			Generate();
 
-         Destroy (wheelPiecePrefab) ;
-      }
+			CalculateWeightsAndIndices();
+			if (nonZeroChancesIndices.Count == 0)
+				Debug.LogError("You can't set all pieces chance to zero");
+		}
 
-      private void DrawPiece (int index) {
-         WheelPiece piece = wheelPieces [ index ] ;
-         Transform pieceTrns = InstantiatePiece ().transform.GetChild (0) ;
+		public void ResetWheelWithout(int index)
+		{
+			RemoveWheelObjects();
 
-         pieceTrns.GetChild (0).GetComponent <Image> ().sprite = piece.Icon ;
-         pieceTrns.GetChild (1).GetComponent <Text> ().text = piece.Label ;
-         pieceTrns.GetChild (2).GetComponent <Text> ().text = piece.Amount.ToString () ;
+			for (int a = index; a < wheelPieces.Length - 1; a++)
+			{
+				wheelPieces[a] = wheelPieces[a + 1];
+			}
+			System.Array.Resize(ref wheelPieces, wheelPieces.Length - 1);
 
-         //Line
-         Transform lineTrns = Instantiate (linePrefab, linesParent.position, Quaternion.identity, linesParent).transform ;
-         lineTrns.RotateAround (wheelPiecesParent.position, Vector3.back, (pieceAngle * index) + halfPieceAngle) ;
+			nonZeroChancesIndices.Clear();
 
-         pieceTrns.RotateAround (wheelPiecesParent.position, Vector3.back, pieceAngle * index) ;
-      }
+			Quaternion currentRotation = wheelCircle.rotation;
+			wheelCircle.rotation = Quaternion.Euler(0, 0, 0);
+			CreateWheel();
+			wheelCircle.rotation = currentRotation;
+		}
+		private void RemoveWheelObjects()
+		{
+			for (int i = 0; i < wheelPieces.Length; i++)
+			{
+				Destroy(wheelPiecesParent.GetChild(i).gameObject);
+				Destroy(linesParent.GetChild(i).gameObject);
+			}
+		}
 
-      private GameObject InstantiatePiece () {
-         return Instantiate (wheelPiecePrefab, wheelPiecesParent.position, Quaternion.identity, wheelPiecesParent) ;
-      }
+		private void Generate()
+		{
+			GameObject wheelPiece = InstantiatePiece();
+			//wheelPiecePrefab = InstantiatePiece();
 
+			RectTransform rt = wheelPiece.transform.GetChild(0).GetComponent<RectTransform>();
+			float pieceWidth = Mathf.Lerp(pieceMinSize.x, pieceMaxSize.x, 1f - Mathf.InverseLerp(piecesMin, piecesMax, wheelPieces.Length));
+			float pieceHeight = Mathf.Lerp(pieceMinSize.y, pieceMaxSize.y, 1f - Mathf.InverseLerp(piecesMin, piecesMax, wheelPieces.Length));
+			rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, pieceWidth);
+			rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, pieceHeight);
 
-      public void Spin () {
-         if (!_isSpinning) {
-            _isSpinning = true ;
-            if (onSpinStartEvent != null)
-               onSpinStartEvent.Invoke () ;
+			for (int i = 0; i < wheelPieces.Length; i++)
+				DrawPiece(i);
 
-            int index = GetRandomPieceIndex () ;
-            WheelPiece piece = wheelPieces [ index ] ;
+			Destroy(wheelPiece);
+			//Destroy(wheelPiecePrefab);
+		}
 
-            if (piece.Chance == 0 && nonZeroChancesIndices.Count != 0) {
-               index = nonZeroChancesIndices [ Random.Range (0, nonZeroChancesIndices.Count) ] ;
-               piece = wheelPieces [ index ] ;
-            }
+		private void DrawPiece(int index)
+		{
+			WheelPiece piece = wheelPieces[index];
+			Transform pieceTrns = InstantiatePiece().transform.GetChild(0);
 
-            float angle = -(pieceAngle * index) ;
+			pieceTrns.GetChild(0).GetComponent<Image>().sprite = piece.Icon;
+			pieceTrns.GetChild(1).GetComponent<Text>().text = piece.Label;
+			//pieceTrns.GetChild(2).GetComponent<Text>().text = piece.Amount.ToString();
 
-            float rightOffset = (angle - halfPieceAngleWithPaddings) % 360 ;
-            float leftOffset = (angle + halfPieceAngleWithPaddings) % 360 ;
+			//Line
+			Transform lineTrns = Instantiate(linePrefab, linesParent.position, Quaternion.identity, linesParent).transform;
+			lineTrns.RotateAround(wheelPiecesParent.position, Vector3.back, (pieceAngle * index) + halfPieceAngle);
 
-            float randomAngle = Random.Range (leftOffset, rightOffset) ;
+			pieceTrns.RotateAround(wheelPiecesParent.position, Vector3.back, pieceAngle * index);
+		}
 
-            Vector3 targetRotation = Vector3.back * (randomAngle + 2 * 360 * spinDuration) ;
-
-            //float prevAngle = wheelCircle.eulerAngles.z + halfPieceAngle ;
-            float prevAngle, currentAngle ;
-            prevAngle = currentAngle = wheelCircle.eulerAngles.z ;
-
-            bool isIndicatorOnTheLine = false ;
-
-            wheelCircle
-            .DORotate (targetRotation, spinDuration, RotateMode.Fast)
-            .SetEase (Ease.InOutQuart)
-            .OnUpdate (() => {
-               float diff = Mathf.Abs (prevAngle - currentAngle) ;
-               if (diff >= halfPieceAngle) {
-                  if (isIndicatorOnTheLine) {
-                     audioSource.PlayOneShot (audioSource.clip) ;
-                  }
-                  prevAngle = currentAngle ;
-                  isIndicatorOnTheLine = !isIndicatorOnTheLine ;
-               }
-               currentAngle = wheelCircle.eulerAngles.z ;
-            })
-            .OnComplete (() => {
-               _isSpinning = false ;
-               if (onSpinEndEvent != null)
-                  onSpinEndEvent.Invoke (piece) ;
-
-               onSpinStartEvent = null ; 
-               onSpinEndEvent = null ;
-            }) ;
-
-         }
-      }
-
-      private void FixedUpdate () {
-
-      }
-
-      public void OnSpinStart (UnityAction action) {
-         onSpinStartEvent = action ;
-      }
-
-      public void OnSpinEnd (UnityAction<WheelPiece> action) {
-         onSpinEndEvent = action ;
-      }
+		private GameObject InstantiatePiece()
+		{
+			return Instantiate(wheelPiecePrefab, wheelPiecesParent.position, Quaternion.identity, wheelPiecesParent);
+		}
 
 
-      private int GetRandomPieceIndex () {
-         double r = rand.NextDouble () * accumulatedWeight ;
+		public void Spin()
+		{
+			if (!_isSpinning)
+			{
+				_isSpinning = true;
+				if (onSpinStartEvent != null)
+					onSpinStartEvent.Invoke();
 
-         for (int i = 0; i < wheelPieces.Length; i++)
-            if (wheelPieces [ i ]._weight >= r)
-               return i ;
+				int index = GetRandomPieceIndex();
+				WheelPiece piece = wheelPieces[index];
 
-         return 0 ;
-      }
+				if (piece.Chance == 0 && nonZeroChancesIndices.Count != 0)
+				{
+					index = nonZeroChancesIndices[Random.Range(0, nonZeroChancesIndices.Count)];
+					piece = wheelPieces[index];
+				}
 
-      private void CalculateWeightsAndIndices () {
-         for (int i = 0; i < wheelPieces.Length; i++) {
-            WheelPiece piece = wheelPieces [ i ] ;
+				float angle = -(pieceAngle * index);
 
-            //add weights:
-            accumulatedWeight += piece.Chance ;
-            piece._weight = accumulatedWeight ;
+				float rightOffset = (angle - halfPieceAngleWithPaddings) % 360;
+				float leftOffset = (angle + halfPieceAngleWithPaddings) % 360;
 
-            //add index :
-            piece.Index = i ;
+				float randomAngle = Random.Range(leftOffset, rightOffset);
 
-            //save non zero chance indices:
-            if (piece.Chance > 0)
-               nonZeroChancesIndices.Add (i) ;
-         }
-      }
+				Vector3 targetRotation = Vector3.back * (randomAngle + 2 * 360 * spinDuration);
+
+				//float prevAngle = wheelCircle.eulerAngles.z + halfPieceAngle ;
+				float prevAngle, currentAngle;
+				prevAngle = currentAngle = wheelCircle.eulerAngles.z;
+
+				bool isIndicatorOnTheLine = false;
+
+				wheelCircle
+				.DORotate(targetRotation, spinDuration, RotateMode.Fast)
+				.SetEase(Ease.InOutQuart)
+				.OnUpdate(() =>
+				{
+					float diff = Mathf.Abs(prevAngle - currentAngle);
+					if (diff >= halfPieceAngle)
+					{
+						if (isIndicatorOnTheLine)
+						{
+							audioSource.PlayOneShot(audioSource.clip);
+						}
+						prevAngle = currentAngle;
+						isIndicatorOnTheLine = !isIndicatorOnTheLine;
+					}
+					currentAngle = wheelCircle.eulerAngles.z;
+				})
+				.OnComplete(() =>
+				{
+					_isSpinning = false;
+					if (onSpinEndEvent != null)
+						onSpinEndEvent.Invoke(piece);
+
+					onSpinStartEvent = null;
+					onSpinEndEvent = null;
+				});
+
+			}
+		}
+
+		//private void FixedUpdate()
+		//{
+
+		//}
+
+		public void OnSpinStart(UnityAction action)
+		{
+			onSpinStartEvent = action;
+		}
+
+		public void OnSpinEnd(UnityAction<WheelPiece> action)
+		{
+			onSpinEndEvent = action;
+		}
+
+
+		private int GetRandomPieceIndex()
+		{
+			double r = rand.NextDouble() * accumulatedWeight;
+
+			for (int i = 0; i < wheelPieces.Length; i++)
+				if (wheelPieces[i]._weight >= r)
+					return i;
+
+			return 0;
+		}
+
+		private void CalculateWeightsAndIndices()
+		{
+			for (int i = 0; i < wheelPieces.Length; i++)
+			{
+				WheelPiece piece = wheelPieces[i];
+
+				//add weights:
+				accumulatedWeight += piece.Chance;
+				piece._weight = accumulatedWeight;
+
+				//add index :
+				piece.Index = i;
+
+				//save non zero chance indices:
+				if (piece.Chance > 0)
+					nonZeroChancesIndices.Add(i);
+			}
+		}
 
 
 
 
-      private void OnValidate () {
-         if (PickerWheelTransform != null)
-            PickerWheelTransform.localScale = new Vector3 (wheelSize, wheelSize, 1f) ;
+		private void OnValidate()
+		{
+			if (PickerWheelTransform != null)
+				PickerWheelTransform.localScale = new Vector3(wheelSize, wheelSize, 1f);
 
-         if (wheelPieces.Length > piecesMax || wheelPieces.Length < piecesMin)
-            Debug.LogError ("[ PickerWheelwheel ]  pieces length must be between " + piecesMin + " and " + piecesMax) ;
-      }
-   }
+			if (wheelPieces.Length > piecesMax || wheelPieces.Length < piecesMin)
+				Debug.LogError("[ PickerWheelwheel ]  pieces length must be between " + piecesMin + " and " + piecesMax);
+		}
+	}
 }
