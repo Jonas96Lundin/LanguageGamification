@@ -10,8 +10,8 @@ public static class SaveSystem
 		BinaryFormatter formatter = new BinaryFormatter();
 		QuestionData questionData = new QuestionData(questions, answers);
 
-		//string path = Application.dataPath + "/QuestionsAndAnswers/" + gameName + ".save";
-		string path = Application.persistentDataPath + "/" + gameName + ".save";
+		string path = Application.dataPath + "/QuestionsAndAnswers/" + gameName + ".save";
+		//string path = Application.persistentDataPath + "/" + gameName + ".save";
 		FileStream stream = new FileStream(path, FileMode.Create);
 
 		formatter.Serialize(stream, questionData);
@@ -21,7 +21,8 @@ public static class SaveSystem
 
 	public static QuestionData LoadQuestions(string gameName)
 	{
-		string path = Application.persistentDataPath + "/" + gameName + ".save";
+		string path = Application.dataPath + "/QuestionsAndAnswers/" + gameName + ".save";
+		//string path = Application.persistentDataPath + "/" + gameName + ".save";
 		if (File.Exists(path))
 		{
 			BinaryFormatter formatter = new BinaryFormatter();
