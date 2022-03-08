@@ -27,6 +27,8 @@ public class RegisterUser : MonoBehaviour
     TMP_Text differentPasswords;
     [SerializeField]
     GameObject texts;
+    [SerializeField]
+    GameObject registerPanel;
 
     string email;
     int age = -1;
@@ -184,8 +186,10 @@ public class RegisterUser : MonoBehaviour
             }
             else
             {
+                // User successfully created
                 texts.transform.Find("Text_usernameTaken").gameObject.SetActive(false);
                 repository.CreateUser(email, age, gender, nLanguage, languageLevel, username, password);
+                registerPanel.SetActive(false);
             }
         }
     }
