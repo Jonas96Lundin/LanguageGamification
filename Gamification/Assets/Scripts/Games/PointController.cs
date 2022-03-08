@@ -18,7 +18,7 @@ public class PointController : MonoBehaviour
 
 	public void AddPoint()
 	{
-		currentPoints += pointAmount;
+		currentPoints += (pointAmount * pointMultiplier);
 		onAddPoint?.Invoke(currentPoints);
 	}
 

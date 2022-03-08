@@ -110,10 +110,10 @@ public class ColorWheelGameController : MonoBehaviour
 
 	private void DisplayPoints(int points)
 	{
-		pointText.text = "Point: " + points;
+		pointText.text = "Points: " + points;
 	}
 	private void DisplayCombo(int combo)
 	{
-		comboText.text = "Combo X " + combo;
+		comboText.text = "Combiné X " + combo;
 	}
 }
