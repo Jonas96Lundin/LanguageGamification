@@ -29,6 +29,8 @@ public class RegisterUser : MonoBehaviour
     GameObject texts;
     [SerializeField]
     GameObject registerPanel;
+    [SerializeField]
+    GameObject loginPanel;
 
     string email;
     int age = -1;
@@ -190,6 +192,7 @@ public class RegisterUser : MonoBehaviour
                 texts.transform.Find("Text_usernameTaken").gameObject.SetActive(false);
                 repository.CreateUser(email, age, gender, nLanguage, languageLevel, username, password);
                 registerPanel.SetActive(false);
+                loginPanel.SetActive(true);
             }
         }
     }
