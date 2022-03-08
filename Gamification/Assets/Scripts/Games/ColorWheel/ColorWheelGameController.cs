@@ -5,9 +5,10 @@ using TMPro;
 using EasyUI.PickerWheelUI;
 using UnityEngine.UI;
 
-
 public class ColorWheelGameController : MonoBehaviour
 {
+
+
 	private string gameName = "ColorWheel";
 	[SerializeField] private QuestionController questionController;
 
@@ -17,18 +18,21 @@ public class ColorWheelGameController : MonoBehaviour
 	[SerializeField] private TMP_Text uiSpinButtonText;
 	[SerializeField] private PickerWheel pickerWheel;
 
+	[SerializeField] private PointController pointController;
+	[SerializeField] private TMP_Text pointText;
+	[SerializeField] private TMP_Text comboText;
+
 	private List<AnswerController_ColorWheel> answerContollers = new List<AnswerController_ColorWheel>();
 
 	private int wheelPieceIndex;
 	private string currentQuestion;
-
-	//public List<string> que;
-	//public List<string> ans;
 	
-
 
 	void Start()
 	{
+		pointController.onAddPoint += DisplayPoints;
+		pointController.onSetMultiplier += DisplayCombo;
+
 		//QuestionData questionData = QuestionController.LoadQuestions(gameName);
 		questionController.LoadQuestions(gameName);
 		foreach(AnswerController_ColorWheel answerController in GetComponentsInChildren<AnswerController_ColorWheel>())
@@ -85,11 +89,13 @@ public class ColorWheelGameController : MonoBehaviour
 			answerContollers.Remove(thisAnswerController);
 			if(answerContollers.Count > 0)
 			{
+				pointController.AddPointWithMultiplier(true);
 				pickerWheel.ResetWheelWithout(wheelPieceIndex);
 				ResetWheel();
 			}
 			else
 			{
+				pointController.AddPoint();
 				victoryScreen.SetActive(true);
 			}
 			
@@ -97,7 +103,17 @@ public class ColorWheelGameController : MonoBehaviour
 		else
 		{
 			thisAnswerController.IncorrectIndicator.SetActive(true);
+			pointController.AddPointWithMultiplier(false);
 			ResetWheel();
 		}
+	}
+
+	private void DisplayPoints(int points)
+	{
+		pointText.text = "Point: " + points;
+	}
+	private void DisplayCombo(int combo)
+	{
+		comboText.text = "Combo X " + combo;
 	}
 }

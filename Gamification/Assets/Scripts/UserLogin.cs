@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UserLogin : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class UserLogin : MonoBehaviour
                 wrongUsername.enabled = false;
                 wrongPassword.enabled = false;
                 Debug.Log("Login successful!");
+                PlayerPrefs.SetString("username", usernameInput.text.ToLower());
+                SceneManager.LoadScene(1);
             }
             else
             {
