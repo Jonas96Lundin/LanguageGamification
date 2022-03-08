@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 	public void OnContinue()
 	{
 		//Save points (pointController.CurrentPoints)
-		SceneManager.LoadScene(SceneManager.GetSceneAt(1).buildIndex);
+		SceneManager.LoadScene(1);
 	}
 
 	public void OnReset()
@@ -21,6 +21,6 @@ public class GameController : MonoBehaviour
 
 	public void OnQuitGame()
 	{
-		SceneManager.LoadScene(SceneManager.GetSceneAt(1).buildIndex);
+		SceneManager.LoadScene(1);
 	}
 }
