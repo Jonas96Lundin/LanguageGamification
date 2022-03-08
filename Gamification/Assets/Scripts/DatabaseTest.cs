@@ -30,7 +30,7 @@ public class DatabaseTest : MonoBehaviour
 
     private void ConnectToDatabase(string dataBase)
     {
-        conn = new NpgsqlConnection("Server=pgserver.mah.se; User Id=aj8015; Password=fbninmt0; Database=" + dataBase);
+        conn = new NpgsqlConnection("Server=pgserver.mah.se; User Id=aj8015; Password=mau; Database=" + dataBase);
         conn.Open();
     }
 }
