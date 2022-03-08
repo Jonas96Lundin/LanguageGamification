@@ -534,6 +534,7 @@ MonoBehaviour:
   confirmPasswordInput: {fileID: 494894088}
   differentPasswords: {fileID: 2089521580}
   texts: {fileID: 1074278959}
+  registerPanel: {fileID: 119001555}
   repository: {fileID: 1876344778}
 --- !u!1 &153422245
 GameObject:

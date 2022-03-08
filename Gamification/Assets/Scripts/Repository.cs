@@ -30,7 +30,7 @@ public class Repository : MonoBehaviour
     {
         ConnectToDatabase("aj8015");
         NpgsqlCommand cmd;
-        cmd = new NpgsqlCommand("INSERT INTO users (email, age, gender, nlanguage, username, password, languageLevel) VALUES(:email, :age, :gender, :nlanguage, :username, crypt(:password, gen_salt('bf', 8)), :languageLevel)", conn);
+        cmd = new NpgsqlCommand("INSERT INTO person (email, age, gender, nlanguage, username, password, languageLevel) VALUES(:email, :age, :gender, :nlanguage, :username, crypt(:password, gen_salt('bf', 8)), :languageLevel)", conn);
         //cmd = new NpgsqlCommand("INSERT INTO users (email, age, gender, nlanguage, username, password, languageLevel) VALUES(:email, :age, :gender, :nlanguage, :username, :password, :languageLevel)", conn);
         cmd.Parameters.Add(new NpgsqlParameter("email", email));
         cmd.Parameters.Add(new NpgsqlParameter("age", age));
@@ -47,7 +47,7 @@ public class Repository : MonoBehaviour
     {
         ConnectToDatabase("aj8015");
         NpgsqlCommand cmd;
-        cmd = new NpgsqlCommand("SELECT COUNT(*) from users WHERE username = @p", conn);
+        cmd = new NpgsqlCommand("SELECT COUNT(*) from person WHERE username = @p", conn);
         cmd.Parameters.AddWithValue("p", username);
         Int64 count = (Int64)cmd.ExecuteScalar();
         Debug.Log("Users with that username: " + count);
@@ -59,7 +59,7 @@ public class Repository : MonoBehaviour
     {
         ConnectToDatabase("aj8015");
         NpgsqlCommand cmd;
-        cmd = new NpgsqlCommand("SELECT COUNT(*) from users WHERE username = @u AND password = crypt(@p, password)", conn);
+        cmd = new NpgsqlCommand("SELECT COUNT(*) from person WHERE username = @u AND password = crypt(@p, password)", conn);
         cmd.Parameters.AddWithValue("u", username);
         cmd.Parameters.AddWithValue("p", password);
         Int64 count = (Int64)cmd.ExecuteScalar();
