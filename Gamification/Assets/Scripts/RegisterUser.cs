@@ -94,7 +94,19 @@ public class RegisterUser : MonoBehaviour
     public void OnGenderToggleChange(Toggle newGender)
     {
         Debug.Log(gender);
-        gender = newGender.GetComponentInChildren<Text>().text;
+        //gender = newGender.GetComponentInChildren<Text>().text;
+        switch (newGender.GetComponentInChildren<Text>().text)
+        {
+            case "Mâle":
+                gender = "Male";
+                break;
+            case "Femelle":
+                gender = "Female";
+                break;
+            case "Sans commentaire":
+                gender = "Other";
+                break;
+        }
         Debug.Log(gender);
         genderInput.allowSwitchOff = false;
         texts.transform.Find("Text_gender").transform.Find("asterisk").gameObject.SetActive(false);
@@ -104,13 +116,13 @@ public class RegisterUser : MonoBehaviour
         Debug.Log(languageLevel);
         switch (newLevel.GetComponentInChildren<Text>().text)
         {
-            case "Beginner (A1-A2)":
+            case "Débutant(e) (A1-A2)":
                 languageLevel = 0;
                 break;
-            case "Intermediate (B1-B2)":
+            case "Intermédiaire (B1-B2)":
                 languageLevel = 1;
                 break;
-            case "Advanced (C1-C2)":
+            case "Avancée (C1-C2)":
                 languageLevel = 2;
                 break;
         }
