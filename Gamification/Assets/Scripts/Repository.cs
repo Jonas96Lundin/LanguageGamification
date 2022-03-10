@@ -67,4 +67,17 @@ public class Repository : MonoBehaviour
         conn.Close();
         return (count > 0);
     }
+
+    public void AddBadge(string badge)
+    {
+        ConnectToDatabase("aj8015");
+        NpgsqlCommand cmd;
+        cmd = new NpgsqlCommand("INSERT INTO aquiredbadges(username, badge) VALUES(:username, :badge)", conn);
+        //cmd = new NpgsqlCommand("INSERT INTO users (email, age, gender, nlanguage, username, password, languageLevel) VALUES(:email, :age, :gender, :nlanguage, :username, :password, :languageLevel)", conn);
+        cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
+        cmd.Parameters.Add(new NpgsqlParameter("badge", badge));
+        System.Object res = cmd.ExecuteScalar();
+        conn.Close();
+        Debug.Log(res);
+    } 
 }
