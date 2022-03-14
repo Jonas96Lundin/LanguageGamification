@@ -536,7 +536,6 @@ MonoBehaviour:
   texts: {fileID: 1074278959}
   registerPanel: {fileID: 119001555}
   loginPanel: {fileID: 843462376}
-  repository: {fileID: 1876344778}
 --- !u!1 &153422245
 GameObject:
   m_ObjectHideFlags: 0
@@ -4351,7 +4350,6 @@ MonoBehaviour:
   passwordInput: {fileID: 1760461566}
   wrongUsername: {fileID: 1856028626}
   wrongPassword: {fileID: 1403786611}
-  repository: {fileID: 1876344778}
 --- !u!1 &867809455
 GameObject:
   m_ObjectHideFlags: 0
@@ -11644,17 +11642,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868722804}
   m_CullTransparentMesh: 1
---- !u!114 &1876344778 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 872207076106626123, guid: a184b86849b962445957fc6faaaa8006, type: 3}
-  m_PrefabInstance: {fileID: 9024182659411724365}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb3b76ae5c57c5c49be5786e0aca837f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1893211079
 GameObject:
   m_ObjectHideFlags: 0
@@ -14261,5 +14248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DatabaseManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5817931337401409449, guid: a184b86849b962445957fc6faaaa8006, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 872207076106626123, guid: a184b86849b962445957fc6faaaa8006, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a184b86849b962445957fc6faaaa8006, type: 3}
