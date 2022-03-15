@@ -10,6 +10,7 @@ public class QuestionAdder : MonoBehaviour
 	[SerializeField] private TMP_Dropdown gameName;
 	[SerializeField] private TMP_InputField questionInput;
 	[SerializeField] private TMP_InputField answerInput;
+	[SerializeField] private TMP_InputField newList;
 
 
 	private string question;
@@ -72,6 +73,7 @@ public class QuestionAdder : MonoBehaviour
 				answers.Add(answer);
 			}
 			SaveSystem.SaveQuestions(gameName.options[gameName.value].text, questions, answers);
+			//SaveSystem.SaveQuestions(newList.text, questions, answers);
 
 			Debug.Log("Questions saved");
 		}
