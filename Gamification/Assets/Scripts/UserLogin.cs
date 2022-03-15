@@ -15,8 +15,8 @@ public class UserLogin : MonoBehaviour
     [SerializeField]
     TMP_Text wrongPassword;
 
-    [SerializeField]
-    Repository repository;
+    //[SerializeField]
+    //Repository repository;
 
     // Start is called before the first frame update
     void Start()
@@ -32,10 +32,10 @@ public class UserLogin : MonoBehaviour
 
     public void Login()
     {
-        if (repository.DoesUserExist(usernameInput.text.ToLower()))
+        if (Repository.DoesUserExist(usernameInput.text.ToLower()))
         {
             wrongUsername.enabled = false;
-            if (repository.UserLogin(usernameInput.text.ToLower(), passwordInput.text))
+            if (Repository.UserLogin(usernameInput.text.ToLower(), passwordInput.text))
             {
                 wrongUsername.enabled = false;
                 wrongPassword.enabled = false;

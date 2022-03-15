@@ -46,8 +46,8 @@ public class RegisterUser : MonoBehaviour
     int counter = 0;
     static int usernameMaxLength = 20;
 
-    [SerializeField]
-    Repository repository;
+    //[SerializeField]
+    //Repository repository;
 
     // Start is called before the first frame update
     void Start()
@@ -194,7 +194,7 @@ public class RegisterUser : MonoBehaviour
         else
         {
             texts.transform.Find("Text_fieldsNotFilled").gameObject.SetActive(false);
-            if (repository.DoesUserExist(username))
+            if (Repository.DoesUserExist(username))
             {
                 texts.transform.Find("Text_usernameTaken").gameObject.SetActive(true);
             }
@@ -202,7 +202,7 @@ public class RegisterUser : MonoBehaviour
             {
                 // User successfully created
                 texts.transform.Find("Text_usernameTaken").gameObject.SetActive(false);
-                repository.CreateUser(email, age, gender, nLanguage, languageLevel, username, password);
+                Repository.CreateUser(email, age, gender, nLanguage, languageLevel, username, password);
                 registerPanel.SetActive(false);
                 loginPanel.SetActive(true);
             }
