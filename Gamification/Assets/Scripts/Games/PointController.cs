@@ -8,11 +8,13 @@ public class PointController : MonoBehaviour
 {
 	public event Action<int> onAddPoint;
 	public event Action<int> onSetMultiplier;
+	public event Action<int> onAddMisstake;
 
 	[SerializeField] private int pointAmount;
 
 	private int pointMultiplier = 1;
 	private int currentPoints = 0;
+	private int currentMisstakes = 0;
 
 	public int CurrentPoints { get { return currentPoints; } }
 
@@ -38,5 +40,9 @@ public class PointController : MonoBehaviour
 		}
 	}
 
-	
+	public void AddMisstake()
+	{
+		currentMisstakes++;
+		onAddMisstake?.Invoke(currentMisstakes);
+	}
 }

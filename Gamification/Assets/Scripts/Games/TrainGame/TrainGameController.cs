@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -6,38 +6,24 @@ using DG.Tweening;
 
 public class TrainGameController : MonoBehaviour
 {
-    private string gameName = "TrainGame";
+    QuestionController_TrainGame questionController;
+    AnswerController_TrainGame answerController;
 
-    private Vector2 screenCenter = new Vector2(960, 540);
-    private float moveTime = 3;
-    
-
-    [Header("Phrases")]
-    [SerializeField] private TMP_Text questionText;
-    [SerializeField] private string[] truckWords;
-    [SerializeField] private string[] currentTrainphrase;
-    private int phraseCounter = 0;
-
-    [SerializeField] string[] questionArray;//plats1 Pierre me donne un cadeau, plats2 Les invités vous ont offert un livre....
-    [SerializeField] string[] answerArray; //plats 1 Pierre_me_le_donne, plats2 Les invités_vous_l’ont_offert....
-    char splitter = '_';
 
     [Header("Train")]
-    [SerializeField] private GameObject trainStartPos;
-    [SerializeField] private GameObject train;
-    [SerializeField] private GameObject locomotive;
-    [SerializeField] private GameObject wagonWithoutCargo;
-    [SerializeField] private GameObject wagonWithCargo;
+    private Vector2 trainStartPos = new Vector2(2500, 121);
+    [SerializeField] private TrainController train;
+    [SerializeField] private GameObject locomotivePrefab;
+    [SerializeField] private GameObject wagonWithoutCargoPrefab;
+    [SerializeField] private GameObject wagonWithCargoPrefab;
 
-    private float startWagonXOffset;
-    private int trainWagonXOffset = 400;
+    private GameObject locomitive;
+    private float locomotiveOffsetX;
+    private int trainWagonOffsetX = 400;
 
-    private int currentWagon;
+    private int wagonCounter;
     private int numberOfWagons;
-
-    [Header("Cargo")]
-    [SerializeField] private GameObject cargoPrefab;
-
+    private string currentWagonAnswer;
 
 
     [Header("Trucks")]
@@ -46,99 +32,162 @@ public class TrainGameController : MonoBehaviour
     private List<TruckController> trucks = new List<TruckController>();
 
 
-    void Start()
+    [Header("Cargo")]
+    [SerializeField] private GameObject cargoPrefab;
+    private int truckCargoCounter;
+
+
+    private float centerMovePosX = 960;
+    private float trainEndMovePosX = -1000;
+    private float truckEndMovePosX = 3000;
+    private float enterTime = 3;
+    private float exitTime = 5;
+
+
+	private void OnEnable()
+	{
+        questionController = GetComponent<QuestionController_TrainGame>();
+        answerController = GetComponent<AnswerController_TrainGame>();
+        train = GetComponentInChildren<TrainController>();
+    }
+
+	void Start()
     {
-        LoadQuestionData();
-        LoadCurrentQuestion();
+        questionController.LoadQuestionData();
+        questionController. LoadCurrentQuestion();
         CreateTrucks();
-        LoadTrucks();
         CreateTrain();
-        train.transform.DOMoveX(screenCenter.x, moveTime);
     }
-
-    private void LoadQuestionData()
+    public void EndCurrentGame()
 	{
-        QuestionData questionData = SaveSystem.LoadQuestions(gameName);
-        questionArray = new string[questionData.questions.Count];
-        answerArray = new string[questionData.answers.Count];
-        for (int i = 0; i < questionData.questions.Count; i++)
+        MoveX(train.transform, trainEndMovePosX, exitTime, Ease.InSine);
+        foreach (TruckController truck in trucks)
         {
-            questionArray[i] = questionData.questions[i];
-            answerArray[i] = questionData.answers[i];
+            MoveX(truck.transform, truckEndMovePosX, exitTime, Ease.InSine);
         }
+        StartCoroutine(NextGame());
     }
-
-    private void LoadCurrentQuestion()
+    private void StartNextGame()
 	{
-        questionText.text = questionArray[phraseCounter];
-        currentTrainphrase = answerArray[phraseCounter].Split(splitter);
-        phraseCounter++;
+        questionController.LoadCurrentQuestion();
+        ReloadTrucks();
+        ReloadTrain();
     }
 
+    #region Train
     private void CreateTrain()
 	{
-		train.transform.position = trainStartPos.transform.position;
+        train.transform.localPosition = trainStartPos;
 
-		currentWagon = 0;
-        numberOfWagons = currentTrainphrase.Length;
-        startWagonXOffset = -(trainWagonXOffset * (numberOfWagons + 1) / 2);
+        numberOfWagons = questionController.CurrentAnswerphrase.Length;
+        locomotiveOffsetX = -(trainWagonOffsetX * (numberOfWagons + 1) / 2);
 
-        SetWagonPosition(Instantiate(locomotive, train.transform));
-        currentWagon++;
+        CreateLocomotive(Instantiate(locomotivePrefab, train.transform));
+        
+        wagonCounter = 1;
+        CreateWagonWithCargo(Instantiate(wagonWithCargoPrefab, locomitive.transform), 0);
+        wagonCounter++;
 
-        SetWagonPosition(Instantiate(wagonWithCargo, train.transform)).GetComponentInChildren<TMP_Text>().text = currentTrainphrase[0];
-        currentWagon++;
-
-		for (; currentWagon < numberOfWagons; currentWagon++)
+		for (; wagonCounter < numberOfWagons; wagonCounter++)
 		{
-            SetWagonPosition(Instantiate(wagonWithoutCargo, train.transform));
+            CreateWagonWithoutCargo(Instantiate(wagonWithoutCargoPrefab, locomitive.transform));
         }
 
-        SetWagonPosition(Instantiate(wagonWithCargo, train.transform)).GetComponentInChildren<TMP_Text>().text = currentTrainphrase[currentTrainphrase.Length - 1];
-    }
+        CreateWagonWithCargo(Instantiate(wagonWithCargoPrefab, locomitive.transform), numberOfWagons - 1);
 
-    private GameObject SetWagonPosition(GameObject wagon)
+        MoveX(train.transform, centerMovePosX, enterTime, Ease.OutSine);
+    }
+    
+    private void CreateLocomotive(GameObject newlocomotive)
 	{
-        wagon.transform.localPosition = new Vector2(startWagonXOffset + (currentWagon * trainWagonXOffset), wagon.transform.localPosition.y);
-        return wagon;
+        newlocomotive.transform.localPosition = new Vector2(locomotiveOffsetX, 0);
+        locomitive = newlocomotive;
+    }
+    private void CreateWagonWithCargo(GameObject wagon, int cargoPhraseIndex)
+	{
+        CreateWagonWithoutCargo(wagon);
+        wagon.GetComponentInChildren<TMP_Text>().text = questionController.CurrentAnswerphrase[cargoPhraseIndex];
+    }
+    private void CreateWagonWithoutCargo(GameObject wagon)
+	{
+        wagon.transform.localPosition = new Vector2(wagonCounter * trainWagonOffsetX, wagon.transform.localPosition.y);
+        train.CargoPositions.Add(wagon.GetComponentInChildren<CargoPosition>());
     }
 
-    private void CreateTrucks()
+	private void ResetTrain()
+	{
+        train.CargoPositions.Clear();
+        Destroy(locomitive);
+        train.transform.localPosition = trainStartPos;
+    }
+    private void ReloadTrain()
+	{
+        ResetTrain();
+        CreateTrain();
+	}
+	#endregion
+
+	#region Trucks
+	private void CreateTrucks()
 	{
 		for (int i = 0; i < truckPrefabs.Count; i++)
 		{
             trucks.Add(Instantiate(truckPrefabs[i].GetComponent<TruckController>(), truckStartPositions[i]));
         }
-	}
-
-    private void ResetTrucks()
-	{
-        //Delete truckCargo
-
-		for (int i = 0; i < trucks.Count; i++)
-		{
-            trucks[i].transform.position = truckStartPositions[i].position;
-        }
         LoadTrucks();
-	}
-
+    }
     private void LoadTrucks()
 	{
-        int answer = 0;
-        foreach(TruckController truck in trucks)
+        truckCargoCounter = 0;
+        foreach (TruckController truck in trucks)
 		{
             foreach(Transform cargoPos in truck.CargoPositions)
 			{
                 GameObject cargo = Instantiate(cargoPrefab, cargoPos);
-                cargo.GetComponentInChildren<TMP_Text>().text = truckWords[answer];
-                answer++;
+                cargo.GetComponentInChildren<TMP_Text>().text = answerController.AnswerWords[truckCargoCounter];
+                truckCargoCounter++;
             }
-            MoveTruck(truck.gameObject, truck.XPosOffset);
+            MoveX(truck.transform, centerMovePosX + truck.PosOffsetX, enterTime, Ease.OutSine);
 		}
 	}
 
-    private void MoveTruck(GameObject truck, float xPosOffset)
+    private void ResetTrucks()
+    {
+        for (int i = 0; i < trucks.Count; i++)
+        {
+            trucks[i].transform.position = truckStartPositions[i].position;
+            trucks[i].ClearCargo();
+        }
+    }
+    private void ReloadTrucks()
+    {
+        ResetTrucks();
+        LoadTrucks();
+    }
+    #endregion
+
+	private void MoveX(Transform trans, float distanceX, float moveTime, Ease ease = Ease.Unset)
 	{
-        truck.transform.DOMoveX(screenCenter.x + xPosOffset, moveTime);
+        trans.DOMoveX(distanceX, moveTime).SetEase(ease);
+	}
+
+    public string GetAnswer()
+    {
+        currentWagonAnswer = string.Empty;
+        foreach (CargoPosition cargoPosition in train.CargoPositions)
+        {
+            if (!cargoPosition.GetComponentInChildren<TMP_Text>())
+                return string.Empty;
+            currentWagonAnswer += cargoPosition.GetComponentInChildren<TMP_Text>().text + " ";
+        }
+        return currentWagonAnswer.Trim(' ');
+    }
+
+    IEnumerator NextGame()
+	{
+        yield return new WaitForSeconds(exitTime);
+
+        answerController.NextGame();
+        StartNextGame();
     }
 }

@@ -8,5 +8,13 @@ public class TruckController : MonoBehaviour
     [SerializeField] float xPosOffset;
 
     public List<Transform> CargoPositions { get { return cargoPositions; } }
-    public float XPosOffset { get { return xPosOffset; } }
+    public float PosOffsetX { get { return xPosOffset; } }
+
+    public void ClearCargo()
+	{
+        foreach(CargoPosition cargoPosition in GetComponentsInChildren<CargoPosition>())
+		{
+            cargoPosition.DestroyCargo();
+        }
+	}
 }

@@ -15,6 +15,7 @@ public class CargoController : MonoBehaviour
 
 	TrainPlayerController player;
 	private bool isGrabbed;
+	[SerializeField] Color grabColor;
 
 	private void Start()
 	{
@@ -67,6 +68,7 @@ public class CargoController : MonoBehaviour
 		if (eventData.button == PointerEventData.InputButton.Left)
 		{
 			cursorBehaviour.OnMouseEnterGrabClick();
+			transform.SetParent(player.transform);
 			player.IsGrabbingCargo = true;
 			isGrabbed = true;
 		}
@@ -80,11 +82,11 @@ public class CargoController : MonoBehaviour
 			{
 				cargoPosition.HasCargo = false;
 
-				transform.SetParent(newCargoPosition.transform);
 				cargoPosition = newCargoPosition;
 				cargoPosition.HasCargo = true;
 				newCargoPosition = null;
 			}
+			transform.SetParent(cargoPosition.transform);
 			cursorBehaviour.OnMouseEnterGrabRelease();
 			GetComponent<Image>().color = Color.white;
 			player.IsGrabbingCargo = false;
@@ -110,7 +112,7 @@ public class CargoController : MonoBehaviour
 			{
 				if (!collision.collider.GetComponent<CargoPosition>().HasCargo)
 				{
-					GetComponent<Image>().color = Color.green;
+					GetComponent<Image>().color = grabColor;
 					newCargoPosition = collision.collider.GetComponent<CargoPosition>();
 				}
 			}
