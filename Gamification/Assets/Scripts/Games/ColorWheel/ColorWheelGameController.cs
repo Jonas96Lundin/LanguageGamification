@@ -10,7 +10,7 @@ public class ColorWheelGameController : MonoBehaviour
 
 
 	private string gameName = "ColorWheel";
-	[SerializeField] private QuestionController questionController;
+	[SerializeField] private QuestionDataController questionController;
 
 	[SerializeField] private GameObject victoryScreen;
 
@@ -34,7 +34,8 @@ public class ColorWheelGameController : MonoBehaviour
 		pointController.onSetMultiplier += DisplayCombo;
 
 		//QuestionData questionData = QuestionController.LoadQuestions(gameName);
-		questionController.LoadQuestions(gameName);
+		questionController.LoadQuestionData(gameName);
+		questionController.SetQuestionsAndAnswers(questionController.QuestionData.questions, questionController.QuestionData.answers);
 		foreach(AnswerController_ColorWheel answerController in GetComponentsInChildren<AnswerController_ColorWheel>())
 		{
 			answerContollers.Add(answerController);

@@ -3,16 +3,24 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 
-public class QuestionController : MonoBehaviour
+public class QuestionDataController : MonoBehaviour
 {
+	private QuestionData questionData;
+
 	private List<string> questions;
 	private List<string> answers;
 
-	public void LoadQuestions(string gameName)
+	public QuestionData QuestionData { get { return questionData; } }
+
+	public void LoadQuestionData(string gameName)
 	{
-		QuestionData questionData = SaveSystem.LoadQuestions(gameName);
-		questions = questionData.questions;
-		answers = questionData.answers;
+		questionData = SaveSystem.LoadQuestions(gameName);
+	}
+
+	public void SetQuestionsAndAnswers(List<string> que, List<string> ans)
+	{
+		questions = que;
+		answers = ans;
 	}
 
 	public bool IsAnswerCorrect(string question, string answer)
