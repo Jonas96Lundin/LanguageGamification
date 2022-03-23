@@ -12,6 +12,8 @@ public class AnswerController_TrainGame : MonoBehaviour
     private QuestionController_TrainGame questionController;
     private PointController pointController;
 
+    [SerializeField] private Button quitButton;
+
     [SerializeField] private string[] answerWords;
     [SerializeField] private Button answerButton;
     [SerializeField] private Timer timer;
@@ -64,6 +66,7 @@ public class AnswerController_TrainGame : MonoBehaviour
         answerDisplay.transform.DOScale(0, displayScaleTime);
 
         LightsOff();
+        quitButton.interactable = false;
         timer.StopTimer();
         pointController.AddGameTime(timer.TotalTime);
         victoryDisplay.SetActive(true);

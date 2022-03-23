@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using EasyUI.PickerWheelUI;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ColorWheelGameController : MonoBehaviour
 {
@@ -12,10 +13,13 @@ public class ColorWheelGameController : MonoBehaviour
 	[SerializeField] private QuestionDataController questionController;
 
 	[SerializeField] private GameObject victoryScreen;
+	private int victoryScreenEndScale = 2;
+	private float displayScaleTimer = 0.5f;
 
 	[SerializeField] private Button uiSpinButton;
 	[SerializeField] private TMP_Text uiSpinButtonText;
 	[SerializeField] private PickerWheel pickerWheel;
+	[SerializeField] private Button quitButton;
 
 	[SerializeField] private PointController pointController;
 	[SerializeField] private TMP_Text pointText;
@@ -100,7 +104,9 @@ public class ColorWheelGameController : MonoBehaviour
 			else
 			{
 				pointController.AddPoint();
+				quitButton.interactable = false;
 				victoryScreen.SetActive(true);
+				victoryScreen.transform.DOScale(victoryScreenEndScale, displayScaleTimer);
 			}
 			
 		}
