@@ -112,6 +112,10 @@ public static class Repository
         {
             Debug.Log(leaderboard.Keys + " " + leaderboard.Values);
         }
+        foreach (KeyValuePair<string, int> pair in leaderboard)
+        {
+            Debug.Log(pair.Key + " " + pair.Value);
+        }
         return leaderboard;
     }
 }
