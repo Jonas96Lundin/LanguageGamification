@@ -121,7 +121,7 @@ public static class Repository
         }
         dr.Close();
         conn.Close();
-        for(int i=0; i < leaderboard.Count; i++)
+        for (int i = 0; i < leaderboard.Count; i++)
         {
             Debug.Log(leaderboard.Keys + " " + leaderboard.Values);
         }
@@ -132,9 +132,9 @@ public static class Repository
         return leaderboard;
     }
 
-    public static Dictionary<string, int> GetTraingameLeaderboard()
+    public static Dictionary<string, List<float>> GetTraingameLeaderboard()
     {
-        Dictionary<string, int> leaderboard = new Dictionary<string, int>();
+        Dictionary<string, List<float>> leaderboard = new Dictionary<string, List<float>>();
         ConnectToDatabase("aj8015");
         NpgsqlCommand cmd;
         cmd = new NpgsqlCommand("SELECT username, score FROM traingameLeaderboard ORDER BY score DESC, time ASC ", conn);
@@ -143,18 +143,28 @@ public static class Repository
         while (dr.Read())
         {
             int tempValue;
+            float tempTime;
+            List<float> tempValues;
             if (leaderboard.ContainsKey(dr[0].ToString()))
             {
-                leaderboard.TryGetValue(dr[0].ToString(), out tempValue);
+                leaderboard.TryGetValue(dr[0].ToString(), out tempValues);
 
-                if (tempValue < dr.GetInt32(1))
+                if (tempValues[0] < dr.GetInt32(1))
                 {
-                    leaderboard.Add(dr[0].ToString(), dr.GetInt32(1));
+                    leaderboard.Add(dr[0].ToString(), new List<float>() { dr.GetInt32(1), dr.GetFloat(2) });
+                }
+                else if(tempValues[0] == dr.GetInt32(1))
+                {
+                    //leaderboard.TryGetValue(dr[0].ToString(), out tempTime);
+                    if (tempValues[1] > dr.GetFloat(2))
+                    {
+                        leaderboard.Add(dr[0].ToString(), new List<float>() { dr.GetInt32(1), dr.GetFloat(2) });
+                    }
                 }
             }
             else
             {
-                leaderboard.Add(dr[0].ToString(), dr.GetInt32(1));
+                leaderboard.Add(dr[0].ToString(), new List<float>() { dr.GetInt32(1), dr.GetFloat(2) });
             }
         }
         dr.Close();
@@ -163,7 +173,7 @@ public static class Repository
         {
             Debug.Log(leaderboard.Keys + " " + leaderboard.Values);
         }
-        foreach (KeyValuePair<string, int> pair in leaderboard)
+        foreach (KeyValuePair<string, List<float>> pair in leaderboard)
         {
             Debug.Log(pair.Key + " " + pair.Value);
         }
