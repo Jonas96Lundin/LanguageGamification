@@ -81,6 +81,19 @@ public static class Repository
         Debug.Log(res);
     }
 
+    public static void AddToTraingameLeaderboard(int score, float time)
+    {
+        ConnectToDatabase("aj8015");
+        NpgsqlCommand cmd;
+        cmd = new NpgsqlCommand(" INSERT INTO traingameLeaderboard(username, points, time) VALUES(:username, :score, :time); ", conn);
+        cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
+        cmd.Parameters.Add(new NpgsqlParameter("score", score));
+        cmd.Parameters.Add(new NpgsqlParameter("time", time));
+        System.Object res = cmd.ExecuteScalar();
+        conn.Close();
+        Debug.Log(res);
+    }
+
     public static Dictionary<string, int> GetColorWheelLeaderboard()
     {
         Dictionary<string, int> leaderboard = new Dictionary<string, int>();
@@ -109,6 +122,44 @@ public static class Repository
         dr.Close();
         conn.Close();
         for(int i=0; i < leaderboard.Count; i++)
+        {
+            Debug.Log(leaderboard.Keys + " " + leaderboard.Values);
+        }
+        foreach (KeyValuePair<string, int> pair in leaderboard)
+        {
+            Debug.Log(pair.Key + " " + pair.Value);
+        }
+        return leaderboard;
+    }
+
+    public static Dictionary<string, int> GetTraingameLeaderboard()
+    {
+        Dictionary<string, int> leaderboard = new Dictionary<string, int>();
+        ConnectToDatabase("aj8015");
+        NpgsqlCommand cmd;
+        cmd = new NpgsqlCommand("SELECT username, score FROM traingameLeaderboard ORDER BY score DESC, time ASC ", conn);
+
+        NpgsqlDataReader dr = cmd.ExecuteReader();
+        while (dr.Read())
+        {
+            int tempValue;
+            if (leaderboard.ContainsKey(dr[0].ToString()))
+            {
+                leaderboard.TryGetValue(dr[0].ToString(), out tempValue);
+
+                if (tempValue < dr.GetInt32(1))
+                {
+                    leaderboard.Add(dr[0].ToString(), dr.GetInt32(1));
+                }
+            }
+            else
+            {
+                leaderboard.Add(dr[0].ToString(), dr.GetInt32(1));
+            }
+        }
+        dr.Close();
+        conn.Close();
+        for (int i = 0; i < leaderboard.Count; i++)
         {
             Debug.Log(leaderboard.Keys + " " + leaderboard.Values);
         }
