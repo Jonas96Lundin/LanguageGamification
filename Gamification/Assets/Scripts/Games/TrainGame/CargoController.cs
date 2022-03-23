@@ -53,23 +53,20 @@ public class CargoController : MonoBehaviour
 
 	private void OnMouseEnterHover()
 	{
-		if (!player.IsGrabbingCargo)
-			cursorBehaviour.OnMouseEnterGrabHover();
+		cursorBehaviour.OnMouseEnterGrabHover();
 	}
 
 	private void OnMouseExitHover()
 	{
-		if (!player.IsGrabbingCargo)
-			cursorBehaviour.OnMouseExit();
+		cursorBehaviour.OnMouseExit();
 	}
 
 	private void OnGrabCargo(PointerEventData eventData)
 	{
-		if (eventData.button == PointerEventData.InputButton.Left)
+		if (eventData.button == PointerEventData.InputButton.Left && !player.IsPaused)
 		{
 			cursorBehaviour.OnMouseEnterGrabClick();
 			transform.SetParent(player.transform);
-			player.IsGrabbingCargo = true;
 			isGrabbed = true;
 		}
 	}
@@ -86,13 +83,20 @@ public class CargoController : MonoBehaviour
 				cargoPosition.HasCargo = true;
 				newCargoPosition = null;
 			}
-			transform.SetParent(cargoPosition.transform);
-			cursorBehaviour.OnMouseEnterGrabRelease();
-			GetComponent<Image>().color = Color.white;
-			player.IsGrabbingCargo = false;
-			isGrabbed = false;
-			transform.DOMove(cargoPosition.transform.position, 1);
+			StartCoroutine(ReleaseCargo());
 		}
+	}
+
+	IEnumerator ReleaseCargo()
+	{
+		cursorBehaviour.OnMouseEnterGrabRelease();
+		GetComponent<Image>().color = Color.white;
+		isGrabbed = false;
+		transform.DOMove(cargoPosition.transform.position, 1);
+
+		yield return new WaitForSeconds(1);
+
+		transform.SetParent(cargoPosition.transform);
 	}
 
 	private void Update()
@@ -127,6 +131,6 @@ public class CargoController : MonoBehaviour
 				GetComponent<Image>().color = Color.white;
 				newCargoPosition = null;
 			}
-		}	
+		}
 	}
 }

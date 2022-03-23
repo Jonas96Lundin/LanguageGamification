@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrainPlayerController : MonoBehaviour
 {
-	private bool isGrabbingCargo;
+	private bool isPaused;
 
-	public bool IsGrabbingCargo { get { return isGrabbingCargo; } set { isGrabbingCargo = value; } }
+	public bool IsPaused { get { return isPaused; } set { isPaused = value; } }
 }

@@ -11,6 +11,7 @@ public class Timer : MonoBehaviour
     private int hours;
     private TMP_Text timerText;
 
+
     void Start()
     {
         timerText = GetComponent<TMP_Text>();
@@ -72,6 +73,21 @@ public class Timer : MonoBehaviour
 		{
             timerText.text = seconds.ToString("F1") + "s";
         }
-        
 	}
+
+    public string GetVictoryTime()
+    {
+        if (hours > 0)
+        {
+            return "Heure de la victoire: " + hours.ToString() + "h " + minutes.ToString() + "m " + seconds.ToString("F2") + "s";
+        }
+        else if (minutes > 0)
+        {
+            return "Heure de la victoire: " + minutes.ToString() + "m " + seconds.ToString("F2") + "s";
+        }
+        else
+        {
+            return "Heure de la victoire: " + seconds.ToString("F2") + "s";
+        }
+    }
 }

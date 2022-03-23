@@ -7,9 +7,8 @@ using UnityEngine.UI;
 
 public class ColorWheelGameController : MonoBehaviour
 {
+	GameController gameController;
 
-
-	private string gameName = "ColorWheel";
 	[SerializeField] private QuestionDataController questionController;
 
 	[SerializeField] private GameObject victoryScreen;
@@ -26,15 +25,19 @@ public class ColorWheelGameController : MonoBehaviour
 
 	private int wheelPieceIndex;
 	private string currentQuestion;
-	
+
+	private void OnEnable()
+	{
+		gameController = GetComponent<GameController>();
+		gameController.SetGame(Games.COLORWHEEL);
+	}
 
 	void Start()
 	{
 		pointController.onAddPoint += DisplayPoints;
 		pointController.onSetMultiplier += DisplayCombo;
 
-		//QuestionData questionData = QuestionController.LoadQuestions(gameName);
-		questionController.LoadQuestionData(gameName);
+		questionController.LoadQuestionData(gameController.CurrentGame.ToString());
 		questionController.SetQuestionsAndAnswers(questionController.QuestionData.questions, questionController.QuestionData.answers);
 		foreach(AnswerController_ColorWheel answerController in GetComponentsInChildren<AnswerController_ColorWheel>())
 		{

@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class QuestionController_TrainGame : MonoBehaviour
 {
-    private string gameName = "TrainGame";
     QuestionDataController questionDataController;
 
     [SerializeField] private TMP_Text questionText;
@@ -20,6 +19,7 @@ public class QuestionController_TrainGame : MonoBehaviour
     public string[] QuestionArray { get { return questionArray; } }
     public string[] AnswerArray { get { return answerArray; } }
     public string[] CurrentAnswerphrase { get { return currentAnswerphrase; } set { currentAnswerphrase = value; } }
+    public int QuestionCounter { get { return questionCounter; } }
 
 	private void OnEnable()
 	{
@@ -28,7 +28,7 @@ public class QuestionController_TrainGame : MonoBehaviour
 
     public void LoadQuestionData()
     {
-        questionDataController.LoadQuestionData(gameName);
+        questionDataController.LoadQuestionData(Games.TRAINGAME.ToString());
 
         questionArray = questionDataController.QuestionData.questions.ToArray();
         answerArray = questionDataController.QuestionData.answers.ToArray();
