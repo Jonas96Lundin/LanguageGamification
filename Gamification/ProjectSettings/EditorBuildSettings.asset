@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ColorWheel.unity
     guid: 3cc2966a55854174da644f2e0af9154e
+  - enabled: 1
+    path: Assets/Scenes/TrainGameScene.unity
+    guid: ea988c39e386cd340ad3ea9649a6b391
   m_configObjects: {}

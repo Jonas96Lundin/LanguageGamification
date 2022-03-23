@@ -137,7 +137,7 @@ public static class Repository
         Dictionary<string, List<float>> leaderboard = new Dictionary<string, List<float>>();
         ConnectToDatabase("aj8015");
         NpgsqlCommand cmd;
-        cmd = new NpgsqlCommand("SELECT username, score FROM traingameLeaderboard ORDER BY score DESC, time ASC ", conn);
+        cmd = new NpgsqlCommand("SELECT username, score, time FROM traingameLeaderboard ORDER BY score DESC, time ASC ", conn);
 
         NpgsqlDataReader dr = cmd.ExecuteReader();
         while (dr.Read())
@@ -151,20 +151,20 @@ public static class Repository
 
                 if (tempValues[0] < dr.GetInt32(1))
                 {
-                    leaderboard.Add(dr[0].ToString(), new List<float>() { dr.GetInt32(1), dr.GetFloat(2) });
+                    leaderboard.Add(dr[0].ToString(), new List<float>() { dr.GetInt32(1), (float)dr.GetDecimal(2) });
                 }
                 else if(tempValues[0] == dr.GetInt32(1))
                 {
                     //leaderboard.TryGetValue(dr[0].ToString(), out tempTime);
                     if (tempValues[1] > dr.GetFloat(2))
                     {
-                        leaderboard.Add(dr[0].ToString(), new List<float>() { dr.GetInt32(1), dr.GetFloat(2) });
+                        leaderboard.Add(dr[0].ToString(), new List<float>() { dr.GetInt32(1), (float)dr.GetDecimal(2) });
                     }
                 }
             }
             else
             {
-                leaderboard.Add(dr[0].ToString(), new List<float>() { dr.GetInt32(1), dr.GetFloat(2) });
+                leaderboard.Add(dr[0].ToString(), new List<float>() { dr.GetInt32(1), (float)dr.GetDecimal(2) });
             }
         }
         dr.Close();
@@ -175,7 +175,7 @@ public static class Repository
         }
         foreach (KeyValuePair<string, List<float>> pair in leaderboard)
         {
-            Debug.Log(pair.Key + " " + pair.Value);
+            Debug.Log(pair.Key + " " + pair.Value[0] + " " + pair.Value[1]);
         }
         return leaderboard;
     }
