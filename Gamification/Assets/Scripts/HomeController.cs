@@ -42,7 +42,7 @@ public class HomeController : MonoBehaviour
             case Games.TRAINGAME:
                 //leaderboard = Repository.GetTraingameLeaderboard();
                 //leaderboardTitle.text = "Palette de couleurs Classement";
-                leaderboardTitle.text = "Jeu de trains";
+                leaderboardTitle.text = "Jeu de trains Classement";
                 ShowPointsAndTimeLeaderboard(Repository.GetTraingameLeaderboard());
                 break;
         }
@@ -58,7 +58,7 @@ public class HomeController : MonoBehaviour
             leaderboardCounter++;
             leaderboardNames.text += "\n" + leaderboardCounter + ": " + System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(pair.Key);
 
-            leaderboardScores.text += "\n" + pair.Value;
+            leaderboardScores.text += "\n" + pair.Value + "p";
             if (leaderboardCounter >= 3)
             {
                 break;
@@ -73,13 +73,46 @@ public class HomeController : MonoBehaviour
             leaderboardCounter++;
             leaderboardNames.text += "\n" + leaderboardCounter + ": " + System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(pair.Key);
 
-            leaderboardScores.text += "\n" + pair.Value[0];
+            leaderboardScores.text += "\n" + pair.Value[0] + "p";
 
-            leaderboardTimes.text += "\n" + pair.Value[1];
+            //leaderboardTimes.text += "\n"/* + pair.Value[1]*/;
+            DisplayTime(pair.Value[1]);
             if (leaderboardCounter >= 3)
             {
                 break;
             }
+        }
+    }
+    private void CalculateTime(float totalTime)
+    {
+        int hours = System.TimeSpan.FromSeconds(totalTime).Hours;
+        int minutes = System.TimeSpan.FromSeconds(totalTime).Minutes;
+        int seconds = System.TimeSpan.FromSeconds(totalTime).Seconds;
+        float milliSeconds = (totalTime - seconds) * 10;
+        if (milliSeconds > 9)
+            milliSeconds = 0;
+    }
+
+    private void DisplayTime(float totalTime)
+    {
+        int hours = System.TimeSpan.FromSeconds(totalTime).Hours;
+        int minutes = System.TimeSpan.FromSeconds(totalTime).Minutes;
+        int seconds = System.TimeSpan.FromSeconds(totalTime).Seconds;
+        float milliSeconds = (totalTime - seconds) * 10;
+        if (milliSeconds > 9)
+            milliSeconds = 0;
+
+        if (hours > 0)
+        {
+            leaderboardTimes.text += "\n" + hours.ToString() + "h " + minutes.ToString() + "m " + seconds.ToString() + "s";
+        }
+        else if (minutes > 0)
+        {
+            leaderboardTimes.text += "\n" + minutes.ToString() + "m " + seconds.ToString() + "s";
+        }
+        else
+        {
+            leaderboardTimes.text += "\n" + seconds.ToString() + "." + milliSeconds.ToString("F0") + "s";
         }
     }
 
