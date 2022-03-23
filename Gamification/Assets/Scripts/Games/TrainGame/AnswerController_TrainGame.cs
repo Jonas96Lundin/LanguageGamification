@@ -65,6 +65,7 @@ public class AnswerController_TrainGame : MonoBehaviour
 
         LightsOff();
         timer.StopTimer();
+        pointController.AddGameTime(timer.TotalTime);
         victoryDisplay.SetActive(true);
         victoryTimerText.text = timer.GetVictoryTime();
         starText.text = pointController.CurrentPoints.ToString();

@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Timer : MonoBehaviour
 {
     private bool isTimerOn;
-    private float seconds;
+    private float totalTime;
     private int minutes;
     private int hours;
+    private int seconds;
+    private float milliSeconds;
     private TMP_Text timerText;
+
+    public float TotalTime { get { return totalTime; } }
 
 
     void Start()
@@ -22,17 +27,7 @@ public class Timer : MonoBehaviour
     {
 		if (isTimerOn)
 		{
-            seconds += Time.deltaTime;
-            if(seconds >= 60)
-			{
-                minutes++;
-                seconds = 0;
-                if(minutes >= 60)
-				{
-                    minutes = 0;
-                    hours++;
-				}
-			}
+            totalTime += Time.deltaTime;
             DisplayTime();
         }
     }
@@ -50,7 +45,7 @@ public class Timer : MonoBehaviour
     public void ResetTimer()
 	{
         StopTimer();
-        seconds = 0;
+        totalTime = 0;
 	}
 
     public void RestartTimer()
@@ -59,35 +54,49 @@ public class Timer : MonoBehaviour
         StartTimer();
 	}
 
+    private void CalculateTime()
+	{
+        hours = TimeSpan.FromSeconds(totalTime).Hours;
+        minutes = TimeSpan.FromSeconds(totalTime).Minutes;
+        seconds = TimeSpan.FromSeconds(totalTime).Seconds;
+        milliSeconds = (totalTime - seconds) * 10;
+        if (milliSeconds > 9)
+            milliSeconds = 0;
+    }
+
     private void DisplayTime()
 	{
+        CalculateTime();
+
         if(hours > 0)
 		{
-            timerText.text = hours.ToString() + "h " + minutes.ToString() + "m " + seconds.ToString("F0") + "s";
+            timerText.text = hours.ToString() + "h " + minutes.ToString() + "m " + seconds.ToString() + "s";
         }
         else if(minutes > 0)
 		{
-            timerText.text = minutes.ToString() + "m " + seconds.ToString("F0") + "s";
+            timerText.text = minutes.ToString() + "m " + seconds.ToString() + "s";
         }
 		else
 		{
-            timerText.text = seconds.ToString("F1") + "s";
+            timerText.text = seconds.ToString() + "." + milliSeconds.ToString("F0") + "s";
         }
 	}
 
     public string GetVictoryTime()
     {
+        CalculateTime();
+
         if (hours > 0)
         {
-            return "Heure de la victoire: " + hours.ToString() + "h " + minutes.ToString() + "m " + seconds.ToString("F2") + "s";
+            return "Heure de la victoire: " + hours.ToString() + "h " + minutes.ToString() + "m " + seconds.ToString() + "s";
         }
         else if (minutes > 0)
         {
-            return "Heure de la victoire: " + minutes.ToString() + "m " + seconds.ToString("F2") + "s";
+            return "Heure de la victoire: " + minutes.ToString() + "m " + seconds.ToString() + "s";
         }
         else
         {
-            return "Heure de la victoire: " + seconds.ToString("F2") + "s";
+            return "Heure de la victoire: " + seconds.ToString() + "." + milliSeconds.ToString("F0") + "s";
         }
     }
 }

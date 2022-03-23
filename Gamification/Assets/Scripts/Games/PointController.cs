@@ -9,14 +9,17 @@ public class PointController : MonoBehaviour
 	public event Action<int> onAddPoint;
 	public event Action<int> onSetMultiplier;
 	public event Action<int> onAddMisstake;
+	//public event Action<float> onAddGameTime;
 
 	[SerializeField] private int pointAmount;
 
 	private int pointMultiplier = 1;
 	private int currentPoints = 0;
 	private int currentMisstakes = 0;
+	private float gameTime = 0;
 
 	public int CurrentPoints { get { return currentPoints; } }
+	public float GameTime { get { return gameTime; } }
 
 	public void AddPoint()
 	{
@@ -44,5 +47,11 @@ public class PointController : MonoBehaviour
 	{
 		currentMisstakes++;
 		onAddMisstake?.Invoke(currentMisstakes);
+	}
+
+	public void AddGameTime(float time)
+	{
+		gameTime = time;
+		//onAddGameTime?.Invoke(gameTime);
 	}
 }
