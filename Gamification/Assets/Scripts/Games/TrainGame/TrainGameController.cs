@@ -69,8 +69,8 @@ public class TrainGameController : MonoBehaviour
 			MoveX(truck.transform, truckEndMovePosX, exitTime, Ease.InSine);
 		}
 
-		//if (questionController.QuestionCounter < 2)
-		if (questionController.QuestionCounter < questionController.QuestionArray.Length)
+		if (questionController.QuestionCounter < 2)
+		//if (questionController.QuestionCounter < questionController.QuestionArray.Length)
 				StartCoroutine(NextGame());
 		else
 			StartCoroutine(EndGame());			
