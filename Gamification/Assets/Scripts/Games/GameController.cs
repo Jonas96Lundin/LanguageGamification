@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum Games
-{
-	COLORWHEEL,
-	TRAINGAME
-}
-
 public class GameController : MonoBehaviour
 {
 	private Games currentGame;
@@ -34,7 +28,6 @@ public class GameController : MonoBehaviour
 
 	public void OnQuitGame()
 	{
-		GetLeaderboard();
 		SceneManager.LoadScene(1);
 	}
 
@@ -44,19 +37,6 @@ public class GameController : MonoBehaviour
 		{
 			case Games.COLORWHEEL:
 				Repository.AddToColorwheelLeaderboard(pointController.CurrentPoints);
-				break;
-			case Games.TRAINGAME:
-
-				break;
-		}
-	}
-
-	private void GetLeaderboard()
-	{
-		switch (currentGame)
-		{
-			case Games.COLORWHEEL:
-				Repository.GetColorWheelLeaderboard();
 				break;
 			case Games.TRAINGAME:
 
