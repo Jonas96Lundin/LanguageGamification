@@ -96,7 +96,7 @@ public class GameController : MonoBehaviour
 		switch (currentGame)
 		{
 			case Games.COLORWHEEL:
-				Repository.AddToColorwheelLeaderboard(pointController.CurrentPoints);
+				Repository.AddToColorwheelLeaderboard(pointController.CurrentPoints, pointController.GameTime);
 				break;
 			case Games.TRAINGAME:
 				Repository.AddToTraingameLeaderboard(pointController.CurrentPoints, pointController.GameTime);
@@ -116,19 +116,19 @@ public class GameController : MonoBehaviour
 				leaderboardNames.text = "";
 				leaderboardScores.text = "";
 
-				//leaderboard = Repository.GetColorWheelLeaderboard();
+				leaderboard = Repository.GetColorWheelLeaderboard();
 
-				//foreach (KeyValuePair<string, int> pair in leaderboard)
-				//{
-				//	leaderboardCounter++;
-				//	leaderboardNames.text += "\n" + leaderboardCounter + ": " + System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(pair.Key);
-
-				//	leaderboardScores.text += "\n" + pair.Value;
-				//	if (leaderboardCounter >= 3)
-				//	{
-				//		break;
-				//	}
-				//}
+				foreach (KeyValuePair<string, List<float>> pair in leaderboard)
+				{
+					leaderboardCounter++;
+					leaderboardNames.text += "\n" + leaderboardCounter + ": " + System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(pair.Key);
+					leaderboardScores.text += "\n" + pair.Value[0] + "p";
+					leaderboardTimes.text += "\n" + GetTime(pair.Value[1]);
+					if (leaderboardCounter >= 3)
+					{
+						break;
+					}
+				}
 
 				break;
 			case Games.TRAINGAME:
