@@ -246,14 +246,13 @@ public static class Repository
         switch (game)
         {
             case Games.COLORWHEEL:
-                cmd = new NpgsqlCommand("SELECT score FROM colorWheelLeaderboard ORDER BY score DESC, time ASC ", conn);
-
+                cmd = new NpgsqlCommand("SELECT score, time FROM colorWheelLeaderboard WHERE username=:username ORDER BY score DESC, time ASC ", conn);
+                cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
                 break;
             case Games.TRAINGAME:
                 cmd = new NpgsqlCommand("SELECT score, time FROM trainGameLeaderboard WHERE username=:username ORDER BY score DESC, time ASC ", conn);
                 cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
                 break;
-
         }
         NpgsqlDataReader dr = cmd.ExecuteReader();
         while (dr.Read())

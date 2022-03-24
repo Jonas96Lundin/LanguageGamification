@@ -8,7 +8,15 @@ using DG.Tweening;
 
 public class ColorWheelGameController : MonoBehaviour
 {
-	GameController gameController;
+	[Header ("StartPanel")]
+	[SerializeField] private GameObject startPanel;
+	[SerializeField] private Button startButton;
+	[SerializeField] private TMP_Text startCountDown;
+
+	private GameController gameController;
+
+	[SerializeField] private Timer timer;
+	[SerializeField] private PickerWheel wheel;
 
 	[SerializeField] private QuestionDataController questionController;
 
@@ -43,7 +51,20 @@ public class ColorWheelGameController : MonoBehaviour
 
 		questionController.LoadQuestionData(gameController.CurrentGame.ToString());
 		questionController.SetQuestionsAndAnswers(questionController.QuestionData.questions, questionController.QuestionData.answers);
-		foreach(AnswerController_ColorWheel answerController in GetComponentsInChildren<AnswerController_ColorWheel>())
+	}
+
+	public void OnStartGame()
+	{
+		StartCoroutine(StartGameCountdown());
+	}
+
+	public void StartGame()
+	{
+		wheel.Create();
+		questionController.StartGame();
+		uiSpinButton.interactable = true;
+
+		foreach (AnswerController_ColorWheel answerController in GetComponentsInChildren<AnswerController_ColorWheel>())
 		{
 			answerContollers.Add(answerController);
 		}
@@ -75,6 +96,8 @@ public class ColorWheelGameController : MonoBehaviour
 
 			pickerWheel.Spin();
 		});
+
+		timer.StartTimer();
 	}
 
 	private void ResetWheel()
@@ -103,6 +126,8 @@ public class ColorWheelGameController : MonoBehaviour
 			}
 			else
 			{
+				timer.StopTimer();
+				pointController.AddGameTime(timer.TotalTime);
 				pointController.AddPoint();
 				quitButton.interactable = false;
 				victoryScreen.SetActive(true);
@@ -126,5 +151,25 @@ public class ColorWheelGameController : MonoBehaviour
 	private void DisplayCombo(int combo)
 	{
 		comboText.text = "Combiné X " + combo;
+	}
+
+	public IEnumerator StartGameCountdown()
+	{
+		startButton.gameObject.SetActive(false);
+		startCountDown.gameObject.SetActive(true);
+
+		float time = 3.5f;
+		while (time > 0)
+		{
+			startCountDown.text = time.ToString("F0");
+			time -= Time.deltaTime;
+
+			yield return null;
+		}
+
+		yield return new WaitForSeconds(.5f);
+
+		startPanel.SetActive(false);
+		StartGame();
 	}
 }

@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         timerText = GetComponent<TMP_Text>();
-        StartTimer();
+        //StartTimer();
     }
 
     void Update()

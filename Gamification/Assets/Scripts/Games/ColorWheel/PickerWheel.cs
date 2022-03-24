@@ -64,6 +64,11 @@ namespace EasyUI.PickerWheelUI
 		private void Start()
 		{
 			SetupAudio();
+		}
+
+		public void Create()
+		{
+			//SetupAudio();
 			CreateWheel();
 		}
 

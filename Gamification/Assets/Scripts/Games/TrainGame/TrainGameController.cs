@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class TrainGameController : MonoBehaviour
 {
 	private GameController gameController;
 	private QuestionController_TrainGame questionController;
 	private AnswerController_TrainGame answerController;
+	[SerializeField] private Timer timer;
+
+	[Header("StartPanel")]
+	[SerializeField] private GameObject startPanel;
+	[SerializeField] private Button startButton;
+	[SerializeField] private TMP_Text startCountDown;
 
 	[Header("Train objects")]
 	[SerializeField] private TrainController train;
@@ -57,9 +64,20 @@ public class TrainGameController : MonoBehaviour
 	{
 		gameController.SetGame(Games.TRAINGAME);
 		questionController.LoadQuestionData();
+		//StartGame();
+	}
+	public void OnStartGame()
+	{
+		StartCoroutine(StartGameCountdown());
+	}
+	
+	private void StartGame()
+	{
 		questionController.LoadCurrentQuestion();
+		answerController.StartGame();
 		CreateTrucks();
 		CreateTrain();
+		timer.StartTimer();
 	}
 	public void EndCurrentGame()
 	{
@@ -191,6 +209,26 @@ public class TrainGameController : MonoBehaviour
 		return currentWagonAnswer.Trim(' ');
 	}
 
+
+	public IEnumerator StartGameCountdown()
+	{
+		startButton.gameObject.SetActive(false);
+		startCountDown.gameObject.SetActive(true);
+
+		float time = 3.5f;
+		while (time > 0)
+		{
+			startCountDown.text = time.ToString("F0");
+			time -= Time.deltaTime;
+
+			yield return null;
+		}
+
+		yield return new WaitForSeconds(.5f);
+
+		startPanel.SetActive(false);
+		StartGame();
+	}
 	IEnumerator NextGame()
 	{
 		yield return new WaitForSeconds(exitTime);

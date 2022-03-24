@@ -50,11 +50,14 @@ public class AnswerController_TrainGame : MonoBehaviour
         questionController = GetComponent<QuestionController_TrainGame>();
         pointController = GetComponent<PointController>();
     }
-	void Start()
+	public void StartGame()
     {
+        answerButton.interactable = true;
+        player.IsPaused = false;
         ActivateRedLight();
         noWrongAnswer = true;
     }
+
 
     public void NextGame()
 	{
