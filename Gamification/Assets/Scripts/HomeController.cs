@@ -36,13 +36,14 @@ public class HomeController : MonoBehaviour
         {
             case Games.COLORWHEEL:
                 //leaderboard = Repository.GetColorWheelLeaderboard();
-                leaderboardTitle.text = "Palette de couleurs Classement";
-                ShowPointsLeaderboard(Repository.GetColorWheelLeaderboard());
+                leaderboardTitle.text = "Classement palette de couleurs";
+                //ShowPointsLeaderboard(Repository.GetColorWheelLeaderboard());
+                ShowPointsAndTimeLeaderboard(Repository.GetColorWheelLeaderboard());
                 break;
             case Games.TRAINGAME:
                 //leaderboard = Repository.GetTraingameLeaderboard();
                 //leaderboardTitle.text = "Palette de couleurs Classement";
-                leaderboardTitle.text = "Jeu de trains Classement";
+                leaderboardTitle.text = "Classement du jeu de trains";
                 ShowPointsAndTimeLeaderboard(Repository.GetTraingameLeaderboard());
                 break;
         }
