@@ -69,13 +69,14 @@ public static class Repository
 		Debug.Log(res);
 	}
 
-	public static void AddToColorwheelLeaderboard(int score)
+	public static void AddToColorwheelLeaderboard(int score, float time)
 	{
 		ConnectToDatabase("aj8015");
 		NpgsqlCommand cmd;
-		cmd = new NpgsqlCommand("INSERT INTO colorwheelLeaderboard(username, score) VALUES(:username, :score);", conn);
+		cmd = new NpgsqlCommand("INSERT INTO colorwheelLeaderboard(username, score, time) VALUES(:username, :score, :time);", conn);
 		cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
 		cmd.Parameters.Add(new NpgsqlParameter("score", score));
+		cmd.Parameters.Add(new NpgsqlParameter("time", time));
 		System.Object res = cmd.ExecuteScalar();
 		conn.Close();
 		Debug.Log(res);
