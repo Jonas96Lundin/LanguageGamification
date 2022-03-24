@@ -99,7 +99,7 @@ public class GameController : MonoBehaviour
 				Repository.AddToColorwheelLeaderboard(pointController.CurrentPoints);
 				break;
 			case Games.TRAINGAME:
-
+				Repository.AddToTraingameLeaderboard(pointController.CurrentPoints, pointController.GameTime);
 				break;
 		}
 	}
@@ -111,8 +111,6 @@ public class GameController : MonoBehaviour
 		switch (currentGame)
 		{
 			case Games.COLORWHEEL:
-
-				//currentBestScore.text = "Score: " + pointController.CurrentPoints;
 				
 				leaderboardTitle.text = "Palette de couleurs Classement";
 				leaderboardNames.text = "";

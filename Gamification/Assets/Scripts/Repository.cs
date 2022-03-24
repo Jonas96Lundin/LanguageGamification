@@ -85,7 +85,7 @@ public static class Repository
 	{
 		ConnectToDatabase("aj8015");
 		NpgsqlCommand cmd;
-		cmd = new NpgsqlCommand(" INSERT INTO traingameLeaderboard(username, points, time) VALUES(:username, :score, :time); ", conn);
+		cmd = new NpgsqlCommand("INSERT INTO traingameLeaderboard(username, score, time) VALUES(:username, :score, :time); ", conn);
 		cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
 		cmd.Parameters.Add(new NpgsqlParameter("score", score));
 		cmd.Parameters.Add(new NpgsqlParameter("time", time));
@@ -156,7 +156,7 @@ public static class Repository
 				else if (tempValues[0] == dr.GetInt32(1))
 				{
 					//leaderboard.TryGetValue(dr[0].ToString(), out tempTime);
-					if (tempValues[1] > dr.GetFloat(2))
+					if (tempValues[1] > (float)dr.GetDecimal(2))
 					{
 						leaderboard.Add(dr[0].ToString(), new List<float>() { dr.GetInt32(1), (float)dr.GetDecimal(2) });
 					}
