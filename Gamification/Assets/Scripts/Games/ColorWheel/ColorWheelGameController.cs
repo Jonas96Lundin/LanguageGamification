@@ -13,7 +13,7 @@ public class ColorWheelGameController : MonoBehaviour
 	[SerializeField] private QuestionDataController questionController;
 
 	[SerializeField] private GameObject victoryScreen;
-	private int victoryScreenEndScale = 2;
+	private int victoryScreenEndScale = 1;
 	private float displayScaleTimer = 0.5f;
 
 	[SerializeField] private Button uiSpinButton;
@@ -106,6 +106,7 @@ public class ColorWheelGameController : MonoBehaviour
 				pointController.AddPoint();
 				quitButton.interactable = false;
 				victoryScreen.SetActive(true);
+				gameController.EndGame();
 				victoryScreen.transform.DOScale(victoryScreenEndScale, displayScaleTimer);
 			}
 			

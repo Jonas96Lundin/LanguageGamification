@@ -70,9 +70,9 @@ public class AnswerController_TrainGame : MonoBehaviour
         timer.StopTimer();
         pointController.AddGameTime(timer.TotalTime);
         victoryDisplay.SetActive(true);
-        victoryTimerText.text = timer.GetVictoryTime();
-        starText.text = pointController.CurrentPoints.ToString();
-        victoryDisplay.transform.DOScale(2, displayScaleTime);
+        //victoryTimerText.text = timer.GetVictoryTime();
+        //starText.text = pointController.CurrentPoints.ToString();
+        victoryDisplay.transform.DOScale(1, displayScaleTime);
     }
 
 	#region Answer

@@ -8,8 +8,8 @@ public class Timer : MonoBehaviour
 {
     private bool isTimerOn;
     private float totalTime;
-    private int minutes;
     private int hours;
+    private int minutes;
     private int seconds;
     private float milliSeconds;
     private TMP_Text timerText;
