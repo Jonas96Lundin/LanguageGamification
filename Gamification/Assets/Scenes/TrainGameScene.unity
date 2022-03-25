@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointController: {fileID: 508273476}
   currentBestScore: {fileID: 500713337}
-  currentBestTime: {fileID: 1711161560}
+  currentBestTime: {fileID: 1917884440}
   newScore: {fileID: 1144552937}
   newTime: {fileID: 1711161560}
   leaderboardTitle: {fileID: 1663594567664060362}

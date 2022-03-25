@@ -49,6 +49,7 @@ public class GameController : MonoBehaviour
 	public void EndGame()
 	{
 		float[] result = Repository.GetBestResult(currentGame);
+		
 		currentBestScore.text = result[0].ToString();
 		if (result[1] > 0)
 		{
