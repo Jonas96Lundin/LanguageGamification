@@ -885,8 +885,8 @@ RectTransform:
   - {fileID: 433992171}
   - {fileID: 1291417684}
   - {fileID: 868478591}
-  - {fileID: 792107455290320388}
   - {fileID: 2116290903}
+  - {fileID: 792107455290320388}
   m_Father: {fileID: 1606727938}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -946,6 +946,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 1291417687}
+  victoryDisplay: {fileID: 6505989144617947629}
+  quitButton: {fileID: 792107455290320387}
   startPanel: {fileID: 9196159076293369735}
   startButton: {fileID: 9196159075316873001}
   startCountDown: {fileID: 9196159075330428945}
@@ -986,7 +988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3575cc8a9ce90e4e9fc725700c5eaad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  answerButtons: {fileID: 0}
 --- !u!114 &508273473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,7 +1000,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e0d79a57b8b0840bd05c2af28153bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quitButton: {fileID: 792107455290320387}
   answerWords:
   - me
   - te
@@ -1022,9 +1022,6 @@ MonoBehaviour:
   wellDoneDisplay: {fileID: 174722395}
   excellentDisplay: {fileID: 1915983567}
   wrongCargoDisplay: {fileID: 790761031}
-  victoryDisplay: {fileID: 6505989144617947629}
-  starText: {fileID: 0}
-  victoryTimerText: {fileID: 0}
 --- !u!114 &508273474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4259,7 +4256,7 @@ RectTransform:
   - {fileID: 9196159076293369732}
   - {fileID: 3932514143454702410}
   m_Father: {fileID: 508273467}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4426,7 +4423,7 @@ RectTransform:
   m_Children:
   - {fileID: 792107456199578219}
   m_Father: {fileID: 508273467}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

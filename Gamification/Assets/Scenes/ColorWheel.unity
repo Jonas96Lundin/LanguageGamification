@@ -2170,7 +2170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3575cc8a9ce90e4e9fc725700c5eaad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  answerButtons: {fileID: 2030341730}
 --- !u!114 &508273471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2188,6 +2187,7 @@ MonoBehaviour:
   startCountDown: {fileID: 1494673771}
   timer: {fileID: 7035764937344230979}
   wheel: {fileID: 1287042582}
+  answerButtons: {fileID: 2030341730}
   questionController: {fileID: 508273470}
   victoryScreen: {fileID: 3501885197971437267}
   uiSpinButton: {fileID: 1896878604}

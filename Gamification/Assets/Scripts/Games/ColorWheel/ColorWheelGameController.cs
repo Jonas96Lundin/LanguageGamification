@@ -17,6 +17,7 @@ public class ColorWheelGameController : MonoBehaviour
 
 	[SerializeField] private Timer timer;
 	[SerializeField] private PickerWheel wheel;
+	[SerializeField] private GameObject answerButtons;
 
 	[SerializeField] private QuestionDataController questionController;
 
@@ -61,8 +62,8 @@ public class ColorWheelGameController : MonoBehaviour
 	public void StartGame()
 	{
 		wheel.Create();
-		questionController.StartGame();
 		uiSpinButton.interactable = true;
+		answerButtons.SetActive(true);
 
 		foreach (AnswerController_ColorWheel answerController in GetComponentsInChildren<AnswerController_ColorWheel>())
 		{

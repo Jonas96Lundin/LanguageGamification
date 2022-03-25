@@ -5,8 +5,6 @@ using System.Collections.Generic;
 
 public class QuestionDataController : MonoBehaviour
 {
-	[SerializeField] private GameObject answerButtons;
-
 	private QuestionData questionData;
 
 	private List<string> questions;
@@ -23,11 +21,6 @@ public class QuestionDataController : MonoBehaviour
 	{
 		questions = que;
 		answers = ans;
-	}
-
-	public void StartGame()
-	{
-		answerButtons.SetActive(true);
 	}
 
 	public bool IsAnswerCorrect(string question, string answer)

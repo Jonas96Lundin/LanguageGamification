@@ -11,6 +11,8 @@ public class TrainGameController : MonoBehaviour
 	private QuestionController_TrainGame questionController;
 	private AnswerController_TrainGame answerController;
 	[SerializeField] private Timer timer;
+	[SerializeField] private GameObject victoryDisplay;
+	[SerializeField] private Button quitButton;
 
 	[Header("StartPanel")]
 	[SerializeField] private GameObject startPanel;
@@ -47,9 +49,10 @@ public class TrainGameController : MonoBehaviour
 	private float centerMovePosX = 960;
 	private float trainEndMovePosX = -1000;
 	private float truckEndMovePosX = 3000;
-	private float enterTime = 3;
-	private float exitTime = 5;
-	private float victoryDelay = 1;
+	private float enterDelay = 3;
+	private float exitDelay = 5;
+	private float endGameDelay = 0.5f;
+	private float victoryScreenDelay = 1;
 
 
 	private void OnEnable()
@@ -81,17 +84,11 @@ public class TrainGameController : MonoBehaviour
 	}
 	public void EndCurrentGame()
 	{
-		MoveX(train.transform, trainEndMovePosX, exitTime, Ease.InSine);
+		MoveX(train.transform, trainEndMovePosX, exitDelay, Ease.InSine);
 		foreach (TruckController truck in trucks)
 		{
-			MoveX(truck.transform, truckEndMovePosX, exitTime, Ease.InSine);
-		}
-
-		if (questionController.QuestionCounter < 2)
-		//if (questionController.QuestionCounter < questionController.QuestionArray.Length)
-				StartCoroutine(NextGame());
-		else
-			StartCoroutine(EndGame());			
+			MoveX(truck.transform, truckEndMovePosX, exitDelay, Ease.InSine);
+		}		
 	}
 	private void StartNextGame()
 	{
@@ -121,7 +118,7 @@ public class TrainGameController : MonoBehaviour
 
 		CreateWagonWithCargo(Instantiate(wagonWithCargoPrefab, locomitive.transform), numberOfWagons - 1);
 
-		MoveX(train.transform, centerMovePosX, enterTime, Ease.OutSine);
+		MoveX(train.transform, centerMovePosX, enterDelay, Ease.OutSine);
 	}
 
 	private void CreateLocomotive(GameObject newlocomotive)
@@ -173,7 +170,7 @@ public class TrainGameController : MonoBehaviour
 				cargo.GetComponentInChildren<TMP_Text>().text = answerController.AnswerWords[truckCargoCounter];
 				truckCargoCounter++;
 			}
-			MoveX(truck.transform, centerMovePosX + truck.PosOffsetX, enterTime, Ease.OutSine);
+			MoveX(truck.transform, centerMovePosX + truck.PosOffsetX, enterDelay, Ease.OutSine);
 		}
 	}
 
@@ -229,18 +226,27 @@ public class TrainGameController : MonoBehaviour
 		startPanel.SetActive(false);
 		StartGame();
 	}
-	IEnumerator NextGame()
+	public IEnumerator NextGame()
 	{
-		yield return new WaitForSeconds(exitTime);
+		yield return new WaitForSeconds(exitDelay);
 
 		answerController.NextGame();
 		StartNextGame();
 	}
-	IEnumerator EndGame()
+	public IEnumerator EndGame()
 	{
-		yield return new WaitForSeconds(victoryDelay);
+		yield return new WaitForSeconds(exitDelay);
 
+		quitButton.interactable = false;
 		answerController.EndGame();
+
+		yield return new WaitForSeconds(endGameDelay);
+
+		victoryDisplay.SetActive(true);		
 		gameController.EndGame();
+
+		yield return new WaitForSeconds(victoryScreenDelay);
+
+		victoryDisplay.transform.DOScale(1, 0.5f);
 	}
 }

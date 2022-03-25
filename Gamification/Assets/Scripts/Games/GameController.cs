@@ -54,12 +54,12 @@ public class GameController : MonoBehaviour
 		{
 			currentBestTime.text = GetTime(result[1]);
 		}
-		
+
 		newScore.text = pointController.CurrentPoints.ToString();
 		newTime.text = GetTime(pointController.GameTime);
 
+		//Repository.AddPlayedGame(currentGame);
 		AddToLeaderboard();
-
 		GetLeaderboard();
 	}
 
@@ -115,6 +115,7 @@ public class GameController : MonoBehaviour
 				leaderboardTitle.text = "Palette de couleurs Classement";
 				leaderboardNames.text = "";
 				leaderboardScores.text = "";
+				leaderboardTimes.text = "";
 
 				leaderboard = Repository.GetColorWheelLeaderboard();
 
@@ -136,6 +137,7 @@ public class GameController : MonoBehaviour
 				leaderboardTitle.text = "Jeu de trains";
 				leaderboardNames.text = "";
 				leaderboardScores.text = "";
+				leaderboardTimes.text = "";
 
 				leaderboard = Repository.GetTraingameLeaderboard();
 

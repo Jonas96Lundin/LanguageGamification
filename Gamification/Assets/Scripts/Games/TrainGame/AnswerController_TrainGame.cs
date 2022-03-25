@@ -12,8 +12,6 @@ public class AnswerController_TrainGame : MonoBehaviour
     private QuestionController_TrainGame questionController;
     private PointController pointController;
 
-    [SerializeField] private Button quitButton;
-
     [SerializeField] private string[] answerWords;
     [SerializeField] private Button answerButton;
     [SerializeField] private Timer timer;
@@ -29,9 +27,6 @@ public class AnswerController_TrainGame : MonoBehaviour
     [SerializeField] private GameObject wellDoneDisplay;
     [SerializeField] private GameObject excellentDisplay;
     [SerializeField] private GameObject wrongCargoDisplay;
-    [SerializeField] private GameObject victoryDisplay;
-    [SerializeField] private TMP_Text starText;
-    [SerializeField] private TMP_Text victoryTimerText;
     private GameObject answerDisplay;
 
     private bool noWrongAnswer;
@@ -57,25 +52,16 @@ public class AnswerController_TrainGame : MonoBehaviour
         ActivateRedLight();
         noWrongAnswer = true;
     }
-
-
     public void NextGame()
 	{
         SwitchToRed();
         answerDisplay.transform.DOScale(0, displayScaleTime);
     }
+
     public void EndGame()
 	{
-        answerDisplay.transform.DOScale(0, displayScaleTime);
-
         LightsOff();
-        quitButton.interactable = false;
-        timer.StopTimer();
-        pointController.AddGameTime(timer.TotalTime);
-        victoryDisplay.SetActive(true);
-        //victoryTimerText.text = timer.GetVictoryTime();
-        //starText.text = pointController.CurrentPoints.ToString();
-        victoryDisplay.transform.DOScale(1, displayScaleTime);
+        answerDisplay.transform.DOScale(0, displayScaleTime);
     }
 
 	#region Answer
@@ -103,6 +89,18 @@ public class AnswerController_TrainGame : MonoBehaviour
             }
             answerDisplay.transform.DOScale(1, displayScaleTime);
             gameController.EndCurrentGame();
+
+            //if (questionController.QuestionCounter < questionController.QuestionArray.Length)
+            if (questionController.QuestionCounter < 2)
+			{
+                StartCoroutine(gameController.NextGame());
+            }
+			else
+			{
+                timer.StopTimer();
+                pointController.AddGameTime(timer.TotalTime);
+                StartCoroutine(gameController.EndGame());
+            }
         }
         else
         {
