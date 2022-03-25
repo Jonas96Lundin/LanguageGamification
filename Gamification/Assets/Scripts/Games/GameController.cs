@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour
 	private int seconds;
 	private float milliSeconds;
 
+
 	public Games CurrentGame { get { return currentGame; } }
 
 	public void SetGame(Games game)
@@ -156,8 +157,5 @@ public class GameController : MonoBehaviour
 
 				break;
 		}
-
-
-		
 	}
 }
