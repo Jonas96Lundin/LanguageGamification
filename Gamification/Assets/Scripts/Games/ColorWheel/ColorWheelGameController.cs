@@ -160,7 +160,7 @@ public class ColorWheelGameController : MonoBehaviour
 		startCountDown.gameObject.SetActive(true);
 
 		float time = 3.5f;
-		while (time > 0)
+		while (time > 1)
 		{
 			startCountDown.text = time.ToString("F0");
 			time -= Time.deltaTime;

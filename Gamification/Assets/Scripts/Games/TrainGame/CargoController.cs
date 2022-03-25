@@ -63,27 +63,33 @@ public class CargoController : MonoBehaviour
 
 	private void OnGrabCargo(PointerEventData eventData)
 	{
-		if (eventData.button == PointerEventData.InputButton.Left && !player.IsPaused)
+		if (!player.IsPaused)
 		{
-			cursorBehaviour.OnMouseEnterGrabClick();
-			transform.SetParent(player.transform);
-			isGrabbed = true;
+			if (eventData.button == PointerEventData.InputButton.Left)
+			{
+				cursorBehaviour.OnMouseEnterGrabClick();
+				transform.SetParent(player.transform);
+				isGrabbed = true;
+			}
 		}
 	}
 
 	private void OnReleaseCargo(PointerEventData eventData)
 	{
-		if (eventData.button == PointerEventData.InputButton.Left)
+		if (!player.IsPaused)
 		{
-			if (newCargoPosition)
+			if (eventData.button == PointerEventData.InputButton.Left)
 			{
-				cargoPosition.HasCargo = false;
+				if (newCargoPosition)
+				{
+					cargoPosition.HasCargo = false;
 
-				cargoPosition = newCargoPosition;
-				cargoPosition.HasCargo = true;
-				newCargoPosition = null;
+					cargoPosition = newCargoPosition;
+					cargoPosition.HasCargo = true;
+					newCargoPosition = null;
+				}
+				StartCoroutine(ReleaseCargo());
 			}
-			StartCoroutine(ReleaseCargo());
 		}
 	}
 

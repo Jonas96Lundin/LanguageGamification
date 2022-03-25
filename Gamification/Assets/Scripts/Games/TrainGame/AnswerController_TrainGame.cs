@@ -29,7 +29,7 @@ public class AnswerController_TrainGame : MonoBehaviour
     [SerializeField] private GameObject wrongCargoDisplay;
     private GameObject answerDisplay;
 
-    private bool noWrongAnswer;
+    private bool noWrongAnswer = true;
 
     private float checkAnswerDelay = 1;
     private float displayScaleTime = 0.5f;
@@ -47,15 +47,18 @@ public class AnswerController_TrainGame : MonoBehaviour
     }
 	public void StartGame()
     {
-        answerButton.interactable = true;
-        player.IsPaused = false;
+        //answerButton.interactable = true;
+        //player.IsPaused = false;
         ActivateRedLight();
-        noWrongAnswer = true;
+    }
+    public void HideAnwerDisplay()
+	{
+        answerDisplay.transform.DOScale(0, displayScaleTime);
     }
     public void NextGame()
 	{
         SwitchToRed();
-        answerDisplay.transform.DOScale(0, displayScaleTime);
+        //answerDisplay.transform.DOScale(0, displayScaleTime);
     }
 
     public void EndGame()
@@ -134,8 +137,7 @@ public class AnswerController_TrainGame : MonoBehaviour
     {
         LightsOff();
         ActivateRedLight();
-        answerButton.interactable = true;
-        player.IsPaused = false;
+        
     }
 
     private void LightsOff()
@@ -155,6 +157,9 @@ public class AnswerController_TrainGame : MonoBehaviour
     }
     private void ActivateRedLight()
     {
+        answerButton.interactable = true;
+        player.IsPaused = false;
+
         redLight.gameObject.SetActive(true);
 
         switchLight.transform.localPosition = redLightPos;

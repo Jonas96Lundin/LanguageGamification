@@ -67,7 +67,6 @@ public class TrainGameController : MonoBehaviour
 	{
 		gameController.SetGame(Games.TRAINGAME);
 		questionController.LoadQuestionData();
-		//StartGame();
 	}
 	public void OnStartGame()
 	{
@@ -77,10 +76,9 @@ public class TrainGameController : MonoBehaviour
 	private void StartGame()
 	{
 		questionController.LoadCurrentQuestion();
-		answerController.StartGame();
+		//answerController.StartGame();
 		CreateTrucks();
 		CreateTrain();
-		timer.StartTimer();
 	}
 	public void EndCurrentGame()
 	{
@@ -213,7 +211,7 @@ public class TrainGameController : MonoBehaviour
 		startCountDown.gameObject.SetActive(true);
 
 		float time = 3.5f;
-		while (time > 0)
+		while (time > 1)
 		{
 			startCountDown.text = time.ToString("F0");
 			time -= Time.deltaTime;
@@ -225,13 +223,23 @@ public class TrainGameController : MonoBehaviour
 
 		startPanel.SetActive(false);
 		StartGame();
+		timer.StartTimer();
+
+		yield return new WaitForSeconds(enterDelay);
+
+		answerController.StartGame();
+
 	}
 	public IEnumerator NextGame()
 	{
 		yield return new WaitForSeconds(exitDelay);
 
-		answerController.NextGame();
+		answerController.HideAnwerDisplay();
 		StartNextGame();
+
+		yield return new WaitForSeconds(enterDelay);
+
+		answerController.NextGame();
 	}
 	public IEnumerator EndGame()
 	{
