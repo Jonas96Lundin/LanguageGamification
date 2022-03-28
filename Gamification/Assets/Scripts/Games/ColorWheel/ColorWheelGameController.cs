@@ -8,6 +8,10 @@ using DG.Tweening;
 
 public class ColorWheelGameController : MonoBehaviour
 {
+	public static float badgeTime = 0;
+	public static int badgePoints = 550;
+
+
 	[Header ("StartPanel")]
 	[SerializeField] private GameObject startPanel;
 	[SerializeField] private Button startButton;

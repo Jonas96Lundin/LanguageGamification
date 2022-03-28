@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -20,6 +21,11 @@ public class GameController : MonoBehaviour
 	[SerializeField] TMP_Text leaderboardNames;
 	[SerializeField] TMP_Text leaderboardScores;
 	[SerializeField] TMP_Text leaderboardTimes;
+
+
+	[SerializeField] List<Image> badges;
+	Dictionary<string, bool> aquiredBadges;
+	private List<GameObject> newBadges = new List<GameObject>();
 
 	private int hours;
 	private int minutes;
@@ -50,7 +56,7 @@ public class GameController : MonoBehaviour
 	public void EndGame()
 	{
 		float[] result = Repository.GetBestResult(currentGame);
-		
+
 		currentBestScore.text = result[0].ToString();
 		if (result[1] > 0)
 		{
@@ -61,9 +67,42 @@ public class GameController : MonoBehaviour
 		newTime.text = GetTime(pointController.GameTime);
 
 		//Repository.AddPlayedGame(currentGame);
+		SetBadges();
 		AddToLeaderboard();
 		GetLeaderboard();
 	}
+
+	private void SetBadges()
+	{
+		aquiredBadges = BadgeManager.GetAquiredBadges(currentGame, pointController.GameTime, pointController.CurrentPoints);
+
+		foreach (Image badge in badges)
+		{
+			foreach (KeyValuePair<string, bool> aquiredBadge in aquiredBadges)
+			{
+				if (badge.name == aquiredBadge.Key)
+				{
+					badge.color = Color.white;
+
+					if (aquiredBadge.Value)
+					{
+						newBadges.Add(badge.gameObject);
+					}
+
+					break;
+				}
+			}	
+		}
+	}
+
+	private void ShowNewBadges()
+	{
+		foreach (GameObject badge in newBadges)
+		{
+			//effect on position
+		}
+	}
+
 
 	private string GetTime(float totalTime)
 	{
@@ -113,7 +152,7 @@ public class GameController : MonoBehaviour
 		switch (currentGame)
 		{
 			case Games.COLORWHEEL:
-				
+
 				leaderboardTitle.text = "Palette de couleurs Classement";
 				leaderboardNames.text = "";
 				leaderboardScores.text = "";

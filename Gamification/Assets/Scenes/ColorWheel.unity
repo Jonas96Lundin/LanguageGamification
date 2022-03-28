@@ -2231,6 +2231,10 @@ MonoBehaviour:
   leaderboardNames: {fileID: 9063105921183845731}
   leaderboardScores: {fileID: 7696889947864649520}
   leaderboardTimes: {fileID: 9063105921306585659}
+  badges:
+  - {fileID: 1331817509415281547}
+  - {fileID: 1331817508933430696}
+  - {fileID: 1331817507983589363}
 --- !u!1 &510371581 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4979988204890659094, guid: 6c0ddb1147de2dd41af34aa35abd4488, type: 3}
@@ -7176,7 +7180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7250,7 +7254,7 @@ GameObject:
   - component: {fileID: 1331817507983589360}
   - component: {fileID: 1331817507983589363}
   m_Layer: 5
-  m_Name: Badge3
+  m_Name: colorWheelMaxPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7296,7 +7300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7407,7 +7411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7444,7 +7448,7 @@ GameObject:
   - component: {fileID: 1331817508933430697}
   - component: {fileID: 1331817508933430696}
   m_Layer: 5
-  m_Name: Badge2
+  m_Name: colorWheelSpeedster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7482,7 +7486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7557,7 +7561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7631,7 +7635,7 @@ GameObject:
   - component: {fileID: 1331817509415281544}
   - component: {fileID: 1331817509415281547}
   m_Layer: 5
-  m_Name: Badge1
+  m_Name: colorWheelCompleted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7677,7 +7681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
