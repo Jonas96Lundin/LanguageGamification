@@ -310,4 +310,34 @@ public static class Repository
 
         return playedGames;
     }
+
+    public static List<string> GetAquiredBadges(Games game)
+    {
+        ConnectToDatabase("aj8015");
+        NpgsqlCommand cmd = new NpgsqlCommand();
+        List<string> aquiredBadges = new List<string>();
+
+        switch (game)
+        {
+            case Games.COLORWHEEL:
+                cmd = new NpgsqlCommand("SELECT badge FROM aquiredbadges WHERE username = :username AND badge LIKE 'colorWheel%';", conn);
+                cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
+                break;
+            case Games.TRAINGAME:
+                cmd = new NpgsqlCommand("SELECT badge FROM aquiredbadges WHERE username = :username AND badge LIKE 'trainGame%';", conn);
+                cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
+                break;
+        }
+
+        NpgsqlDataReader dr = cmd.ExecuteReader();
+        while (dr.Read())
+        {
+            aquiredBadges.Add(dr[0].ToString());
+        }
+
+        dr.Close();
+        conn.Close();
+
+        return aquiredBadges;
+    }
 }
