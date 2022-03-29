@@ -102,7 +102,10 @@ public class CargoController : MonoBehaviour
 
 		yield return new WaitForSeconds(1);
 
-		transform.SetParent(cargoPosition.transform);
+		if (!isGrabbed)
+		{
+			transform.SetParent(cargoPosition.transform);
+		}
 	}
 
 	private void Update()

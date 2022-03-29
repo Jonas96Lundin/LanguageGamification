@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
 	[SerializeField] TMP_Text newScore;
 	[SerializeField] TMP_Text newTime;
 
-	[SerializeField] TMP_Text leaderboardTitle;
+	//[SerializeField] TMP_Text leaderboardTitle;
 	[SerializeField] TMP_Text leaderboardNames;
 	[SerializeField] TMP_Text leaderboardScores;
 	[SerializeField] TMP_Text leaderboardTimes;
@@ -78,20 +78,14 @@ public class GameController : MonoBehaviour
 
 		foreach (Image badge in badges)
 		{
-			foreach (KeyValuePair<string, bool> aquiredBadge in aquiredBadges)
+			if (aquiredBadges.ContainsKey(badge.name))
 			{
-				if (badge.name == aquiredBadge.Key)
+				badge.color = Color.white;
+				if (aquiredBadges[badge.name])
 				{
-					badge.color = Color.white;
-
-					if (aquiredBadge.Value)
-					{
-						newBadges.Add(badge.gameObject);
-					}
-
-					break;
+					newBadges.Add(badge.gameObject);
 				}
-			}	
+			}
 		}
 	}
 
@@ -149,52 +143,35 @@ public class GameController : MonoBehaviour
 	{
 		Dictionary<string, List<float>> leaderboard = new Dictionary<string, List<float>>();
 		int leaderboardCounter = 0;
+
+		leaderboardNames.text = "";
+		leaderboardScores.text = "";
+		leaderboardTimes.text = "";
+
+
 		switch (currentGame)
 		{
 			case Games.COLORWHEEL:
 
-				leaderboardTitle.text = "Palette de couleurs Classement";
-				leaderboardNames.text = "";
-				leaderboardScores.text = "";
-				leaderboardTimes.text = "";
-
 				leaderboard = Repository.GetColorWheelLeaderboard();
-
-				foreach (KeyValuePair<string, List<float>> pair in leaderboard)
-				{
-					leaderboardCounter++;
-					leaderboardNames.text += "\n" + leaderboardCounter + ": " + System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(pair.Key);
-					leaderboardScores.text += "\n" + pair.Value[0] + "p";
-					leaderboardTimes.text += "\n" + GetTime(pair.Value[1]);
-					if (leaderboardCounter >= 3)
-					{
-						break;
-					}
-				}
-
 				break;
+
 			case Games.TRAINGAME:
 
-				leaderboardTitle.text = "Jeu de trains";
-				leaderboardNames.text = "";
-				leaderboardScores.text = "";
-				leaderboardTimes.text = "";
-
 				leaderboard = Repository.GetTraingameLeaderboard();
-
-				foreach (KeyValuePair<string, List<float>> pair in leaderboard)
-				{
-					leaderboardCounter++;
-					leaderboardNames.text += "\n" + leaderboardCounter + ": " + System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(pair.Key);
-					leaderboardScores.text += "\n" + pair.Value[0] + "p";
-					leaderboardTimes.text += "\n" + GetTime(pair.Value[1]);
-					if (leaderboardCounter >= 3)
-					{
-						break;
-					}
-				}
-
 				break;
+		}
+
+		foreach (KeyValuePair<string, List<float>> pair in leaderboard)
+		{
+			leaderboardCounter++;
+			leaderboardNames.text += "\n" + leaderboardCounter + ": " + System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(pair.Key);
+			leaderboardScores.text += "\n" + pair.Value[0] + "p";
+			leaderboardTimes.text += "\n" + GetTime(pair.Value[1]);
+			if (leaderboardCounter >= 3)
+			{
+				break;
+			}
 		}
 	}
 }
