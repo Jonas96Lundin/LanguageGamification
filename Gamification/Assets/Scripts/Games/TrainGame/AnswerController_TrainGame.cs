@@ -93,8 +93,8 @@ public class AnswerController_TrainGame : MonoBehaviour
             answerDisplay.transform.DOScale(1, displayScaleTime);
             gameController.EndCurrentGame();
 
-            //if (questionController.QuestionCounter < questionController.QuestionArray.Length)
-            if (questionController.QuestionCounter < 2)
+            if (questionController.QuestionCounter < questionController.QuestionArray.Length)
+            //if (questionController.QuestionCounter < 2)
 			{
                 StartCoroutine(gameController.NextGame());
             }
