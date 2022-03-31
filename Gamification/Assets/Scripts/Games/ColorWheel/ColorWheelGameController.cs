@@ -154,15 +154,15 @@ public class ColorWheelGameController : MonoBehaviour
 		{
 			correctAnswer = false;
 			currentAnswerAttempt++;
+			pointController.AddPointWithMultiplier(false);
 
 			if (currentAnswerAttempt == answerAttempts)
 			{
+				currentAnswerAttempt = 0;
 				foreach (AnswerController_ColorWheel answer in answerContollers)
 				{
 					answer.AnswerButton.interactable = false;
 				}
-
-				pointController.AddPointWithMultiplier(false);
 				ResetWheel();
 			}
 			else
