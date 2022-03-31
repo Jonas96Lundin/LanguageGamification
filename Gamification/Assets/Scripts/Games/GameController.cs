@@ -66,7 +66,7 @@ public class GameController : MonoBehaviour
 		newScore.text = pointController.CurrentPoints.ToString();
 		newTime.text = GetTime(pointController.GameTime);
 
-		//Repository.AddPlayedGame(currentGame);
+		Repository.AddPlayedGame(currentGame);
 		SetBadges();
 		AddToLeaderboard();
 		GetLeaderboard();

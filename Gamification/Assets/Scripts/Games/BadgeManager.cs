@@ -16,25 +16,25 @@ public static class BadgeManager
 		switch (game)
 		{
 			case Games.COLORWHEEL:
-				SetGameCompletedBadge("colorWheelCompleted");
-				SetTimeBadge("colorWheelSpeedster", time, ColorWheelGameController.badgeTime);
-				SetPointBadge("colorWheelMaxPoints", points, ColorWheelGameController.badgePoints);
+				SetGameCompletedBadge(game, "colorWheelCompleted");
+				SetTimeBadge(game, "colorWheelSpeedster", time, ColorWheelGameController.badgeTime);
+				SetPointBadge(game, "colorWheelMaxPoints", points, ColorWheelGameController.badgePoints);
 				break;
 
 			case Games.TRAINGAME:
-				SetGameCompletedBadge("trainGameCompleted");
-				SetTimeBadge("trainGameSpeedster", time, TrainGameController.badgeTime);
-				SetPointBadge("trainGameMaxPoints", points, TrainGameController.badgePoints);
+				SetGameCompletedBadge(game, "trainGameCompleted");
+				SetTimeBadge(game, "trainGameSpeedster", time, TrainGameController.badgeTime);
+				SetPointBadge(game, "trainGameMaxPoints", points, TrainGameController.badgePoints);
 				break;
 		}
 		return aquiredBadges;
 	}
 
-	private static void SetGameCompletedBadge(string badgeName)
+	private static void SetGameCompletedBadge(Games game, string badgeName)
 	{
 		if (!previousBadges.Contains(badgeName))
 		{
-			Repository.AddBadge(badgeName);
+			Repository.AddBadge(badgeName, game);
 			aquiredBadges.Add(badgeName, true);
 		}
 		else
@@ -43,13 +43,13 @@ public static class BadgeManager
 		}
 	}
 
-	private static void SetTimeBadge(string badgeName, float currentTime, float limitTime)
+	private static void SetTimeBadge(Games game, string badgeName, float currentTime, float limitTime)
 	{
 		if (!previousBadges.Contains(badgeName))
 		{
 			if (currentTime <= limitTime)
 			{
-				Repository.AddBadge(badgeName);
+				Repository.AddBadge(badgeName, game);
 				aquiredBadges.Add(badgeName, true);
 			}
 		}
@@ -59,13 +59,13 @@ public static class BadgeManager
 		}
 	}
 
-	private static void SetPointBadge(string badgeName, int currentPoints, int limitPoints)
+	private static void SetPointBadge(Games game, string badgeName, int currentPoints, int limitPoints)
 	{
 		if (!previousBadges.Contains(badgeName))
 		{
 			if (currentPoints >= limitPoints)
 			{
-				Repository.AddBadge(badgeName);
+				Repository.AddBadge(badgeName, game);
 				aquiredBadges.Add(badgeName, true);
 			}
 		}
