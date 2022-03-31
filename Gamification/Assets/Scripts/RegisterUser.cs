@@ -122,7 +122,7 @@ public class RegisterUser : MonoBehaviour
             case "Intermédiaire (B1-B2)":
                 languageLevel = 1;
                 break;
-            case "Avancée (C1-C2)":
+            case "Avancé(e) (C1-C2)":
                 languageLevel = 2;
                 break;
         }
