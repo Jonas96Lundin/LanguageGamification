@@ -68,14 +68,16 @@ public static class Repository
         conn.Close();
     }
 
-    public static void AddBadge(string badge)
+    public static void AddBadge(string badge, Games game)
     {
+        int counter = GetPlayedGames(game);
         ConnectToDatabase("aj8015");
         NpgsqlCommand cmd;
-        cmd = new NpgsqlCommand("INSERT INTO aquiredbadges(username, badge) VALUES(:username, :badge)", conn);
+        cmd = new NpgsqlCommand("INSERT INTO aquiredbadges(username, badge, gamecounter) VALUES(:username, :badge, :counter)", conn);
         //cmd = new NpgsqlCommand("INSERT INTO users (email, age, gender, nlanguage, username, password, languageLevel) VALUES(:email, :age, :gender, :nlanguage, :username, :password, :languageLevel)", conn);
         cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
         cmd.Parameters.Add(new NpgsqlParameter("badge", badge));
+        cmd.Parameters.Add(new NpgsqlParameter("gamecounter", counter));
         System.Object res = cmd.ExecuteScalar();
         conn.Close();
         Debug.Log(res);
@@ -305,7 +307,7 @@ public static class Repository
                 break;
         }
 
-        Int32 count = (Int32)cmd.ExecuteScalar();
+       playedGames = (Int32)cmd.ExecuteScalar();
         conn.Close();
 
         return playedGames;
