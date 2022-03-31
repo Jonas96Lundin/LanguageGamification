@@ -78,9 +78,10 @@ public static class Repository
         cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
         cmd.Parameters.Add(new NpgsqlParameter("badge", badge));
         cmd.Parameters.Add(new NpgsqlParameter("gamecounter", counter));
-        System.Object res = cmd.ExecuteScalar();
+        //System.Object res = cmd.ExecuteScalar();
+        cmd.ExecuteNonQuery();
         conn.Close();
-        Debug.Log(res);
+        //Debug.Log(res);
     }
 
     public static void AddToColorwheelLeaderboard(int score, float time)
@@ -307,7 +308,7 @@ public static class Repository
                 break;
         }
 
-       playedGames = (Int32)cmd.ExecuteScalar();
+        playedGames = (Int32)cmd.ExecuteScalar();
         conn.Close();
 
         return playedGames;
