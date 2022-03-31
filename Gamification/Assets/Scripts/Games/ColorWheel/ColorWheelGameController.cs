@@ -12,7 +12,7 @@ public class ColorWheelGameController : MonoBehaviour
 	public static int badgePoints = 550;
 
 
-	[Header ("StartPanel")]
+	[Header("StartPanel")]
 	[SerializeField] private GameObject startPanel;
 	[SerializeField] private Button startButton;
 	[SerializeField] private TMP_Text startCountDown;
@@ -43,6 +43,8 @@ public class ColorWheelGameController : MonoBehaviour
 	private int wheelPieceIndex;
 	private string currentQuestion;
 	private bool correctAnswer;
+	private int currentAnswerAttempt;
+	private int answerAttempts = 3;
 
 	private void OnEnable()
 	{
@@ -82,10 +84,11 @@ public class ColorWheelGameController : MonoBehaviour
 
 			pickerWheel.OnSpinStart(() =>
 			{
-				if(correctAnswer)
+				if (correctAnswer)
 				{
 					pickerWheel.ResetWheelWithout(wheelPieceIndex);
 				}
+				
 				Debug.Log("Spin start");
 				foreach (AnswerController_ColorWheel answer in answerContollers)
 				{
@@ -114,22 +117,22 @@ public class ColorWheelGameController : MonoBehaviour
 	{
 		uiSpinButton.interactable = true;
 		uiSpinButtonText.text = "Tourner";
-		
+
 	}
 
 	public void AnswerQuestion(AnswerController_ColorWheel thisAnswerController)
 	{
-		foreach (AnswerController_ColorWheel answer in answerContollers)
+		if (questionController.IsAnswerCorrect(currentQuestion, thisAnswerController.Answer))
 		{
-			answer.AnswerButton.interactable = false;
-		}
+			foreach (AnswerController_ColorWheel answer in answerContollers)
+			{
+				answer.AnswerButton.interactable = false;
+			}
 
-		if(questionController.IsAnswerCorrect(currentQuestion, thisAnswerController.Answer))
-		{
 			correctAnswer = true;
 			thisAnswerController.CorrectIndicator.SetActive(true);
 			answerContollers.Remove(thisAnswerController);
-			if(answerContollers.Count > 0)
+			if (answerContollers.Count > 0)
 			{
 				pointController.AddPointWithMultiplier(true);
 				//pickerWheel.ResetWheelWithout(wheelPieceIndex);
@@ -145,14 +148,28 @@ public class ColorWheelGameController : MonoBehaviour
 				gameController.EndGame();
 				victoryScreen.transform.DOScale(victoryScreenEndScale, displayScaleTimer);
 			}
-			
+			currentAnswerAttempt = 0;
 		}
 		else
 		{
 			correctAnswer = false;
+			currentAnswerAttempt++;
+
+			if (currentAnswerAttempt == answerAttempts)
+			{
+				foreach (AnswerController_ColorWheel answer in answerContollers)
+				{
+					answer.AnswerButton.interactable = false;
+				}
+
+				pointController.AddPointWithMultiplier(false);
+				ResetWheel();
+			}
+			else
+			{
+				thisAnswerController.AnswerButton.interactable = false;
+			}
 			thisAnswerController.IncorrectIndicator.SetActive(true);
-			pointController.AddPointWithMultiplier(false);
-			ResetWheel();
 		}
 	}
 
