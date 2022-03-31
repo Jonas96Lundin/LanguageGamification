@@ -42,6 +42,7 @@ public class ColorWheelGameController : MonoBehaviour
 
 	private int wheelPieceIndex;
 	private string currentQuestion;
+	private bool correctAnswer;
 
 	private void OnEnable()
 	{
@@ -81,6 +82,10 @@ public class ColorWheelGameController : MonoBehaviour
 
 			pickerWheel.OnSpinStart(() =>
 			{
+				if(correctAnswer)
+				{
+					pickerWheel.ResetWheelWithout(wheelPieceIndex);
+				}
 				Debug.Log("Spin start");
 				foreach (AnswerController_ColorWheel answer in answerContollers)
 				{
@@ -121,12 +126,13 @@ public class ColorWheelGameController : MonoBehaviour
 
 		if(questionController.IsAnswerCorrect(currentQuestion, thisAnswerController.Answer))
 		{
+			correctAnswer = true;
 			thisAnswerController.CorrectIndicator.SetActive(true);
 			answerContollers.Remove(thisAnswerController);
 			if(answerContollers.Count > 0)
 			{
 				pointController.AddPointWithMultiplier(true);
-				pickerWheel.ResetWheelWithout(wheelPieceIndex);
+				//pickerWheel.ResetWheelWithout(wheelPieceIndex);
 				ResetWheel();
 			}
 			else
@@ -143,6 +149,7 @@ public class ColorWheelGameController : MonoBehaviour
 		}
 		else
 		{
+			correctAnswer = false;
 			thisAnswerController.IncorrectIndicator.SetActive(true);
 			pointController.AddPointWithMultiplier(false);
 			ResetWheel();

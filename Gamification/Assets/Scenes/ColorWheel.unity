@@ -1151,7 +1151,7 @@ GameObject:
   - component: {fileID: 278076812}
   - component: {fileID: 278076813}
   m_Layer: 5
-  m_Name: travailler
+  m_Name: travailler au
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1192,7 +1192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 508273471}
-  answer: travailler
+  answer: travailler au
   answerButton: {fileID: 637218116}
   correctIndicator: {fileID: 347777331}
   incorrectIndicator: {fileID: 1335202908}
@@ -4323,6 +4323,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: PickerWheel
       objectReference: {fileID: 0}
+    - target: {fileID: 114361574848870256, guid: 160be82451391f6448834ec65286e007, type: 3}
+      propertyPath: wheelPieces.Array.data[0].Label
+      value: rouge
+      objectReference: {fileID: 0}
+    - target: {fileID: 114361574848870256, guid: 160be82451391f6448834ec65286e007, type: 3}
+      propertyPath: wheelPieces.Array.data[1].Label
+      value: vert
+      objectReference: {fileID: 0}
+    - target: {fileID: 114361574848870256, guid: 160be82451391f6448834ec65286e007, type: 3}
+      propertyPath: wheelPieces.Array.data[2].Label
+      value: bleue
+      objectReference: {fileID: 0}
+    - target: {fileID: 114361574848870256, guid: 160be82451391f6448834ec65286e007, type: 3}
+      propertyPath: wheelPieces.Array.data[3].Label
+      value: noir
+      objectReference: {fileID: 0}
+    - target: {fileID: 114361574848870256, guid: 160be82451391f6448834ec65286e007, type: 3}
+      propertyPath: wheelPieces.Array.data[4].Label
+      value: jaune
+      objectReference: {fileID: 0}
+    - target: {fileID: 114361574848870256, guid: 160be82451391f6448834ec65286e007, type: 3}
+      propertyPath: wheelPieces.Array.data[5].Label
+      value: rose
+      objectReference: {fileID: 0}
+    - target: {fileID: 114361574848870256, guid: 160be82451391f6448834ec65286e007, type: 3}
+      propertyPath: wheelPieces.Array.data[6].Label
+      value: violets
+      objectReference: {fileID: 0}
+    - target: {fileID: 114361574848870256, guid: 160be82451391f6448834ec65286e007, type: 3}
+      propertyPath: wheelPieces.Array.data[7].Label
+      value: orange
+      objectReference: {fileID: 0}
+    - target: {fileID: 114361574848870256, guid: 160be82451391f6448834ec65286e007, type: 3}
+      propertyPath: wheelPieces.Array.data[8].Label
+      value: marron
+      objectReference: {fileID: 0}
+    - target: {fileID: 114361574848870256, guid: 160be82451391f6448834ec65286e007, type: 3}
+      propertyPath: wheelPieces.Array.data[9].Label
+      value: blanche
+      objectReference: {fileID: 0}
     - target: {fileID: 224511889338460380, guid: 160be82451391f6448834ec65286e007, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5548,7 +5588,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: travailler
+  m_text: travailler au
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7719,7 +7759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4979988205871774861, guid: 6c0ddb1147de2dd41af34aa35abd4488, type: 3}
       propertyPath: m_text
-      value: "\rD\xE9marrer jeu"
+      value: "\rD\xE9marrer de le juo"
       objectReference: {fileID: 0}
     - target: {fileID: 4979988205871774862, guid: 6c0ddb1147de2dd41af34aa35abd4488, type: 3}
       propertyPath: m_SizeDelta.y
@@ -7733,10 +7773,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 508273471}
-    - target: {fileID: 4979988206002434489, guid: 6c0ddb1147de2dd41af34aa35abd4488, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 350
-      objectReference: {fileID: 0}
     - target: {fileID: 4979988206002434493, guid: 6c0ddb1147de2dd41af34aa35abd4488, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

@@ -1015,7 +1015,6 @@ MonoBehaviour:
   currentBestTime: {fileID: 1917884440}
   newScore: {fileID: 1144552937}
   newTime: {fileID: 1711161560}
-  leaderboardTitle: {fileID: 1663594567664060362}
   leaderboardNames: {fileID: 1663594566209383005}
   leaderboardScores: {fileID: 829843470}
   leaderboardTimes: {fileID: 1663594566357273861}
@@ -2995,7 +2994,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\rTort"
+  m_text: Faux
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6806,7 +6805,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\rD\xE9marrer jeu"
+  m_text: "\rD\xE9marrer de le juo"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6938,7 +6937,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 350, y: 100}
+  m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9196159075316873001
 MonoBehaviour:
