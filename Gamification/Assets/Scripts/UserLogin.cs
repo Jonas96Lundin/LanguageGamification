@@ -56,4 +56,9 @@ public class UserLogin : MonoBehaviour
             Debug.Log("User does not exist!");
         }
     }
+
+    public void ExitApplication()
+    {
+        Application.Quit();
+    }
 }

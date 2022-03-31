@@ -238,13 +238,15 @@ namespace EasyUI.PickerWheelUI
 
 		private int GetRandomPieceIndex()
 		{
-			double r = rand.NextDouble() * accumulatedWeight;
+			//double r = rand.NextDouble() * accumulatedWeight;
 
-			for (int i = 0; i < wheelPieces.Length; i++)
-				if (wheelPieces[i]._weight >= r)
-					return i;
+			//for (int i = 0; i < wheelPieces.Length; i++)
+			//	if (wheelPieces[i]._weight >= r)
+			//		return i;
 
-			return 0;
+			//return 0;
+			int index = Random.Range(0, wheelPieces.Length);
+			return index;
 		}
 
 		private void CalculateWeightsAndIndices()
