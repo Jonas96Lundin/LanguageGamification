@@ -73,7 +73,7 @@ public static class Repository
         int counter = GetPlayedGames(game);
         ConnectToDatabase("aj8015");
         NpgsqlCommand cmd;
-        cmd = new NpgsqlCommand("INSERT INTO aquiredbadges(username, badge, gamecounter) VALUES(:username, :badge, :counter)", conn);
+        cmd = new NpgsqlCommand("INSERT INTO aquiredbadges(username, badge, gamecounter) VALUES(:username, :badge, :gamecounter)", conn);
         //cmd = new NpgsqlCommand("INSERT INTO users (email, age, gender, nlanguage, username, password, languageLevel) VALUES(:email, :age, :gender, :nlanguage, :username, :password, :languageLevel)", conn);
         cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
         cmd.Parameters.Add(new NpgsqlParameter("badge", badge));
