@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class TrainGameController : MonoBehaviour
 {
 	public static float badgeTime = 0;
-	public static int badgePoints = 13;
+	public static int badgePoints = 12;
 
 	private GameController gameController;
 	private QuestionController_TrainGame questionController;
