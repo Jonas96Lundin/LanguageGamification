@@ -97,13 +97,13 @@ public class RegisterUser : MonoBehaviour
         //gender = newGender.GetComponentInChildren<Text>().text;
         switch (newGender.GetComponentInChildren<Text>().text)
         {
-            case "Mâle":
+            case "Homme":
                 gender = "Male";
                 break;
-            case "Femelle":
+            case "Femme":
                 gender = "Female";
                 break;
-            case "Sans commentaire":
+            case "Autre":
                 gender = "Other";
                 break;
         }
