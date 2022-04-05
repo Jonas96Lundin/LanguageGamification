@@ -80,7 +80,7 @@ public class ColorWheelGameController : MonoBehaviour
 		uiSpinButton.onClick.AddListener(() =>
 		{
 			uiSpinButton.interactable = false;
-			uiSpinButtonText.text = "Filage";
+			//uiSpinButtonText.text = "Filage";
 
 			pickerWheel.OnSpinStart(() =>
 			{
@@ -116,7 +116,7 @@ public class ColorWheelGameController : MonoBehaviour
 	private void ResetWheel()
 	{
 		uiSpinButton.interactable = true;
-		uiSpinButtonText.text = "Tourner";
+		//uiSpinButtonText.text = "Tourner";
 
 	}
 

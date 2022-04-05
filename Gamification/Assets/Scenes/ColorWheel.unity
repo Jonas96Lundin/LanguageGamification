@@ -7759,7 +7759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4979988205871774861, guid: 6c0ddb1147de2dd41af34aa35abd4488, type: 3}
       propertyPath: m_text
-      value: "\rD\xE9marrer de le juo"
+      value: "\rD\xE9marrer le jeu"
       objectReference: {fileID: 0}
     - target: {fileID: 4979988205871774862, guid: 6c0ddb1147de2dd41af34aa35abd4488, type: 3}
       propertyPath: m_SizeDelta.y
