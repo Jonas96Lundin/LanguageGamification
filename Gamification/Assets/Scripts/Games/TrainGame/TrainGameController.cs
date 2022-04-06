@@ -14,6 +14,7 @@ public class TrainGameController : MonoBehaviour
 	private QuestionController_TrainGame questionController;
 	private AnswerController_TrainGame answerController;
 	[SerializeField] private Timer timer;
+	[SerializeField] private GameObject finalQuestionDisplay;
 	[SerializeField] private GameObject victoryDisplay;
 	[SerializeField] private Button quitButton;
 
@@ -74,6 +75,11 @@ public class TrainGameController : MonoBehaviour
 	public void OnStartGame()
 	{
 		StartCoroutine(StartGameCountdown());
+	}
+	public void OnEndGame()
+	{
+
+		StartCoroutine(EndGame());
 	}
 	
 	private void StartGame()
@@ -244,16 +250,29 @@ public class TrainGameController : MonoBehaviour
 
 		answerController.NextGame();
 	}
-	public IEnumerator EndGame()
+	public IEnumerator FinalQuestion()
 	{
 		yield return new WaitForSeconds(exitDelay);
 
-		quitButton.interactable = false;
 		answerController.EndGame();
 
 		yield return new WaitForSeconds(endGameDelay);
 
-		victoryDisplay.SetActive(true);		
+		finalQuestionDisplay.SetActive(true);
+
+		yield return new WaitForSeconds(victoryScreenDelay);
+
+		finalQuestionDisplay.transform.DOScale(1, 0.5f);
+	}
+
+	public IEnumerator EndGame()
+	{
+		quitButton.interactable = false;
+		finalQuestionDisplay.transform.DOScale(0, 0.5f);
+
+		yield return new WaitForSeconds(endGameDelay);
+
+		victoryDisplay.SetActive(true);
 		gameController.EndGame();
 
 		yield return new WaitForSeconds(victoryScreenDelay);

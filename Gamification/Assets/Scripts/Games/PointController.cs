@@ -27,6 +27,12 @@ public class PointController : MonoBehaviour
 		onAddPoint?.Invoke(currentPoints);
 	}
 
+	public void DoublePoints()
+	{
+		currentPoints *= 2;
+		onAddPoint?.Invoke(currentPoints);
+	}
+
 	public void AddPointWithMultiplier(bool isCorrect)
 	{
 		if (isCorrect)

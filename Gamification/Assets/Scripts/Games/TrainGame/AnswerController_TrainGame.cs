@@ -94,7 +94,7 @@ public class AnswerController_TrainGame : MonoBehaviour
             gameController.EndCurrentGame();
 
             if (questionController.QuestionCounter < questionController.QuestionArray.Length)
-            //if (questionController.QuestionCounter < 2)
+            //if (questionController.QuestionCounter < 1)
 			{
                 StartCoroutine(gameController.NextGame());
             }
@@ -102,7 +102,7 @@ public class AnswerController_TrainGame : MonoBehaviour
 			{
                 timer.StopTimer();
                 pointController.AddGameTime(timer.TotalTime);
-                StartCoroutine(gameController.EndGame());
+                StartCoroutine(gameController.FinalQuestion());
             }
         }
         else
