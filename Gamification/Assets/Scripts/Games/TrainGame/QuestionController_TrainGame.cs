@@ -20,8 +20,9 @@ public class QuestionController_TrainGame : MonoBehaviour
     public string[] AnswerArray { get { return answerArray; } }
     public string[] CurrentAnswerphrase { get { return currentAnswerphrase; } set { currentAnswerphrase = value; } }
     public int QuestionCounter { get { return questionCounter; } }
+    public TMP_Text QuestionText { get { return questionText; } }
 
-	private void OnEnable()
+    private void OnEnable()
 	{
         questionDataController = GetComponent<QuestionDataController>();
     }
