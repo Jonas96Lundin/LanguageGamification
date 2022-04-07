@@ -15,8 +15,13 @@ public class TrainGame_FinalQuestion : MonoBehaviour
     int currentAnswerIndex = -1;
 
     [Header("UI")]
+    [SerializeField] TMP_Text uiButtonText;
     [SerializeField] ToggleGroup uiAnswerToggles;
     [SerializeField] List<Text> uiAnswers;
+    [SerializeField] List<GameObject> pointDisplay;
+    [SerializeField] List<GameObject> checkMarks;
+    [SerializeField] List<GameObject> xMarks;
+    private bool questionAnswerd;
     private char splitter = '_';
 
     private void Start()
@@ -43,14 +48,38 @@ public class TrainGame_FinalQuestion : MonoBehaviour
 
     public void OnAnswer()
 	{
-        if(currentAnswerIndex != -1)
+		if (!questionAnswerd)
 		{
-            if (shuffledAnswers[currentAnswerIndex] == correctAnswer)
-			{
-                pointController.DoublePoints();
-			}
+            if (currentAnswerIndex != -1)
+            {
+                if (shuffledAnswers[currentAnswerIndex] == correctAnswer)
+                {
+                    //checkMarks[currentAnswerIndex].SetActive(true);
+                    pointDisplay[currentAnswerIndex].SetActive(true);
+                    pointDisplay[currentAnswerIndex].GetComponentInChildren<TMP_Text>().text = pointController.CurrentPoints.ToString();
+                    pointController.DoublePoints();
+                }
+                else
+                {
+                    xMarks[currentAnswerIndex].SetActive(true);
+                    for (int i = 0; i < shuffledAnswers.Count; i++)
+                    {
+                        if (shuffledAnswers[i] == correctAnswer)
+                        {
+                            checkMarks[i].SetActive(true);
 
+                        }
+                    }
+                }
+
+                uiButtonText.text = "Continuez";
+                questionAnswerd = true;
+            }
+        }
+		else
+		{
             StartCoroutine(gameController.EndGame());
         }
+        
 	}
 }

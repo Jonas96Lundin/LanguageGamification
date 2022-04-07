@@ -15,6 +15,7 @@ public class AnswerController_TrainGame : MonoBehaviour
     [SerializeField] private string[] answerWords;
     [SerializeField] private Button answerButton;
     [SerializeField] private Timer timer;
+    [SerializeField] private TMP_Text uiPoints;
 
     [Header("Light Switch")]
     [SerializeField] private Image greenLight;
@@ -84,6 +85,7 @@ public class AnswerController_TrainGame : MonoBehaviour
 			{
                 answerDisplay = excellentDisplay;
                 pointController.AddPoint();
+                uiPoints.text = pointController.CurrentPoints.ToString();
 			}
 			else
 			{
@@ -93,13 +95,14 @@ public class AnswerController_TrainGame : MonoBehaviour
             answerDisplay.transform.DOScale(1, displayScaleTime);
             gameController.EndCurrentGame();
 
-            if (questionController.QuestionCounter < questionController.QuestionArray.Length)
-            //if (questionController.QuestionCounter < 1)
+            //if (questionController.QuestionCounter < questionController.QuestionArray.Length)
+            if (questionController.QuestionCounter < 1)
 			{
                 StartCoroutine(gameController.NextGame());
             }
 			else
 			{
+                questionController.QuestionText.text = "";
                 timer.StopTimer();
                 pointController.AddGameTime(timer.TotalTime);
                 StartCoroutine(gameController.FinalQuestion());
