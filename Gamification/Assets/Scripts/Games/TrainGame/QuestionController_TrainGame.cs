@@ -58,4 +58,39 @@ public class QuestionController_TrainGame : MonoBehaviour
         }
         return false;
     }
+
+    public string GetCorrectAnswer()
+	{
+        string correctAnswer = questionDataController.GetAnswer(questionText.text);
+		char[] correctAnswerArray = new char[correctAnswer.Length];
+        int removed = 0;
+
+        correctAnswerArray[0] = correctAnswer[0];
+        for (int i = 1; i < correctAnswer.Length; i++)
+		{
+			if (correctAnswer[i - (1 + removed)] != '’')
+			{
+				correctAnswerArray[i - removed] = correctAnswer[i];
+
+			}
+			else if (correctAnswer[i] != ' ')
+			{
+				correctAnswerArray[i - removed] = correctAnswer[i];
+			}
+			else
+			{
+                removed++;
+			}
+        }
+
+		correctAnswer = string.Empty;
+
+		for (int i = 0; i < correctAnswerArray.Length - removed; i++)
+		{
+            correctAnswer += correctAnswerArray[i];
+		}
+
+		return correctAnswer;
+
+    }
 }

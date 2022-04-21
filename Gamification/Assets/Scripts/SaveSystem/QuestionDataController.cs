@@ -41,4 +41,16 @@ public class QuestionDataController : MonoBehaviour
 		}
 		return false;
 	}
+
+	public string GetAnswer(string question)
+	{
+		for (int i = 0; i < questions.Count; i++)
+		{
+			if (question.ToLower() == questions[i].ToLower())
+			{
+				return answers[i];
+			}
+		}
+		return string.Empty;
+	}
 }

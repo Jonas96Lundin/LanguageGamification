@@ -55,7 +55,7 @@ public class TrainGame_FinalQuestion : MonoBehaviour
                 if (shuffledAnswers[currentAnswerIndex] == correctAnswer)
                 {
                     pointDisplay[currentAnswerIndex].SetActive(true);
-                    pointDisplay[currentAnswerIndex].GetComponentInChildren<TMP_Text>().text = pointController.CurrentPoints.ToString();
+                    pointDisplay[currentAnswerIndex].GetComponentInChildren<TMP_Text>().text = "+" + pointController.CurrentPoints.ToString();
                     pointController.DoublePoints();
                 }
                 else

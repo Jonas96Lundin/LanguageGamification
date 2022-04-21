@@ -14,6 +14,7 @@ public class AnswerController_TrainGame : MonoBehaviour
 
     [SerializeField] private string[] answerWords;
     [SerializeField] private Button answerButton;
+    [SerializeField] private Button skipButton;
     [SerializeField] private Timer timer;
     [SerializeField] private TMP_Text uiPoints;
 
@@ -28,11 +29,13 @@ public class AnswerController_TrainGame : MonoBehaviour
     [SerializeField] private GameObject wellDoneDisplay;
     [SerializeField] private GameObject excellentDisplay;
     [SerializeField] private GameObject wrongCargoDisplay;
+    [SerializeField] private GameObject correctAnswerDisplay;
     private GameObject answerDisplay;
 
     private bool noWrongAnswer = true;
 
     private float checkAnswerDelay = 1;
+    private float exitDelay = 5;
     private float displayScaleTime = 0.5f;
     private float wrongAnswreDisplayTime = 1;
 
@@ -74,6 +77,34 @@ public class AnswerController_TrainGame : MonoBehaviour
         SwitchToGreen();
         StartCoroutine(CheckAnswer());
     }
+    public void OnSkipQuestion()
+	{
+        StartCoroutine(SkipQuestion());
+    }
+    public void OnNextQuestion()
+	{
+        correctAnswerDisplay.GetComponentInChildren<Button>().interactable = false;
+        timer.StartTimer();
+        NextQuestion();
+    }
+
+    private void NextQuestion()
+	{
+        if (questionController.QuestionCounter < questionController.QuestionArray.Length)
+        //if (questionController.QuestionCounter < 1)
+        {
+            answerDisplay.transform.DOScale(0, displayScaleTime);
+            StartCoroutine(gameController.NextGame());
+        }
+        else
+        {
+            questionController.QuestionText.text = "";
+            timer.StopTimer();
+            pointController.AddGameTime(timer.TotalTime);
+            EndGame();
+            StartCoroutine(gameController.FinalQuestion());
+        }
+    }
 
 	IEnumerator CheckAnswer()
 	{
@@ -92,21 +123,13 @@ public class AnswerController_TrainGame : MonoBehaviour
                 answerDisplay = wellDoneDisplay;
                 noWrongAnswer = true;
             }
+
             answerDisplay.transform.DOScale(1, displayScaleTime);
             gameController.EndCurrentGame();
 
-            if (questionController.QuestionCounter < questionController.QuestionArray.Length)
-            //if (questionController.QuestionCounter < 1)
-			{
-                StartCoroutine(gameController.NextGame());
-            }
-			else
-			{
-                questionController.QuestionText.text = "";
-                timer.StopTimer();
-                pointController.AddGameTime(timer.TotalTime);
-                StartCoroutine(gameController.FinalQuestion());
-            }
+            yield return new WaitForSeconds(exitDelay);
+
+            NextQuestion();
         }
         else
         {
@@ -127,11 +150,25 @@ public class AnswerController_TrainGame : MonoBehaviour
     }
 	#endregion
 
+    IEnumerator SkipQuestion()
+	{
+        correctAnswerDisplay.GetComponentInChildren<TMP_Text>().text = questionController.GetCorrectAnswer();
+        answerDisplay = correctAnswerDisplay;
+        SwitchToGreen();
+        answerDisplay.transform.DOScale(1, displayScaleTime);
+        gameController.EndCurrentGame();
+
+        yield return new WaitForSeconds(exitDelay);
+
+        timer.StopTimer();
+        correctAnswerDisplay.GetComponentInChildren<Button>().interactable = true;
+    }
 	#region LightSwitch
 	private void SwitchToGreen()
     {
         player.IsPaused = true;
         answerButton.interactable = false;
+        skipButton.interactable = false;
         LightsOff();
         ActivateGreenLight();
     }
@@ -161,6 +198,7 @@ public class AnswerController_TrainGame : MonoBehaviour
     private void ActivateRedLight()
     {
         answerButton.interactable = true;
+        skipButton.interactable = true;
         player.IsPaused = false;
 
         redLight.gameObject.SetActive(true);

@@ -55,7 +55,7 @@ public class TrainGameController : MonoBehaviour
 	private float truckEndMovePosX = 3000;
 	private float enterDelay = 3;
 	private float exitDelay = 5;
-	private float endGameDelay = 0.5f;
+	private float endGameDelay = 1.5f;
 	private float victoryScreenDelay = 1;
 
 
@@ -241,9 +241,6 @@ public class TrainGameController : MonoBehaviour
 	}
 	public IEnumerator NextGame()
 	{
-		yield return new WaitForSeconds(exitDelay);
-
-		answerController.HideAnwerDisplay();
 		StartNextGame();
 
 		yield return new WaitForSeconds(enterDelay);
@@ -252,16 +249,8 @@ public class TrainGameController : MonoBehaviour
 	}
 	public IEnumerator FinalQuestion()
 	{
-		yield return new WaitForSeconds(exitDelay);
-
-		answerController.EndGame();
-
 		yield return new WaitForSeconds(endGameDelay);
-
 		finalQuestionDisplay.SetActive(true);
-
-		yield return new WaitForSeconds(victoryScreenDelay);
-
 		finalQuestionDisplay.transform.DOScale(1, 0.5f);
 	}
 
