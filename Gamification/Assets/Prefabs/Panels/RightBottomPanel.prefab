@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 257820272889997662}
   - component: {fileID: 767153575481858166}
   m_Layer: 5
-  m_Name: Badge6
+  m_Name: speedDemon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3885064360776291935, guid: 6af72308ad678ff42a43486c2c7cd0fc, type: 3}
+  m_Sprite: {fileID: -2435893466072899050, guid: 4fd7284fcd9934b4bac19c16bdddc72b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -92,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8815454396685947929
 RectTransform:
   m_ObjectHideFlags: 0
@@ -109,7 +109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: -100}
+  m_AnchoredPosition: {x: 300, y: 100}
   m_SizeDelta: {x: 243.6802, y: 192.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7728370742565861193
@@ -203,12 +203,12 @@ GameObject:
   - component: {fileID: 8708034034062145800}
   - component: {fileID: 7577419221029944405}
   m_Layer: 5
-  m_Name: Badge3
+  m_Name: Badge4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5590955516297489863
 RectTransform:
   m_ObjectHideFlags: 0
@@ -225,7 +225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -300, y: -100}
   m_SizeDelta: {x: 265.879, y: 179.1924}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8708034034062145800
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2580674253069926906, guid: 6af72308ad678ff42a43486c2c7cd0fc, type: 3}
+  m_Sprite: {fileID: 1707939328268355403, guid: a61cb6867e72ac14698b433d6fd42861, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -281,7 +281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2094932753573447527
 RectTransform:
   m_ObjectHideFlags: 0
@@ -317,12 +317,12 @@ GameObject:
   m_Component:
   - component: {fileID: 559467087366566905}
   m_Layer: 5
-  m_Name: Game3
+  m_Name: AllCollected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &559467087366566905
 RectTransform:
   m_ObjectHideFlags: 0
@@ -365,7 +365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1837905290629660446
 RectTransform:
   m_ObjectHideFlags: 0
@@ -440,7 +440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5389527355486968985
 RectTransform:
   m_ObjectHideFlags: 0
@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 8820323361993030835}
   - component: {fileID: 7711009424304986259}
   m_Layer: 5
-  m_Name: Badge4
+  m_Name: trainGameSpeedster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -532,7 +532,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: -100}
+  m_AnchoredPosition: {x: 300, y: 100}
   m_SizeDelta: {x: 243.6802, y: 192.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8820323361993030835
@@ -563,7 +563,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3225046746828330465, guid: 6af72308ad678ff42a43486c2c7cd0fc, type: 3}
+  m_Sprite: {fileID: -684704497161625625, guid: a61cb6867e72ac14698b433d6fd42861, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -590,7 +590,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3445702401979989169
 RectTransform:
   m_ObjectHideFlags: 0
@@ -660,7 +660,7 @@ GameObject:
   - component: {fileID: 5651155792156963396}
   - component: {fileID: 1578901550249599355}
   m_Layer: 5
-  m_Name: Badge3
+  m_Name: completioner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -682,7 +682,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -300, y: -100}
   m_SizeDelta: {x: 265.879, y: 179.1924}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5651155792156963396
@@ -713,7 +713,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2580674253069926906, guid: 6af72308ad678ff42a43486c2c7cd0fc, type: 3}
+  m_Sprite: {fileID: 6774371088899952290, guid: 4fd7284fcd9934b4bac19c16bdddc72b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -735,7 +735,7 @@ GameObject:
   - component: {fileID: 5635665288915360645}
   - component: {fileID: 1156288733664891025}
   m_Layer: 5
-  m_Name: Badge1
+  m_Name: trainGameCompleted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -788,7 +788,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3743817863202642045, guid: 6af72308ad678ff42a43486c2c7cd0fc, type: 3}
+  m_Sprite: {fileID: 8995072379645044511, guid: a61cb6867e72ac14698b433d6fd42861, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -810,12 +810,12 @@ GameObject:
   - component: {fileID: 7905210531009047948}
   - component: {fileID: 7905210531009047949}
   m_Layer: 5
-  m_Name: Badge4
+  m_Name: colorWheelSpeedster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7905210531009047950
 RectTransform:
   m_ObjectHideFlags: 0
@@ -832,7 +832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: -100}
+  m_AnchoredPosition: {x: 300, y: 100}
   m_SizeDelta: {x: 243.6802, y: 192.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7905210531009047948
@@ -885,12 +885,12 @@ GameObject:
   - component: {fileID: 7905210531105332005}
   - component: {fileID: 7905210531105332006}
   m_Layer: 5
-  m_Name: colorWheelSpeedster
+  m_Name: Badge4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7905210531105332007
 RectTransform:
   m_ObjectHideFlags: 0
@@ -907,7 +907,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -300, y: -100}
   m_SizeDelta: {x: 265.879, y: 179.1924}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7905210531105332005
@@ -1338,7 +1338,7 @@ GameObject:
   - component: {fileID: 4424447116913677098}
   - component: {fileID: 6889360933638189336}
   m_Layer: 5
-  m_Name: Badge5
+  m_Name: pointsCollector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1391,7 +1391,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1435532083705500723, guid: 6af72308ad678ff42a43486c2c7cd0fc, type: 3}
+  m_Sprite: {fileID: -2920074375383614263, guid: 4fd7284fcd9934b4bac19c16bdddc72b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1413,7 +1413,7 @@ GameObject:
   - component: {fileID: 6561570638243286199}
   - component: {fileID: 2938000757848700403}
   m_Layer: 5
-  m_Name: Badge2
+  m_Name: trainGameMaxPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1466,7 +1466,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5549225206248046646, guid: 6af72308ad678ff42a43486c2c7cd0fc, type: 3}
+  m_Sprite: {fileID: -8722032078248669931, guid: a61cb6867e72ac14698b433d6fd42861, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1493,7 +1493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2565228527276549168
 RectTransform:
   m_ObjectHideFlags: 0
