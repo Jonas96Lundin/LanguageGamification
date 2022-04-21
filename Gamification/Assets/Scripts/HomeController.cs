@@ -13,6 +13,8 @@ public class HomeController : MonoBehaviour
 	[SerializeField] TMP_Text leaderboardNames;
 	[SerializeField] TMP_Text leaderboardScores;
     [SerializeField] TMP_Text leaderboardTimes;
+
+    static int maxLeaderboardPositions = 5;
     public void OpenColorWheelPanel()
     {
         HomePanel.SetActive(false);
@@ -78,7 +80,7 @@ public class HomeController : MonoBehaviour
 
             //leaderboardTimes.text += "\n"/* + pair.Value[1]*/;
             DisplayTime(pair.Value[1]);
-            if (leaderboardCounter >= 3)
+            if (leaderboardCounter >= maxLeaderboardPositions)
             {
                 break;
             }

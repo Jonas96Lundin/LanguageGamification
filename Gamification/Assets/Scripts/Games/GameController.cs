@@ -32,7 +32,8 @@ public class GameController : MonoBehaviour
 	private int seconds;
 	private float milliSeconds;
 
-
+	static int maxLeaderboardPositions = 5;
+	
 	public Games CurrentGame { get { return currentGame; } }
 
 	public void SetGame(Games game)
@@ -168,7 +169,7 @@ public class GameController : MonoBehaviour
 			leaderboardNames.text += "\n" + leaderboardCounter + ": " + System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(pair.Key);
 			leaderboardScores.text += "\n" + pair.Value[0] + "p";
 			leaderboardTimes.text += "\n" + GetTime(pair.Value[1]);
-			if (leaderboardCounter >= 3)
+			if (leaderboardCounter >= maxLeaderboardPositions)
 			{
 				break;
 			}
