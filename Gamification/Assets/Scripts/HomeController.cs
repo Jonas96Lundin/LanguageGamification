@@ -41,12 +41,21 @@ public class HomeController : MonoBehaviour
                 leaderboardTitle.text = "Classement palette de couleurs";
                 //ShowPointsLeaderboard(Repository.GetColorWheelLeaderboard());
                 ShowPointsAndTimeLeaderboard(Repository.GetColorWheelLeaderboard());
+
+                leaderboardNames.text += "\n" + ".........." + "\n" + "Votre meilleur score: ";
+                leaderboardScores.text += "\n" + ".........." + "\n" + Repository.GetBestResult(Games.COLORWHEEL)[0] + "p";
+                DisplayTime(Repository.GetBestResult(Games.COLORWHEEL)[1], true);
+
                 break;
             case Games.TRAINGAME:
                 //leaderboard = Repository.GetTraingameLeaderboard();
                 //leaderboardTitle.text = "Palette de couleurs Classement";
                 leaderboardTitle.text = "Classement du jeu de trains";
                 ShowPointsAndTimeLeaderboard(Repository.GetTraingameLeaderboard());
+
+                leaderboardNames.text += "\n" + ".........." + "\n" + "Votre meilleur score: ";
+                leaderboardScores.text += "\n" + ".........." + "\n" + Repository.GetBestResult(Games.TRAINGAME)[0] + "p";
+                DisplayTime(Repository.GetBestResult(Games.TRAINGAME)[1], true);
                 break;
         }
 
@@ -79,7 +88,7 @@ public class HomeController : MonoBehaviour
             leaderboardScores.text += "\n" + pair.Value[0] + "p";
 
             //leaderboardTimes.text += "\n"/* + pair.Value[1]*/;
-            DisplayTime(pair.Value[1]);
+            DisplayTime(pair.Value[1], false);
             if (leaderboardCounter >= maxLeaderboardPositions)
             {
                 break;
@@ -96,7 +105,7 @@ public class HomeController : MonoBehaviour
             milliSeconds = 0;
     }
 
-    private void DisplayTime(float totalTime)
+    private void DisplayTime(float totalTime, bool isPersonalBestTime)
     {
         int hours = System.TimeSpan.FromSeconds(totalTime).Hours;
         int minutes = System.TimeSpan.FromSeconds(totalTime).Minutes;
@@ -105,6 +114,10 @@ public class HomeController : MonoBehaviour
         if (milliSeconds > 9)
             milliSeconds = 0;
 
+        if (isPersonalBestTime)
+        {
+            leaderboardTimes.text += "\n" + "..........";
+        }
         if (hours > 0)
         {
             leaderboardTimes.text += "\n" + hours.ToString() + "h " + minutes.ToString() + "m " + seconds.ToString() + "s";
