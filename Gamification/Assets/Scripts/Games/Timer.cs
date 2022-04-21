@@ -78,7 +78,7 @@ public class Timer : MonoBehaviour
         }
 		else
 		{
-            timerText.text = seconds.ToString() + "." + milliSeconds.ToString("F0") + "s";
+            timerText.text = seconds.ToString() + /*"." + milliSeconds.ToString("F0") + */"s";
         }
 	}
 
