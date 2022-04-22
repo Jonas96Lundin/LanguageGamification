@@ -11,6 +11,9 @@ public class ColorWheelGameController : MonoBehaviour
 	public static float badgeTime = 0;
 	public static int badgePoints = 550;
 
+	[SerializeField] GameObject UICamera;
+	[SerializeField] GameObject ParticleWanderingSpirits;
+
 
 	[Header("StartPanel")]
 	[SerializeField] private GameObject startPanel;
@@ -147,6 +150,7 @@ public class ColorWheelGameController : MonoBehaviour
 				victoryScreen.SetActive(true);
 				gameController.EndGame();
 				victoryScreen.transform.DOScale(victoryScreenEndScale, displayScaleTimer);
+				Instantiate(ParticleWanderingSpirits, UICamera.transform);
 			}
 			currentAnswerAttempt = 0;
 		}
