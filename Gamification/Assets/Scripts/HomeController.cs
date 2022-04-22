@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class HomeController : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class HomeController : MonoBehaviour
     [SerializeField] GameObject ColorWheelBadges;
     [SerializeField] GameObject TrainGameBadges;
 
+    [SerializeField] List<Image> badges;
+    List<string> aquiredBadges;
+
     static int maxLeaderboardPositions = 5;
 
     public void OpenColorWheelPanel()
@@ -26,6 +30,7 @@ public class HomeController : MonoBehaviour
         GetLeaderboard(Games.COLORWHEEL);
         ColorWheelBadges.SetActive(true);
         CommonBadges.SetActive(false);
+        ShowBadges(Games.COLORWHEEL);
     }
     public void OpenTrainGamePanel()
     {
@@ -34,6 +39,7 @@ public class HomeController : MonoBehaviour
         GetLeaderboard(Games.TRAINGAME);
         TrainGameBadges.SetActive(true);
         CommonBadges.SetActive(false);
+        ShowBadges(Games.TRAINGAME);
     }
     public void BackToHomePanel(string panelToClose)
     {
@@ -42,6 +48,7 @@ public class HomeController : MonoBehaviour
         CommonBadges.SetActive(true);
         ColorWheelBadges.SetActive(false);
         TrainGameBadges.SetActive(false);
+        //TODO show common badges here
     }
 
     private void GetLeaderboard(Games game)
@@ -163,4 +170,16 @@ public class HomeController : MonoBehaviour
 		PlayerPrefs.SetString("username", "");
 	}
 
+    private void ShowBadges(Games game)
+    {
+        aquiredBadges = Repository.GetAquiredBadges(game);
+
+        foreach (Image badge in badges)
+        {
+            if (aquiredBadges.Contains(badge.name))
+            {
+                badge.color = Color.white;
+            }
+        }
+    }
 }

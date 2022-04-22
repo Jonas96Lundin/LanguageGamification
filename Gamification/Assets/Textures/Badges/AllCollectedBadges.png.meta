@@ -20,6 +20,9 @@ TextureImporter:
   - first:
       213: -2435893466072899050
     second: AllCollectedBadges_6
+  - first:
+      213: 8212367236498126336
+    second: AllCollectedBadges_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -124,12 +127,12 @@ TextureImporter:
       name: AllCollectedBadges_0
       rect:
         serializedVersion: 2
-        x: 134
-        y: 1096
-        width: 532
-        height: 428
+        x: 130
+        y: 1072
+        width: 540
+        height: 452
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -145,12 +148,12 @@ TextureImporter:
       name: AllCollectedBadges_1
       rect:
         serializedVersion: 2
-        x: 846
-        y: 1096
-        width: 667
-        height: 414
+        x: 842
+        y: 1072
+        width: 675
+        height: 438
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -166,12 +169,12 @@ TextureImporter:
       name: AllCollectedBadges_2
       rect:
         serializedVersion: 2
-        x: 40
-        y: 594
-        width: 644
-        height: 427
+        x: 36
+        y: 570
+        width: 652
+        height: 451
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -187,12 +190,12 @@ TextureImporter:
       name: AllCollectedBadges_3
       rect:
         serializedVersion: 2
-        x: 933
-        y: 594
-        width: 559
-        height: 441
+        x: 929
+        y: 570
+        width: 567
+        height: 465
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -208,12 +211,12 @@ TextureImporter:
       name: AllCollectedBadges_4
       rect:
         serializedVersion: 2
-        x: 114
-        y: 69
-        width: 538
-        height: 461
+        x: 110
+        y: 45
+        width: 546
+        height: 485
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -226,22 +229,22 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AllCollectedBadges_6
+      name: AllCollectedBadges_5
       rect:
         serializedVersion: 2
-        x: 930
-        y: 70
-        width: 570
-        height: 427
+        x: 926
+        y: 46
+        width: 578
+        height: 451
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 612a70c6cc7f13ed0800000000000000
-      internalID: -2435893466072899050
+      spriteID: 006f6889d7038f170800000000000000
+      internalID: 8212367236498126336
       vertices: []
       indices: 
       edges: []
