@@ -30,7 +30,7 @@ public static class Repository
         cmd.ExecuteNonQuery();
         conn.Close();
 
-        AddToGamesPlayed(username);
+        AddToGamesPlayedAtRegister(username);
     }
 
     public static bool DoesUserExist(string username)
@@ -58,7 +58,7 @@ public static class Repository
         return (count > 0);
     }
 
-    private static void AddToGamesPlayed(string username)
+    private static void AddToGamesPlayedAtRegister(string username)
     {
         ConnectToDatabase("aj8015");
         NpgsqlCommand cmd;
@@ -86,12 +86,14 @@ public static class Repository
 
     public static void AddToColorwheelLeaderboard(int score, float time)
     {
+        int counter = GetPlayedGames(Games.COLORWHEEL);
         ConnectToDatabase("aj8015");
         NpgsqlCommand cmd;
-        cmd = new NpgsqlCommand("INSERT INTO colorwheelLeaderboard(username, score, time) VALUES(:username, :score, :time);", conn);
+        cmd = new NpgsqlCommand("INSERT INTO colorwheelLeaderboard(username, score, time, gamecounter) VALUES(:username, :score, :time, :gamecounter);", conn);
         cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
         cmd.Parameters.Add(new NpgsqlParameter("score", score));
         cmd.Parameters.Add(new NpgsqlParameter("time", time));
+        cmd.Parameters.Add(new NpgsqlParameter("gamecounter", counter));
         System.Object res = cmd.ExecuteScalar();
         conn.Close();
         Debug.Log(res);
@@ -99,12 +101,14 @@ public static class Repository
 
     public static void AddToTraingameLeaderboard(int score, float time)
     {
+        int counter = GetPlayedGames(Games.TRAINGAME);
         ConnectToDatabase("aj8015");
         NpgsqlCommand cmd;
-        cmd = new NpgsqlCommand("INSERT INTO traingameLeaderboard(username, score, time) VALUES(:username, :score, :time); ", conn);
+        cmd = new NpgsqlCommand("INSERT INTO traingameLeaderboard(username, score, time, gamecounter) VALUES(:username, :score, :time, :gamecounter); ", conn);
         cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
         cmd.Parameters.Add(new NpgsqlParameter("score", score));
         cmd.Parameters.Add(new NpgsqlParameter("time", time));
+        cmd.Parameters.Add(new NpgsqlParameter("gamecounter", counter));
         System.Object res = cmd.ExecuteScalar();
         conn.Close();
         Debug.Log(res);
@@ -303,7 +307,7 @@ public static class Repository
                 cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
                 break;
             case Games.TRAINGAME:
-                cmd = new NpgsqlCommand("SELECT colorwheelcounter FROM gamesplayed WHERE username = :username ", conn);
+                cmd = new NpgsqlCommand("SELECT traingamecounter FROM gamesplayed WHERE username = :username ", conn);
                 cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
                 break;
         }

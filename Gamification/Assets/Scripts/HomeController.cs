@@ -13,19 +13,35 @@ public class HomeController : MonoBehaviour
 	[SerializeField] TMP_Text leaderboardNames;
 	[SerializeField] TMP_Text leaderboardScores;
     [SerializeField] TMP_Text leaderboardTimes;
+    [SerializeField] GameObject CommonBadges;
+    [SerializeField] GameObject ColorWheelBadges;
+    [SerializeField] GameObject TrainGameBadges;
 
     static int maxLeaderboardPositions = 5;
+
     public void OpenColorWheelPanel()
     {
         HomePanel.SetActive(false);
         ColorWheelPanel.SetActive(true);
         GetLeaderboard(Games.COLORWHEEL);
+        ColorWheelBadges.SetActive(true);
+        CommonBadges.SetActive(false);
     }
     public void OpenTrainGamePanel()
     {
         HomePanel.SetActive(false);
         TrainGamePanel.SetActive(true);
         GetLeaderboard(Games.TRAINGAME);
+        TrainGameBadges.SetActive(true);
+        CommonBadges.SetActive(false);
+    }
+    public void BackToHomePanel(string panelToClose)
+    {
+        GameObject.Find(panelToClose).SetActive(false);
+        HomePanel.SetActive(true);
+        CommonBadges.SetActive(true);
+        ColorWheelBadges.SetActive(false);
+        TrainGameBadges.SetActive(false);
     }
 
     private void GetLeaderboard(Games game)
@@ -147,9 +163,4 @@ public class HomeController : MonoBehaviour
 		PlayerPrefs.SetString("username", "");
 	}
 
-    public void BackToHomePanel(string panelToClose)
-    {
-        GameObject.Find(panelToClose).SetActive(false);
-        HomePanel.SetActive(true);
-    }
 }
