@@ -94,6 +94,7 @@ public class AnswerController_TrainGame : MonoBehaviour
         //if (questionController.QuestionCounter < 1)
         {
             answerDisplay.transform.DOScale(0, displayScaleTime);
+            noWrongAnswer = true;
             StartCoroutine(gameController.NextGame());
         }
         else
@@ -121,7 +122,6 @@ public class AnswerController_TrainGame : MonoBehaviour
 			else
 			{
                 answerDisplay = wellDoneDisplay;
-                noWrongAnswer = true;
             }
 
             answerDisplay.transform.DOScale(1, displayScaleTime);
