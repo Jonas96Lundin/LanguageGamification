@@ -70,7 +70,11 @@ public static class Repository
 
     public static void AddBadge(string badge, Games game)
     {
-        int counter = GetPlayedGames(game);
+        int counter = 0;
+        if (game != Games.HOMESCREEN)
+        {
+            counter = GetPlayedGames(game);
+        }
         ConnectToDatabase("aj8015");
         NpgsqlCommand cmd;
         cmd = new NpgsqlCommand("INSERT INTO aquiredbadges(username, badge, gamecounter) VALUES(:username, :badge, :gamecounter)", conn);
@@ -332,6 +336,11 @@ public static class Repository
                 break;
             case Games.TRAINGAME:
                 cmd = new NpgsqlCommand("SELECT badge FROM aquiredbadges WHERE username = :username AND badge LIKE 'trainGame%';", conn);
+                cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
+                break;
+            case Games.HOMESCREEN:
+                //cmd = new NpgsqlCommand("SELECT badge FROM aquiredbadges WHERE username = :username AND badge LIKE 'home%';", conn);
+                cmd = new NpgsqlCommand("SELECT badge FROM aquiredbadges WHERE username = :username;", conn);
                 cmd.Parameters.Add(new NpgsqlParameter("username", PlayerPrefs.GetString("username")));
                 break;
         }

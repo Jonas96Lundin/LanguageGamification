@@ -21,7 +21,15 @@ public class HomeController : MonoBehaviour
     [SerializeField] List<Image> badges;
     List<string> aquiredBadges;
 
+    [SerializeField] GameController gameController;
+
     static int maxLeaderboardPositions = 5;
+
+    private void Start()
+    {
+        gameController.SetGame(Games.HOMESCREEN);
+        gameController.SetBadges();
+    }
 
     public void OpenColorWheelPanel()
     {
