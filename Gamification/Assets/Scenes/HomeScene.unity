@@ -6211,6 +6211,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: homeSpeedDemon
       objectReference: {fileID: 0}
+    - target: {fileID: 767153575481858166, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 767153575481858166, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 767153575481858166, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578901550249599355, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578901550249599355, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578901550249599355, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6889360933638189336, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6889360933638189336, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6889360933638189336, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7258627167707656369, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
       propertyPath: m_Name
       value: homeCompletioner
