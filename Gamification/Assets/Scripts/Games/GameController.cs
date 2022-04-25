@@ -27,6 +27,8 @@ public class GameController : MonoBehaviour
 	Dictionary<string, bool> aquiredBadges;
 	private List<GameObject> newBadges = new List<GameObject>();
 
+	[SerializeField] GameObject particleBadgeCelebration;
+
 	private int hours;
 	private int minutes;
 	private int seconds;
@@ -90,11 +92,12 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	private void ShowNewBadges()
+	public void ShowNewBadges()
 	{
 		foreach (GameObject badge in newBadges)
 		{
 			//effect on position
+			Instantiate(particleBadgeCelebration, badge.transform);
 		}
 	}
 

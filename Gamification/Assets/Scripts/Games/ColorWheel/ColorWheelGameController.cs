@@ -8,11 +8,11 @@ using DG.Tweening;
 
 public class ColorWheelGameController : MonoBehaviour
 {
-	public static float badgeTime = 0;
+	public static float badgeTime = 120;
 	public static int badgePoints = 550;
 
 	[SerializeField] GameObject UICamera;
-	[SerializeField] GameObject ParticleWanderingSpirits;
+	[SerializeField] GameObject particleWanderingSpirits;
 
 
 	[Header("StartPanel")]
@@ -150,7 +150,8 @@ public class ColorWheelGameController : MonoBehaviour
 				victoryScreen.SetActive(true);
 				gameController.EndGame();
 				victoryScreen.transform.DOScale(victoryScreenEndScale, displayScaleTimer);
-				Instantiate(ParticleWanderingSpirits, UICamera.transform);
+				Instantiate(particleWanderingSpirits, UICamera.transform);
+				gameController.ShowNewBadges();
 			}
 			currentAnswerAttempt = 0;
 		}

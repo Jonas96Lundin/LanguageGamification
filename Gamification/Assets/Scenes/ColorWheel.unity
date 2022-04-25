@@ -989,6 +989,32 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &157882910 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7429476607463056899, guid: 79ace7850da19ac4d9d94e13b821adae, type: 3}
+  m_PrefabInstance: {fileID: 1027297391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &157882911
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157882910}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
 --- !u!1 &228104239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2183,7 +2209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UICamera: {fileID: 980234683}
-  ParticleWanderingSpirits: {fileID: 1781930563638536, guid: daa6cceb1b087d74aad6916dac2805ea, type: 3}
+  particleWanderingSpirits: {fileID: 1781930563638536, guid: 219fba9ab7e2eb747afa3fc6b28cac08, type: 3}
   startPanel: {fileID: 510371581}
   startButton: {fileID: 1479003731}
   startCountDown: {fileID: 1494673771}
@@ -2236,6 +2262,7 @@ MonoBehaviour:
   - {fileID: 1331817509415281547}
   - {fileID: 1331817508933430696}
   - {fileID: 1331817507983589363}
+  particleBadgeCelebration: {fileID: 1247311384876784, guid: 28002d4b59957ee4087bb46b369c7176, type: 3}
 --- !u!1 &510371581 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4979988204890659094, guid: 6c0ddb1147de2dd41af34aa35abd4488, type: 3}
@@ -3581,7 +3608,6 @@ GameObject:
   m_Component:
   - component: {fileID: 980234686}
   - component: {fileID: 980234685}
-  - component: {fileID: 980234684}
   m_Layer: 0
   m_Name: UI Camera
   m_TagString: Untagged
@@ -3589,14 +3615,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &980234684
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 980234683}
-  m_Enabled: 1
 --- !u!20 &980234685
 Camera:
   m_ObjectHideFlags: 0
