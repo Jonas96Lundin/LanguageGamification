@@ -45,6 +45,9 @@ public class ColorWheelGameController : MonoBehaviour
 	private int currentAnswerAttempt;
 	private int answerAttempts = 3;
 
+	[SerializeField] private AudioSource correctSound;
+	[SerializeField] private AudioSource incorrectSound;
+
 	private void OnEnable()
 	{
 		gameController = GetComponent<GameController>();
@@ -129,6 +132,7 @@ public class ColorWheelGameController : MonoBehaviour
 			}
 
 			correctAnswer = true;
+			correctSound.Play();
 			thisAnswerController.CorrectIndicator.SetActive(true);
 			answerContollers.Remove(thisAnswerController);
 			if (answerContollers.Count > 0)
@@ -153,6 +157,7 @@ public class ColorWheelGameController : MonoBehaviour
 		else
 		{
 			correctAnswer = false;
+			incorrectSound.Play();
 			currentAnswerAttempt++;
 			pointController.AddPointWithMultiplier(false);
 
