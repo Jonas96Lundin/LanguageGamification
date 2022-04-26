@@ -2442,7 +2442,9 @@ MonoBehaviour:
   - {fileID: 1102065824}
   - {fileID: 168585903}
   - {fileID: 1348915195}
-  particleBadgeCelebration: {fileID: 0}
+  UICamera: {fileID: 890220076}
+  particleBadgeCelebration: {fileID: 1247311384876784, guid: 28002d4b59957ee4087bb46b369c7176, type: 3}
+  particleWanderingSpirits: {fileID: 1781930563638536, guid: 219fba9ab7e2eb747afa3fc6b28cac08, type: 3}
 --- !u!1 &770301441
 GameObject:
   m_ObjectHideFlags: 0
