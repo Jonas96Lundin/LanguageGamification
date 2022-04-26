@@ -39,6 +39,11 @@ public class AnswerController_TrainGame : MonoBehaviour
     private float displayScaleTime = 0.5f;
     private float wrongAnswreDisplayTime = 1;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource correctSound;
+    [SerializeField] private AudioSource incorrectSound;
+    [SerializeField] private AudioSource trainSound;
+
     public string[] AnswerWords { get { return answerWords; } }
 
 
@@ -124,6 +129,8 @@ public class AnswerController_TrainGame : MonoBehaviour
                 answerDisplay = wellDoneDisplay;
             }
 
+            correctSound.Play();
+            trainSound.Play();
             answerDisplay.transform.DOScale(1, displayScaleTime);
             gameController.EndCurrentGame();
 
@@ -134,6 +141,7 @@ public class AnswerController_TrainGame : MonoBehaviour
         else
         {
             pointController.AddMisstake();
+            incorrectSound.Play();
             StartCoroutine(WrongAnswer());
         }
     }
