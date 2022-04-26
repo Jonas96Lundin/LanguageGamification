@@ -107,7 +107,7 @@ public static class BadgeManager
         }
         else
         {
-            aquiredBadges.Add("pointsCollector", false);
+            aquiredBadges.Add("homePointsCollector", false);
         }
     }
     private static void SetSpeedDemonBadge(Games game)
