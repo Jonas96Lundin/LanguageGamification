@@ -112,7 +112,9 @@ public class CargoController : MonoBehaviour
 	{
 		if (isGrabbed)
 		{
-			transform.position = Input.mousePosition;
+			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mousePos.z = 1;
+			transform.position = mousePos;
 		}
 	}
 

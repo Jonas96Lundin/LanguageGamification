@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class TrainGameController : MonoBehaviour
 {
-	public static float badgeTime = 0;
+	public static float badgeTime = 300;
 	public static int badgePoints = 22;
 
 	private GameController gameController;
@@ -50,13 +50,12 @@ public class TrainGameController : MonoBehaviour
 	private int truckCargoCounter;
 
 
-	private float centerMovePosX = 960;
-	private float trainEndMovePosX = -1000;
-	private float truckEndMovePosX = 3000;
+	private float centerMovePosX = 0;
+	private float endMovePosX = 20;
 	private float enterDelay = 3;
 	private float exitDelay = 5;
 	private float endGameDelay = 1.5f;
-	private float victoryScreenDelay = 1;
+	private float victoryScreenDelay = 0.5f;
 
 
 	private void OnEnable()
@@ -76,11 +75,11 @@ public class TrainGameController : MonoBehaviour
 	{
 		StartCoroutine(StartGameCountdown());
 	}
-	public void OnEndGame()
-	{
+	//public void OnEndGame()
+	//{
 
-		StartCoroutine(EndGame());
-	}
+	//	StartCoroutine(EndGame());
+	//}
 	
 	private void StartGame()
 	{
@@ -91,10 +90,10 @@ public class TrainGameController : MonoBehaviour
 	}
 	public void EndCurrentGame()
 	{
-		MoveX(train.transform, trainEndMovePosX, exitDelay, Ease.InSine);
+		MoveX(train.transform, -endMovePosX, exitDelay, Ease.InSine);
 		foreach (TruckController truck in trucks)
 		{
-			MoveX(truck.transform, truckEndMovePosX, exitDelay, Ease.InSine);
+			MoveX(truck.transform, endMovePosX, exitDelay, Ease.InSine);
 		}		
 	}
 	private void StartNextGame()
@@ -259,13 +258,10 @@ public class TrainGameController : MonoBehaviour
 		quitButton.interactable = false;
 		finalQuestionDisplay.transform.DOScale(0, 0.5f);
 
-		yield return new WaitForSeconds(endGameDelay);
+		yield return new WaitForSeconds(victoryScreenDelay);
 
 		victoryDisplay.SetActive(true);
 		gameController.EndGame();
-
-		yield return new WaitForSeconds(victoryScreenDelay);
-
 		victoryDisplay.transform.DOScale(1, 0.5f);
 	}
 }

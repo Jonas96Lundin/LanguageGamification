@@ -292,7 +292,7 @@ MonoBehaviour:
   - {fileID: 3416530190234542856}
   - {fileID: 5861813815688422586}
   - {fileID: 2031567594317743358}
-  xPosOffset: -375
+  xPosOffset: -3
 --- !u!1 &3416530190234542863
 GameObject:
   m_ObjectHideFlags: 0
