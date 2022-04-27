@@ -125,6 +125,7 @@ public class TrainGameController : MonoBehaviour
 		CreateWagonWithCargo(Instantiate(wagonWithCargoPrefab, locomitive.transform), numberOfWagons - 1);
 
 		MoveX(train.transform, centerMovePosX, enterDelay, Ease.OutSine);
+		answerController.NewTrainSound();
 	}
 
 	private void CreateLocomotive(GameObject newlocomotive)

@@ -35,6 +35,7 @@ public class AnswerController_TrainGame : MonoBehaviour
     private bool noWrongAnswer = true;
 
     private float checkAnswerDelay = 1;
+    private float enterDelay = 3;
     private float exitDelay = 5;
     private float displayScaleTime = 0.5f;
     private float wrongAnswreDisplayTime = 1;
@@ -42,7 +43,8 @@ public class AnswerController_TrainGame : MonoBehaviour
     [Header("Sounds")]
     [SerializeField] private AudioSource correctSound;
     [SerializeField] private AudioSource incorrectSound;
-    [SerializeField] private AudioSource trainSound;
+    [SerializeField] private AudioSource trainArriveSound;
+    [SerializeField] private AudioSource trainDepartSound;
 
     public string[] AnswerWords { get { return answerWords; } }
 
@@ -112,7 +114,13 @@ public class AnswerController_TrainGame : MonoBehaviour
         }
     }
 
-	IEnumerator CheckAnswer()
+    public void NewTrainSound()
+	{
+        trainArriveSound.Play();
+        StartCoroutine(FadeOutSound(trainArriveSound, enterDelay));
+    }
+
+    IEnumerator CheckAnswer()
 	{
         yield return new WaitForSeconds(checkAnswerDelay);
 
@@ -130,12 +138,13 @@ public class AnswerController_TrainGame : MonoBehaviour
             }
 
             correctSound.Play();
-            trainSound.Play();
-            answerDisplay.transform.DOScale(1, displayScaleTime);
-            gameController.EndCurrentGame();
+            EndCurrentQuestion();
+            //trainSound.Play();
+
+            //answerDisplay.transform.DOScale(1, displayScaleTime);
+            //gameController.EndCurrentGame();
 
             yield return new WaitForSeconds(exitDelay);
-
             NextQuestion();
         }
         else
@@ -144,6 +153,14 @@ public class AnswerController_TrainGame : MonoBehaviour
             incorrectSound.Play();
             StartCoroutine(WrongAnswer());
         }
+    }
+
+    private void EndCurrentQuestion()
+	{
+        trainDepartSound.Play();
+        answerDisplay.transform.DOScale(1, displayScaleTime);
+        gameController.EndCurrentGame();
+        StartCoroutine(FadeOutSound(trainDepartSound, exitDelay));
     }
 
     IEnumerator WrongAnswer()
@@ -158,21 +175,38 @@ public class AnswerController_TrainGame : MonoBehaviour
     }
 	#endregion
 
-    IEnumerator SkipQuestion()
+	IEnumerator SkipQuestion()
 	{
-        correctAnswerDisplay.GetComponentInChildren<TMP_Text>().text = questionController.GetCorrectAnswer();
-        answerDisplay = correctAnswerDisplay;
-        SwitchToGreen();
-        answerDisplay.transform.DOScale(1, displayScaleTime);
-        gameController.EndCurrentGame();
+		correctAnswerDisplay.GetComponentInChildren<TMP_Text>().text = questionController.GetCorrectAnswer();
+		answerDisplay = correctAnswerDisplay;
+		SwitchToGreen();
+		EndCurrentQuestion();
+        //answerDisplay.transform.DOScale(1, displayScaleTime);
+        //gameController.EndCurrentGame();
 
+        
         yield return new WaitForSeconds(exitDelay);
+		//trainSound.Stop();
+		timer.StopTimer();
+		correctAnswerDisplay.GetComponentInChildren<Button>().interactable = true;
+	}
 
-        timer.StopTimer();
-        correctAnswerDisplay.GetComponentInChildren<Button>().interactable = true;
+	public static IEnumerator FadeOutSound(AudioSource audioSource, float fadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / fadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
     }
-	#region LightSwitch
-	private void SwitchToGreen()
+    #region LightSwitch
+    private void SwitchToGreen()
     {
         player.IsPaused = true;
         answerButton.interactable = false;
