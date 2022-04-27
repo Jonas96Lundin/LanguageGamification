@@ -7,6 +7,7 @@ public static class BadgeManager
 {
     private static Dictionary<string, bool> aquiredBadges;
     private static List<string> previousBadges;
+    public static bool questionSkipped = false;
 
     public static Dictionary<string, bool> GetAquiredBadges(Games game, float time, int points)
     {
@@ -22,7 +23,10 @@ public static class BadgeManager
                 break;
 
             case Games.TRAINGAME:
-                SetGameCompletedBadge(game, "trainGameCompleted");
+				if (!questionSkipped)
+				{
+                    SetGameCompletedBadge(game, "trainGameCompleted");
+                }
                 SetTimeBadge(game, "trainGameSpeedster", time, TrainGameController.badgeTime);
                 SetPointBadge(game, "trainGameMaxPoints", points, TrainGameController.badgePoints);
                 break;

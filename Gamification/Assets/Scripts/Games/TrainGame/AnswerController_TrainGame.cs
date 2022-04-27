@@ -150,7 +150,6 @@ public class AnswerController_TrainGame : MonoBehaviour
         else
         {
             pointController.AddMisstake();
-            incorrectSound.Play();
             StartCoroutine(WrongAnswer());
         }
     }
@@ -167,6 +166,9 @@ public class AnswerController_TrainGame : MonoBehaviour
 	{
         SwitchToRed();
         noWrongAnswer = false;
+        incorrectSound.time = 0.5f;
+        incorrectSound.Play();
+        //FadeOutSound(incorrectSound, wrongAnswreDisplayTime);
         wrongCargoDisplay.transform.DOScale(1, displayScaleTime);
 
         yield return new WaitForSeconds(wrongAnswreDisplayTime);
@@ -177,7 +179,9 @@ public class AnswerController_TrainGame : MonoBehaviour
 
 	IEnumerator SkipQuestion()
 	{
-		correctAnswerDisplay.GetComponentInChildren<TMP_Text>().text = questionController.GetCorrectAnswer();
+        BadgeManager.questionSkipped = true;
+
+        correctAnswerDisplay.GetComponentInChildren<TMP_Text>().text = questionController.GetCorrectAnswer();
 		answerDisplay = correctAnswerDisplay;
 		SwitchToGreen();
 		EndCurrentQuestion();

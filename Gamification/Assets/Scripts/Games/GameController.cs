@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour
 	[SerializeField] GameObject UICamera;
 	[SerializeField] GameObject particleBadgeCelebration;
 	[SerializeField] GameObject particleWanderingSpirits;
+	[SerializeField] AudioSource celebrationSound;
 
 	private int hours;
 	private int minutes;
@@ -37,6 +38,7 @@ public class GameController : MonoBehaviour
 	private float milliSeconds;
 
 	static int maxLeaderboardPositions = 5;
+
 
 	public Games CurrentGame { get { return currentGame; } }
 
@@ -116,6 +118,7 @@ public class GameController : MonoBehaviour
 			yield return new WaitForSeconds(1f);
 			badge.color = Color.white;
 			Instantiate(particleBadgeCelebration, badge.transform.position, particleBadgeCelebration.transform.rotation, UICamera.transform);
+			celebrationSound.Play();
 		}
 	}
 
