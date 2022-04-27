@@ -30,6 +30,9 @@ public class AnswerController_TrainGame : MonoBehaviour
     [SerializeField] private GameObject excellentDisplay;
     [SerializeField] private GameObject wrongCargoDisplay;
     [SerializeField] private GameObject correctAnswerDisplay;
+    [SerializeField] private Image wrongCloud;
+    [SerializeField] private GameObject wrongLightning;
+    [SerializeField] private TMP_Text wrongText;
     private GameObject answerDisplay;
 
     private bool noWrongAnswer = true;
@@ -166,14 +169,30 @@ public class AnswerController_TrainGame : MonoBehaviour
 	{
         SwitchToRed();
         noWrongAnswer = false;
+        
+        //FadeOutSound(incorrectSound, wrongAnswreDisplayTime);
+        // wrongCargoDisplay.transform.DOScale(1, displayScaleTime);
+        
+        Image cloud = wrongCargoDisplay.GetComponentInChildren<Image>();
+        Image lightning = cloud.GetComponentInChildren<Image>();
+        TMP_Text text = GetComponentInChildren<TMP_Text>();
+
+        wrongCloud.DOFade(2, displayScaleTime);
+        wrongText.DOFade(2, displayScaleTime);
+
+        yield return new WaitForSeconds(displayScaleTime);
+
+        wrongLightning.gameObject.SetActive(true);
         incorrectSound.time = 0.5f;
         incorrectSound.Play();
-        //FadeOutSound(incorrectSound, wrongAnswreDisplayTime);
-        wrongCargoDisplay.transform.DOScale(1, displayScaleTime);
 
         yield return new WaitForSeconds(wrongAnswreDisplayTime);
 
-        wrongCargoDisplay.transform.DOScale(0, displayScaleTime);
+        wrongLightning.gameObject.SetActive(false);
+        wrongCloud.DOFade(0, displayScaleTime);
+        wrongText.DOFade(0, displayScaleTime);
+
+        //wrongCargoDisplay.transform.DOScale(0, displayScaleTime);
     }
 	#endregion
 
