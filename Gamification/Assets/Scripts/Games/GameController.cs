@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameController : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject particleBadgeCelebration;
     [SerializeField] GameObject particleWanderingSpirits;
     [SerializeField] AudioSource celebrationSound;
+
+    [SerializeField] GameObject leaderboardPanel;
 
     private int hours;
     private int minutes;
@@ -205,6 +208,7 @@ public class GameController : MonoBehaviour
                         string oldText = leaderboardNames.text;
                         leaderboardNames.SetText(oldText + "\n" + leaderboardCounter + ": " +
                                 $"{System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(pair.Key).AddColor(Color.red)}");
+                        leaderboardPanel.transform.DOScale(new Vector3(1.1f, 1.1f, 1), 0.5f).SetLoops(8, LoopType.Yoyo);
                     }
                     else
                     {
