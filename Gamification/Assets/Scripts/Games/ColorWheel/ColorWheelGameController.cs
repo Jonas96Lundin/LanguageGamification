@@ -9,7 +9,7 @@ using DG.Tweening;
 public class ColorWheelGameController : MonoBehaviour
 {
 	public static float badgeTime = 120;
-	public static int badgePoints = 550;
+	public static int badgePoints = 55;
 
 	[Header("StartPanel")]
 	[SerializeField] private GameObject startPanel;
@@ -45,6 +45,7 @@ public class ColorWheelGameController : MonoBehaviour
 	private int currentAnswerAttempt;
 	private int answerAttempts = 3;
 
+	[SerializeField] private ParticleSystem particleStar;
 	[SerializeField] private AudioSource correctSound;
 	[SerializeField] private AudioSource incorrectSound;
 
@@ -180,7 +181,8 @@ public class ColorWheelGameController : MonoBehaviour
 
 	private void DisplayPoints(int points)
 	{
-		pointText.text = "Points: " + points;
+		Instantiate(particleStar, pointText.transform.position, particleStar.transform.rotation);
+		pointText.text = points.ToString();
 	}
 	private void DisplayCombo(int combo)
 	{
