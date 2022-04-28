@@ -170,7 +170,6 @@ public class AnswerController_TrainGame : MonoBehaviour
 
     IEnumerator WrongAnswer()
 	{
-        SwitchToRed();
         noWrongAnswer = false;
         
         //FadeOutSound(incorrectSound, wrongAnswreDisplayTime);
@@ -191,6 +190,7 @@ public class AnswerController_TrainGame : MonoBehaviour
         wrongCloud.DOFade(0, displayScaleTime);
         wrongText.DOFade(0, displayScaleTime);
 
+        SwitchToRed();
         skipButton.interactable = true;
 
         //wrongCargoDisplay.transform.DOScale(0, displayScaleTime);
