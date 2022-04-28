@@ -43,6 +43,8 @@ public class AnswerController_TrainGame : MonoBehaviour
     private float displayScaleTime = 0.5f;
     private float wrongAnswreDisplayTime = 1;
 
+    [SerializeField] ParticleSystem particleStar;
+
     [Header("Sounds")]
     [SerializeField] private AudioSource correctSound;
     [SerializeField] private AudioSource incorrectSound;
@@ -133,6 +135,7 @@ public class AnswerController_TrainGame : MonoBehaviour
 			{
                 answerDisplay = excellentDisplay;
                 pointController.AddPoint();
+                Instantiate(particleStar, uiPoints.transform.position, particleStar.transform.rotation);
                 uiPoints.text = pointController.CurrentPoints.ToString();
 			}
 			else
@@ -172,10 +175,6 @@ public class AnswerController_TrainGame : MonoBehaviour
         
         //FadeOutSound(incorrectSound, wrongAnswreDisplayTime);
         // wrongCargoDisplay.transform.DOScale(1, displayScaleTime);
-        
-        Image cloud = wrongCargoDisplay.GetComponentInChildren<Image>();
-        Image lightning = cloud.GetComponentInChildren<Image>();
-        TMP_Text text = GetComponentInChildren<TMP_Text>();
 
         wrongCloud.DOFade(2, displayScaleTime);
         wrongText.DOFade(2, displayScaleTime);
@@ -191,6 +190,8 @@ public class AnswerController_TrainGame : MonoBehaviour
         wrongLightning.gameObject.SetActive(false);
         wrongCloud.DOFade(0, displayScaleTime);
         wrongText.DOFade(0, displayScaleTime);
+
+        skipButton.interactable = true;
 
         //wrongCargoDisplay.transform.DOScale(0, displayScaleTime);
     }
@@ -263,7 +264,7 @@ public class AnswerController_TrainGame : MonoBehaviour
     private void ActivateRedLight()
     {
         answerButton.interactable = true;
-        skipButton.interactable = true;
+        //skipButton.interactable = true;
         player.IsPaused = false;
 
         redLight.gameObject.SetActive(true);
