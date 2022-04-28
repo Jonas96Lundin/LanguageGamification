@@ -24,6 +24,10 @@ public class TrainGame_FinalQuestion : MonoBehaviour
     private bool questionAnswerd;
     private char splitter = '_';
 
+    [SerializeField] ParticleSystem particleStar;
+    [SerializeField] AudioSource correctAnswerSound;
+    [SerializeField] AudioSource incorrectAnswerSound;
+
     private void Start()
     {
         int x = answers.Count;
@@ -55,7 +59,9 @@ public class TrainGame_FinalQuestion : MonoBehaviour
                 if (shuffledAnswers[currentAnswerIndex] == correctAnswer)
                 {
                     pointDisplay[currentAnswerIndex].SetActive(true);
+                    Instantiate(particleStar, pointDisplay[currentAnswerIndex].transform.position, particleStar.transform.rotation);
                     pointDisplay[currentAnswerIndex].GetComponentInChildren<TMP_Text>().text = "+" + pointController.CurrentPoints.ToString();
+                    correctAnswerSound.Play();
                     pointController.DoublePoints();
                 }
                 else
@@ -69,6 +75,7 @@ public class TrainGame_FinalQuestion : MonoBehaviour
 
                         }
                     }
+                    incorrectAnswerSound.Play();
                 }
 
                 uiButtonText.text = "Continuez";
@@ -79,6 +86,5 @@ public class TrainGame_FinalQuestion : MonoBehaviour
 		{
             StartCoroutine(gameController.EndGame());
         }
-        
 	}
 }
