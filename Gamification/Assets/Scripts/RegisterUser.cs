@@ -33,7 +33,7 @@ public class RegisterUser : MonoBehaviour
     GameObject loginPanel;
 
     string email;
-    int age = -1;
+    int age = 0;
     string gender/* = "Male"*/;
     string nLanguage;
     int languageLevel = -1;

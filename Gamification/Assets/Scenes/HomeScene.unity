@@ -18297,6 +18297,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: homeSpeedDemon
       objectReference: {fileID: 0}
+    - target: {fileID: 309244233247134355, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_text
+      value: Terminez le jeu une fois
+      objectReference: {fileID: 0}
+    - target: {fileID: 309244233247134355, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 309244233247134355, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 323461021599860573, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_text
+      value: "R\xE9cup\xE9rez tous les badges de vitesse"
+      objectReference: {fileID: 0}
+    - target: {fileID: 323461021599860573, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 323461021599860573, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 767153575481858166, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -18337,10 +18361,70 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 6635d460f9d268f44b3bb50171a2696d, type: 2}
+    - target: {fileID: 3115801371866911695, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_text
+      value: Terminez une partie en moins de 5 minutes
+      objectReference: {fileID: 0}
+    - target: {fileID: 3115801371866911695, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3115801371866911695, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529948856278152260, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_text
+      value: Terminez une partie en moins de 2 minutes
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529948856278152260, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529948856278152260, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564481246787576336, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_text
+      value: Obtenez un maximum de points
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564481246787576336, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564481246787576336, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4355665621587597926, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 6635d460f9d268f44b3bb50171a2696d, type: 2}
+    - target: {fileID: 6018167156328289274, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_text
+      value: "R\xE9cup\xE9rez tous les badges de points maximum"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018167156328289274, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6018167156328289274, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358616249565569183, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_text
+      value: "R\xE9cup\xE9rez tous les badges de jeu termin\xE9s"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358616249565569183, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358616249565569183, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6889360933638189336, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -18365,6 +18449,18 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: 6635d460f9d268f44b3bb50171a2696d, type: 2}
+    - target: {fileID: 7310562345115842481, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_text
+      value: Terminez le jeu une fois
+      objectReference: {fileID: 0}
+    - target: {fileID: 7310562345115842481, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7310562345115842481, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7905210531009047949, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
       propertyPath: m_Material
       value: 
@@ -18488,6 +18584,18 @@ PrefabInstance:
     - target: {fileID: 8565314269621882605, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590110740921654834, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_text
+      value: Obtenez un maximum de points
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590110740921654834, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590110740921654834, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
