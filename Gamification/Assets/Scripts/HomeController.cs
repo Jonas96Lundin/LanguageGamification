@@ -23,6 +23,9 @@ public class HomeController : MonoBehaviour
 
     [SerializeField] GameController gameController;
 
+    [SerializeField] TMP_Text ColorWheelDesc;
+    [SerializeField] TMP_Text TrainGameDesc;
+
     static int maxLeaderboardPositions = 5;
 
     private void Start()
@@ -188,6 +191,46 @@ public class HomeController : MonoBehaviour
             {
                 badge.color = Color.white;
             }
+        }
+    }
+
+    public void SetColorWheelDescLanguage(string chosenLanguage)
+    {
+        switch (chosenLanguage)
+        {
+            case "English":
+                ColorWheelDesc.text = "Spin the wheel to select a random color. " +
+                    "Then choose the correct button that combines with the color to create a well known french expression.  " +
+                    "You have three tries to choose the correct button on every spin. For each consecutive answer that is correct you get more points per answer.";
+                break;
+            case "French":
+                ColorWheelDesc.text = "Faites tourner la roue pour sélectionner une couleur au hasard. " +
+                    "Choisissez ensuite le bon bouton qui se combine avec la couleur pour créer une expression française bien connue. " +
+                    "Vous avez trois essais pour choisir le bon bouton à chaque tour. Pour chaque réponse consécutive correcte, vous obtenez plus de points par réponse.";
+                break;
+            case "German":
+                ColorWheelDesc.text = "Drehen Sie das Rad, um eine zufällige Farbe auszuwählen. " +
+                    "Wählen Sie dann die richtige Taste, die in Kombination mit der Farbe einen bekannten französischen Ausdruck ergibt. " +
+                    "Sie haben drei Versuche, bei jeder Drehung die richtige Taste zu wählen. Für jede aufeinanderfolgende richtige Antwort erhalten Sie mehr Punkte pro Antwort.";
+                break;
+        }
+    }
+    public void SetTrainGameDescLanguage(string chosenLanguage)
+    {
+        switch (chosenLanguage)
+        {
+            case "English":
+                TrainGameDesc.text = "Look at the expression in the cloud and create a similar sentence on the train while using pronouns instead of nouns " +
+                    "by dragging the boxes from the trucks to the train. To lock your answer press on the switch in the upper left corner.";
+                break;
+            case "French":
+                TrainGameDesc.text = "Regardez l'expression dans le nuage et créez une phrase équivalente dans le train en utilisant uniquement des pronoms au lieu des substantifs. " +
+                    "Pour cela faites  glisser les charges  des camions vers le train. Afin d'enregistrer votre réponse, appuyez sur le feu dans le coin supérieur gauche.";
+                break;
+            case "German":
+                TrainGameDesc.text = "Schauen Sie sich den Ausdruck in der Wolke an und bilden Sie einen ähnlichen Satz im Zug, indem Sie ausschließlich Pronomen anstelle von Substantiven verwenden. " +
+                    "Ziehen  Sie  dazu die Frachten von den Lastwagen auf den Zug. Um Ihre Antwort zu speichern, drücken Sie auf den Ampelschalter in der oberen linken Ecke.";
+                break;
         }
     }
 }
