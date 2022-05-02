@@ -15,8 +15,12 @@ public class AnswerController_TrainGame : MonoBehaviour
     [SerializeField] private string[] answerWords;
     [SerializeField] private Button answerButton;
     [SerializeField] private Button skipButton;
+    [SerializeField] private Button tryAgainButton;
     [SerializeField] private Timer timer;
     [SerializeField] private TMP_Text uiPoints;
+    [SerializeField] private TMP_Text excellentDisplayText;
+    [SerializeField] private TMP_Text excellentDisplayPoints;
+    private List<string> exelentPharses = new List<string>() { "Excellent", " Bien joué", "Super", "Génial", "Fantastique", "Tu es un champion", "Tu es très fort" };
 
     [Header("Light Switch")]
     [SerializeField] private Image greenLight;
@@ -89,10 +93,17 @@ public class AnswerController_TrainGame : MonoBehaviour
         SwitchToGreen();
         StartCoroutine(CheckAnswer());
     }
+    public void OnTryAgain()
+	{
+        RemoveBadWeather();
+        SwitchToRed();
+    }
     public void OnSkipQuestion()
 	{
+        RemoveBadWeather();
         StartCoroutine(SkipQuestion());
     }
+
     public void OnNextQuestion()
 	{
         correctAnswerDisplay.GetComponentInChildren<Button>().interactable = false;
@@ -131,17 +142,30 @@ public class AnswerController_TrainGame : MonoBehaviour
 
         if (questionController.CheckAnswer(gameController.GetAnswer()))
         {
-			if (noWrongAnswer)
+            answerDisplay = excellentDisplay;
+
+            if (noWrongAnswer)
 			{
-                answerDisplay = excellentDisplay;
-                pointController.AddPoint();
-                Instantiate(particleStar, uiPoints.transform.position, particleStar.transform.rotation);
-                uiPoints.text = pointController.CurrentPoints.ToString();
+                //answerDisplay = excellentDisplay;
+                pointController.AddPoints(2);
+                excellentDisplayPoints.text = "2";
+                //pointController.AddPoint();
+                //Instantiate(particleStar, uiPoints.transform.position, particleStar.transform.rotation);
+                //uiPoints.text = pointController.CurrentPoints.ToString();
 			}
 			else
 			{
-                answerDisplay = wellDoneDisplay;
+                //answerDisplay = wellDoneDisplay;
+                
+                pointController.AddPoints(1);
+                excellentDisplayPoints.text = "1";
             }
+
+            int i = Random.Range(0, exelentPharses.Count);
+            excellentDisplayText.text = exelentPharses[i];
+
+            Instantiate(particleStar, uiPoints.transform.position, particleStar.transform.rotation);
+            uiPoints.text = pointController.CurrentPoints.ToString();
 
             correctSound.Play();
             EndCurrentQuestion();
@@ -183,17 +207,27 @@ public class AnswerController_TrainGame : MonoBehaviour
         wrongLightning.gameObject.SetActive(true);
         incorrectSound.time = 0.5f;
         incorrectSound.Play();
+        tryAgainButton.gameObject.SetActive(true);
+        skipButton.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(wrongAnswreDisplayTime);
+        //yield return new WaitForSeconds(wrongAnswreDisplayTime);
 
+        //wrongLightning.gameObject.SetActive(false);
+        //wrongCloud.DOFade(0, displayScaleTime);
+        //wrongText.DOFade(0, displayScaleTime);
+
+        //SwitchToRed();
+        //skipButton.interactable = true;
+
+        //wrongCargoDisplay.transform.DOScale(0, displayScaleTime);
+    }
+    private void RemoveBadWeather()
+	{
         wrongLightning.gameObject.SetActive(false);
         wrongCloud.DOFade(0, displayScaleTime);
         wrongText.DOFade(0, displayScaleTime);
-
-        SwitchToRed();
-        skipButton.interactable = true;
-
-        //wrongCargoDisplay.transform.DOScale(0, displayScaleTime);
+        tryAgainButton.gameObject.SetActive(false);
+        skipButton.gameObject.SetActive(false);
     }
 	#endregion
 
@@ -203,7 +237,7 @@ public class AnswerController_TrainGame : MonoBehaviour
 
         correctAnswerDisplay.GetComponentInChildren<TMP_Text>().text = questionController.GetCorrectAnswer();
 		answerDisplay = correctAnswerDisplay;
-		SwitchToGreen();
+		//SwitchToGreen();
 		EndCurrentQuestion();
         //answerDisplay.transform.DOScale(1, displayScaleTime);
         //gameController.EndCurrentGame();
@@ -234,7 +268,7 @@ public class AnswerController_TrainGame : MonoBehaviour
     {
         player.IsPaused = true;
         answerButton.interactable = false;
-        skipButton.interactable = false;
+        //skipButton.interactable = false;
         LightsOff();
         ActivateGreenLight();
     }

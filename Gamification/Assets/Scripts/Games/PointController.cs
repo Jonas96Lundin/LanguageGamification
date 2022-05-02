@@ -21,6 +21,11 @@ public class PointController : MonoBehaviour
 	public int CurrentPoints { get { return currentPoints; } }
 	public float GameTime { get { return gameTime; } }
 
+	public void AddPoints(int points)
+	{
+		currentPoints += points;
+		onAddPoint?.Invoke(currentPoints);
+	}
 	public void AddPoint()
 	{
 		currentPoints += (pointAmount * pointMultiplier);
