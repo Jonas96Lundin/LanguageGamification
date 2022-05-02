@@ -14847,8 +14847,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Regardez l'expression dans le nuage et cr\xE9ez une phrase \xE9quivalente
-    dans le train en utilisant uniquement des pronoms au lieu des substantifs. Pour
-    cela faites glisser les charges des camions vers le train. Afin d'enregistrer
+    dans le train en utilisant uniquement des pronoms au lieu des substantifs compl\xE9ments.
+    Pour cela faites glisser les charges des camions vers le train. Afin d'enregistrer
     votre r\xE9ponse, appuyez sur le feu dans le coin sup\xE9rieur gauche."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17178,6 +17178,10 @@ PrefabInstance:
     - target: {fileID: 7905210531994373261, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
       propertyPath: m_Name
       value: RightBottomPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8565314269621882605, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}
+      propertyPath: m_text
+      value: "Badges g\xE9n\xE9raux"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 788707aea8fd3be4e8513b9c9bbca0fc, type: 3}

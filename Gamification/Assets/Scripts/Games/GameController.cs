@@ -132,11 +132,11 @@ public class GameController : MonoBehaviour
 
 		if (hours > 0)
 		{
-			return hours.ToString() + "h " + minutes.ToString() + "m " + seconds.ToString() + "s";
+			return hours.ToString() + "h " + minutes.ToString() + "mn " + seconds.ToString() + "s";
 		}
 		else if (minutes > 0)
 		{
-			return minutes.ToString() + "m " + seconds.ToString() + "s";
+			return minutes.ToString() + "mn " + seconds.ToString() + "s";
 		}
 		else
 		{
@@ -220,7 +220,7 @@ public class GameController : MonoBehaviour
 				leaderboardNames.text += "\n" + leaderboardCounter + ": " + System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(pair.Key);
 			}
 
-			leaderboardScores.text += "\n" + pair.Value[0] + "p";
+			leaderboardScores.text += "\n" + pair.Value[0] + "pts";
 			leaderboardTimes.text += "\n" + GetTime(pair.Value[1]);
 			if (leaderboardCounter >= maxLeaderboardPositions)
 			{
