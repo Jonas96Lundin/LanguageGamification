@@ -20,7 +20,7 @@ public class AnswerController_TrainGame : MonoBehaviour
     [SerializeField] private TMP_Text uiPoints;
     [SerializeField] private TMP_Text excellentDisplayText;
     [SerializeField] private TMP_Text excellentDisplayPoints;
-    private List<string> exelentPharses = new List<string>() { "Excellent", " Bien joué", "Super", "Génial", "Fantastique", "Tu es un champion", "Tu es très fort" };
+    private List<string> excellentPhrases = new List<string>() { "Excellent", " Bien joué", "Super", "Génial", "Fantastique", "Tu es un champion", "Tu es très fort" };
 
     [Header("Light Switch")]
     [SerializeField] private Image greenLight;
@@ -30,9 +30,9 @@ public class AnswerController_TrainGame : MonoBehaviour
     private Vector3 greenLightPos = new Vector3(0, -39, -1);
 
     [Header("Display objects")]
-    [SerializeField] private GameObject wellDoneDisplay;
+    //[SerializeField] private GameObject wellDoneDisplay;
     [SerializeField] private GameObject excellentDisplay;
-    [SerializeField] private GameObject wrongCargoDisplay;
+    //[SerializeField] private GameObject wrongCargoDisplay;
     [SerializeField] private GameObject correctAnswerDisplay;
     [SerializeField] private Image wrongCloud;
     [SerializeField] private GameObject wrongLightning;
@@ -54,6 +54,8 @@ public class AnswerController_TrainGame : MonoBehaviour
     [SerializeField] private AudioSource incorrectSound;
     [SerializeField] private AudioSource trainArriveSound;
     [SerializeField] private AudioSource trainDepartSound;
+    [SerializeField] private AudioSource trainCompletedSound;
+    [SerializeField] private AudioSource trainSkippedSound;
 
     public string[] AnswerWords { get { return answerWords; } }
 
@@ -161,14 +163,15 @@ public class AnswerController_TrainGame : MonoBehaviour
                 excellentDisplayPoints.text = "1";
             }
 
-            int i = Random.Range(0, exelentPharses.Count);
-            excellentDisplayText.text = exelentPharses[i];
+            int i = Random.Range(0, excellentPhrases.Count);
+            excellentDisplayText.text = excellentPhrases[i];
 
             Instantiate(particleStar, uiPoints.transform.position, particleStar.transform.rotation);
             uiPoints.text = pointController.CurrentPoints.ToString();
 
             correctSound.Play();
             EndCurrentQuestion();
+            trainCompletedSound.Play();
             //trainSound.Play();
 
             //answerDisplay.transform.DOScale(1, displayScaleTime);
@@ -239,13 +242,14 @@ public class AnswerController_TrainGame : MonoBehaviour
 		answerDisplay = correctAnswerDisplay;
 		//SwitchToGreen();
 		EndCurrentQuestion();
+        
         //answerDisplay.transform.DOScale(1, displayScaleTime);
         //gameController.EndCurrentGame();
 
-        
+        trainSkippedSound.Play();
         yield return new WaitForSeconds(exitDelay);
-		//trainSound.Stop();
-		timer.StopTimer();
+        //trainSound.Stop();
+        timer.StopTimer();
 		correctAnswerDisplay.GetComponentInChildren<Button>().interactable = true;
 	}
 
