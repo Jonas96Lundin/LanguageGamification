@@ -20,7 +20,7 @@ public class AnswerController_TrainGame : MonoBehaviour
     [SerializeField] private TMP_Text uiPoints;
     [SerializeField] private TMP_Text excellentDisplayText;
     [SerializeField] private TMP_Text excellentDisplayPoints;
-    private List<string> excellentPhrases = new List<string>() { "Excellent", " Bien joué", "Super", "Génial", "Fantastique", "Tu es un champion", "Tu es très fort" };
+    private List<string> excellentPhrases = new List<string>() { "Excellent", " Bien joué", "Super", "Génial", "Fantastique", "Tu es un champion", "Tu es très fort", "Tu es un as!" };
 
     [Header("Light Switch")]
     [SerializeField] private Image greenLight;
