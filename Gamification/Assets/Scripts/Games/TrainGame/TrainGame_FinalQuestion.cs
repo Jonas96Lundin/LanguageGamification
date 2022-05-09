@@ -60,9 +60,9 @@ public class TrainGame_FinalQuestion : MonoBehaviour
                 {
                     pointDisplay[currentAnswerIndex].SetActive(true);
                     Instantiate(particleStar, pointDisplay[currentAnswerIndex].transform.position, particleStar.transform.rotation);
-                    pointDisplay[currentAnswerIndex].GetComponentInChildren<TMP_Text>().text = "+" + pointController.CurrentPoints.ToString();
+                    //pointDisplay[currentAnswerIndex].GetComponentInChildren<TMP_Text>().text = "+" + pointController.CurrentPoints.ToString();
                     correctAnswerSound.Play();
-                    pointController.DoublePoints();
+                    pointController.AddPoints(10);
                 }
                 else
                 {
@@ -84,7 +84,7 @@ public class TrainGame_FinalQuestion : MonoBehaviour
         }
 		else
 		{
-            StartCoroutine(gameController.EndGame());
+            StartCoroutine(gameController.FinalFinalQuestion());
         }
 	}
 }

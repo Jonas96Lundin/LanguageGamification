@@ -8,13 +8,14 @@ using UnityEngine.UI;
 public class TrainGameController : MonoBehaviour
 {
 	public static float badgeTime = 300;
-	public static int badgePoints = 44;
+	public static int badgePoints = 42;
 
 	private GameController gameController;
 	private QuestionController_TrainGame questionController;
 	private AnswerController_TrainGame answerController;
 	[SerializeField] private Timer timer;
 	[SerializeField] private GameObject finalQuestionDisplay;
+	[SerializeField] private GameObject finalFinalQuestionDisplay;
 	[SerializeField] private GameObject victoryDisplay;
 	[SerializeField] private Button quitButton;
 
@@ -255,10 +256,18 @@ public class TrainGameController : MonoBehaviour
 		finalQuestionDisplay.transform.DOScale(1, 0.5f);
 	}
 
+	public IEnumerator FinalFinalQuestion()
+	{
+		finalQuestionDisplay.transform.DOScale(0, 0.5f);
+		yield return new WaitForSeconds(0.5f);
+		finalFinalQuestionDisplay.SetActive(true);
+		finalFinalQuestionDisplay.transform.DOScale(1, 0.5f);
+	}
+
 	public IEnumerator EndGame()
 	{
 		quitButton.interactable = false;
-		finalQuestionDisplay.transform.DOScale(0, 0.5f);
+		finalFinalQuestionDisplay.transform.DOScale(0, 0.5f);
 
 		yield return new WaitForSeconds(victoryScreenDelay);
 

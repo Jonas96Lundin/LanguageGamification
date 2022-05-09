@@ -56,7 +56,6 @@ public class TrainGame_FinalFinalQuestion : MonoBehaviour
 			{
                 correctAnswerDisplay.SetActive(true);
                 Instantiate(particleStar, correctAnswerDisplay.transform.position, particleStar.transform.rotation);
-                correctAnswerDisplay.GetComponentInChildren<TMP_Text>().text = "+10";
                 correctAnswerSound.Play();
                 pointController.AddPoints(10);
             }
