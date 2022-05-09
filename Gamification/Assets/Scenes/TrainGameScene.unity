@@ -8883,8 +8883,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TrainGame_FinalQuestion, Assembly-CSharp
+      - m_Target: {fileID: 1112236438}
+        m_TargetAssemblyTypeName: TrainGame_FinalFinalQuestion, Assembly-CSharp
         m_MethodName: OnAnswer
         m_Mode: 1
         m_Arguments:
