@@ -990,6 +990,7 @@ MonoBehaviour:
   answerButton: {fileID: 14990227}
   correctIndicator: {fileID: 961786294}
   incorrectIndicator: {fileID: 1451408840}
+  missIndicator: {fileID: 721117076}
 --- !u!114 &140875800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,6 +1094,7 @@ MonoBehaviour:
   answerButton: {fileID: 2020596285}
   correctIndicator: {fileID: 2145972197}
   incorrectIndicator: {fileID: 1915619687}
+  missIndicator: {fileID: 1410803849}
 --- !u!114 &145578317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1469,6 +1471,7 @@ MonoBehaviour:
   answerButton: {fileID: 637218116}
   correctIndicator: {fileID: 347777331}
   incorrectIndicator: {fileID: 1335202908}
+  missIndicator: {fileID: 1586353550}
 --- !u!114 &278076813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2193,6 +2196,7 @@ MonoBehaviour:
   answerButton: {fileID: 1474033490}
   correctIndicator: {fileID: 1162798949}
   incorrectIndicator: {fileID: 57925616}
+  missIndicator: {fileID: 806123704}
 --- !u!114 &420210729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2296,6 +2300,7 @@ MonoBehaviour:
   answerButton: {fileID: 1789431957}
   correctIndicator: {fileID: 1722854357}
   incorrectIndicator: {fileID: 116431120}
+  missIndicator: {fileID: 1810887332}
 --- !u!114 &433441578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3213,6 +3218,7 @@ MonoBehaviour:
   answerButton: {fileID: 1940552441}
   correctIndicator: {fileID: 915122783}
   incorrectIndicator: {fileID: 1146533159}
+  missIndicator: {fileID: 922142140}
 --- !u!114 &681412043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3820,6 +3826,7 @@ MonoBehaviour:
   answerButton: {fileID: 2092510799}
   correctIndicator: {fileID: 370933915}
   incorrectIndicator: {fileID: 228104239}
+  missIndicator: {fileID: 1624255216}
 --- !u!114 &888825751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4546,6 +4553,7 @@ MonoBehaviour:
   answerButton: {fileID: 127796306}
   correctIndicator: {fileID: 1424525782}
   incorrectIndicator: {fileID: 486115064}
+  missIndicator: {fileID: 1072328340}
 --- !u!114 &991947536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6231,6 +6239,7 @@ MonoBehaviour:
   answerButton: {fileID: 707202028}
   correctIndicator: {fileID: 954248685}
   incorrectIndicator: {fileID: 267825188}
+  missIndicator: {fileID: 1070333034}
 --- !u!114 &1422587186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7709,6 +7718,7 @@ MonoBehaviour:
   answerButton: {fileID: 1200857430}
   correctIndicator: {fileID: 888812448}
   incorrectIndicator: {fileID: 55754518}
+  missIndicator: {fileID: 235929317}
 --- !u!114 &1859351756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8282,7 +8292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2030341731
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8799,6 +8809,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1788014386}
     m_Modifications:
+    - target: {fileID: 593934340236485503, guid: a6f4073a165c6554991e433dc24a7b4b, type: 3}
+      propertyPath: m_text
+      value: "Terminez le jeu une fois et r\xE9pondez correctement \xE0 toutes les
+        questions"
+      objectReference: {fileID: 0}
     - target: {fileID: 1253691616630716043, guid: a6f4073a165c6554991e433dc24a7b4b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.8
@@ -8974,6 +8989,10 @@ PrefabInstance:
     - target: {fileID: 4244549294247139995, guid: a6f4073a165c6554991e433dc24a7b4b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4396400617852736508, guid: a6f4073a165c6554991e433dc24a7b4b, type: 3}
+      propertyPath: m_text
+      value: Obtenez un maximum (44) de points
       objectReference: {fileID: 0}
     - target: {fileID: 6214221429088280636, guid: a6f4073a165c6554991e433dc24a7b4b, type: 3}
       propertyPath: m_Name
