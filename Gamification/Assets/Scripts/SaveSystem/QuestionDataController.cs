@@ -25,13 +25,13 @@ public class QuestionDataController : MonoBehaviour
 
 	public bool IsAnswerCorrect(string question, string answer)
 	{
-		Debug.Log("Question: " + question + " Answer: " + answer);
+		//Debug.Log("Question: " + question + " Answer: " + answer);
 		for (int i = 0; i < questions.Count; i++)
 		{
 			if (question.ToLower() == questions[i].ToLower())
 			{
-				Debug.Log("Answer: " + answers[i]);
-				Debug.Log(question + answer);
+				//Debug.Log("Answer: " + answers[i]);
+				//Debug.Log(question + answer);
 				if (answer == answers[i])
 				{
 					return true;
@@ -40,6 +40,18 @@ public class QuestionDataController : MonoBehaviour
 			}
 		}
 		return false;
+	}
+
+	public string FindCorrectAnswer(string question)
+	{
+		for (int i = 0; i < questions.Count; i++)
+		{
+			if (question.ToLower() == questions[i].ToLower())
+			{
+				return answers[i];
+			}
+		}
+		return string.Empty;
 	}
 
 	public string GetAnswer(string question)

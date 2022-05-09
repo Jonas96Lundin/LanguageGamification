@@ -49,6 +49,8 @@ public class ColorWheelGameController : MonoBehaviour
 	[SerializeField] private AudioSource correctSound;
 	[SerializeField] private AudioSource incorrectSound;
 
+	AnswerController_ColorWheel correctAnswerController = new AnswerController_ColorWheel();
+
 	private void OnEnable()
 	{
 		gameController = GetComponent<GameController>();
@@ -62,6 +64,7 @@ public class ColorWheelGameController : MonoBehaviour
 
 		questionController.LoadQuestionData(gameController.CurrentGame.ToString());
 		questionController.SetQuestionsAndAnswers(questionController.QuestionData.questions, questionController.QuestionData.answers);
+		BadgeManager.questionSkipped = false;
 	}
 
 	public void OnStartGame()
@@ -87,12 +90,17 @@ public class ColorWheelGameController : MonoBehaviour
 
 			pickerWheel.OnSpinStart(() =>
 			{
-				if (correctAnswer)
+				if (correctAnswer || currentAnswerAttempt == answerAttempts)
 				{
+					if(currentAnswerAttempt == answerAttempts)
+					{
+						correctAnswerController.MissIndicator.GetComponent<Image>().color = Color.black;
+					}
+					currentAnswerAttempt = 0;
 					pickerWheel.ResetWheelWithout(wheelPieceIndex);
 				}
 				
-				Debug.Log("Spin start");
+				//Debug.Log("Spin start");
 				foreach (AnswerController_ColorWheel answer in answerContollers)
 				{
 					answer.IncorrectIndicator.SetActive(false);
@@ -100,7 +108,7 @@ public class ColorWheelGameController : MonoBehaviour
 			});
 			pickerWheel.OnSpinEnd(wheelPiece =>
 			{
-				Debug.Log("Spin end");
+				//Debug.Log("Spin end");
 
 				wheelPieceIndex = wheelPiece.Index;
 				currentQuestion = wheelPiece.Label;
@@ -164,12 +172,35 @@ public class ColorWheelGameController : MonoBehaviour
 
 			if (currentAnswerAttempt == answerAttempts)
 			{
-				currentAnswerAttempt = 0;
-				foreach (AnswerController_ColorWheel answer in answerContollers)
+				//currentAnswerAttempt = 0;
+
+				//FIND AND REMOVE CORRECT ANSWER
+				string correctAnswer = questionController.FindCorrectAnswer(currentQuestion);
+				foreach (AnswerController_ColorWheel answerController in answerContollers)
 				{
-					answer.AnswerButton.interactable = false;
+					answerController.AnswerButton.interactable = false;
+					if(answerController.Answer == correctAnswer)
+					{
+						correctAnswerController = answerController;
+					}
 				}
-				ResetWheel();
+				correctAnswerController.MissIndicator.SetActive(true);
+				answerContollers.Remove(correctAnswerController);
+				BadgeManager.questionSkipped = true;
+				if (answerContollers.Count > 0)
+				{
+					ResetWheel();
+				}
+				else
+				{
+					timer.StopTimer();
+					pointController.AddGameTime(timer.TotalTime);
+					pointController.AddPoint();
+					quitButton.interactable = false;
+					victoryScreen.SetActive(true);
+					gameController.EndGame();
+					victoryScreen.transform.DOScale(victoryScreenEndScale, displayScaleTimer);
+				}
 			}
 			else
 			{

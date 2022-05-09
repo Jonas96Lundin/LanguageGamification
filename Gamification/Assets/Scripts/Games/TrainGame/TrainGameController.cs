@@ -70,6 +70,7 @@ public class TrainGameController : MonoBehaviour
 	{
 		gameController.SetGame(Games.TRAINGAME);
 		questionController.LoadQuestionData();
+		BadgeManager.questionSkipped = false;
 	}
 	public void OnStartGame()
 	{
