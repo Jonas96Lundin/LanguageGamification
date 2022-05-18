@@ -220,15 +220,15 @@ public class HomeController : MonoBehaviour
         switch (chosenLanguage)
         {
             case "English":
-                TrainGameDesc.text = "Look at the expression in the cloud and create a similar sentence on the train while using pronouns instead of nouns complements " +
+                TrainGameDesc.text = "Look at the expression in the cloud and create a similar sentence on the train (there are 11 in total) while using pronouns instead of nouns complements " +
                     "by dragging the boxes from the trucks to the train. To lock your answer press on the switch in the upper left corner.";
                 break;
             case "French":
-                TrainGameDesc.text = "Regardez l'expression dans le nuage et créez une phrase équivalente dans le train en utilisant uniquement des pronoms au lieu des substantifs compléments. " +
-                    "Pour cela faites  glisser les charges  des camions vers le train. Afin d'enregistrer votre réponse, appuyez sur le feu dans le coin supérieur gauche.";
+                TrainGameDesc.text = "Regardez l'expression dans le nuage et créez une phrase équivalente dans le train (il y en a 11 au total) en utilisant uniquement des pronoms au lieu des substantifs compléments. " +
+                    "Pour cela faites glisser les charges  des camions vers le train. Afin d'enregistrer votre réponse, appuyez sur le feu dans le coin supérieur gauche.";
                 break;
             case "German":
-                TrainGameDesc.text = "Schauen Sie sich den Ausdruck in der Wolke an und bilden Sie einen äquivalenten Satz im Zug, indem Sie ausschließlich Pronomen anstelle von ergänzenden Substantiven verwenden. " +
+                TrainGameDesc.text = "Schauen Sie sich den Ausdruck in der Wolke an und bilden Sie einen äquivalenten Satz im Zug (es gibt insgesamt 11 Sätze), indem Sie ausschließlich Pronomen anstelle von ergänzenden Substantiven verwenden. " +
                     "Ziehen  Sie  dazu die Frachten von den Lastwagen auf den Zug. Um Ihre Antwort zu speichern, drücken Sie auf den Ampelschalter in der oberen linken Ecke.";
                 break;
         }

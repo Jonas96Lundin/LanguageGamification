@@ -14847,9 +14847,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Regardez l'expression dans le nuage et cr\xE9ez une phrase \xE9quivalente
-    dans le train en utilisant uniquement des pronoms au lieu des substantifs compl\xE9ments.
-    Pour cela faites glisser les charges des camions vers le train. Afin d'enregistrer
-    votre r\xE9ponse, appuyez sur le feu dans le coin sup\xE9rieur gauche."
+    dans le train (il y en a 11 au total) en utilisant uniquement des pronoms au
+    lieu des substantifs compl\xE9ments. Pour cela faites glisser les charges des
+    camions vers le train. Afin d'enregistrer votre r\xE9ponse, appuyez sur le feu
+    dans le coin sup\xE9rieur gauche."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
