@@ -2363,10 +2363,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointController: {fileID: 508273472}
-  currentBestScore: {fileID: 176450354}
-  currentBestTime: {fileID: 1612134283}
-  newScore: {fileID: 857352863}
-  newTime: {fileID: 234364480}
+  currentBestScoreUI: {fileID: 176450354}
+  currentBestTimeUI: {fileID: 1612134283}
+  newScoreUI: {fileID: 857352863}
+  newTimeUI: {fileID: 234364480}
   leaderboardNames: {fileID: 1242799181}
   leaderboardScores: {fileID: 1779767559}
   leaderboardTimes: {fileID: 747690242}
@@ -2377,6 +2377,7 @@ MonoBehaviour:
   UICamera: {fileID: 980234683}
   particleBadgeCelebration: {fileID: 1247311384876784, guid: 28002d4b59957ee4087bb46b369c7176, type: 3}
   particleWanderingSpirits: {fileID: 1781930563638536, guid: 219fba9ab7e2eb747afa3fc6b28cac08, type: 3}
+  particleStarEffect: {fileID: 100006, guid: 2e2b1fa27ca6a5e4497b7b9afd289a44, type: 3}
   celebrationSound: {fileID: 508273476}
   leaderboardPanel: {fileID: 1042738332}
 --- !u!82 &508273474
@@ -5594,7 +5595,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 275}
+  m_AnchoredPosition: {x: 84.99998, y: 1.0000038}
   m_SizeDelta: {x: 275, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1385889860
@@ -6212,7 +6213,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -25, y: 350}
+  m_AnchoredPosition: {x: 59.999977, y: 76}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1503881675
@@ -8151,7 +8152,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -25, y: 350}
+  m_AnchoredPosition: {x: 60, y: 76}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2098867645

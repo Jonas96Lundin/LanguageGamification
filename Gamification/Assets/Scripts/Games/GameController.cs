@@ -12,11 +12,17 @@ public class GameController : MonoBehaviour
 	private Games currentGame;
 	[SerializeField] private PointController pointController;
 
-	[SerializeField] TMP_Text currentBestScore;
-	[SerializeField] TMP_Text currentBestTime;
+	private float currentBestScore = 0;
+	private float currentBestTime = 0;
 
-	[SerializeField] TMP_Text newScore;
-	[SerializeField] TMP_Text newTime;
+	private float newScore = 0;
+	private float newTime = 0;
+
+	[SerializeField] TMP_Text currentBestScoreUI;
+	[SerializeField] TMP_Text currentBestTimeUI;
+
+	[SerializeField] TMP_Text newScoreUI;
+	[SerializeField] TMP_Text newTimeUI;
 
 	//[SerializeField] TMP_Text leaderboardTitle;
 	[SerializeField] TMP_Text leaderboardNames;
@@ -31,6 +37,7 @@ public class GameController : MonoBehaviour
 	[SerializeField] GameObject UICamera;
 	[SerializeField] GameObject particleBadgeCelebration;
 	[SerializeField] GameObject particleWanderingSpirits;
+	[SerializeField] GameObject particleStarEffect;
 	[SerializeField] AudioSource celebrationSound;
 
 	[SerializeField] GameObject leaderboardPanel;
@@ -67,20 +74,55 @@ public class GameController : MonoBehaviour
 	{
 		float[] result = Repository.GetBestResult(currentGame);
 
-		currentBestScore.text = result[0].ToString();
-		if (result[1] > 0)
+		currentBestScore = result[0];
+		currentBestTime = result[1];
+
+		currentBestScoreUI.text = currentBestScore.ToString();
+		if (currentBestTime > 0)
 		{
-			currentBestTime.text = GetTime(result[1]);
+			currentBestTimeUI.text = GetTime(currentBestTime);
 		}
 
-		newScore.text = pointController.CurrentPoints.ToString();
-		newTime.text = GetTime(pointController.GameTime);
+		newScore = pointController.CurrentPoints;
+		newTime = pointController.GameTime;
+
+		newScoreUI.text = newScore.ToString();
+		newTimeUI.text = GetTime(newTime);
 
 		Repository.AddPlayedGame(currentGame);
 		SetBadges();
 		AddToLeaderboard();
 		GetLeaderboard();
 		Instantiate(particleWanderingSpirits, UICamera.transform);
+		StartCoroutine(ShowEffects());
+
+	}
+
+	private IEnumerator ShowEffects()
+	{
+		yield return StartCoroutine(ShowBetterScoreEffects());
+
+		yield return StartCoroutine(ShowNewBadges());
+	}
+
+	private IEnumerator ShowBetterScoreEffects()
+	{
+		if (newScore > currentBestScore)
+		{
+			yield return new WaitForSeconds(1f);
+			Instantiate(particleStarEffect, newScoreUI.transform.position, particleStarEffect.transform.rotation, UICamera.transform);
+			Instantiate(particleBadgeCelebration, newScoreUI.transform.position, particleBadgeCelebration.transform.rotation, UICamera.transform);
+			celebrationSound.Play();
+		}
+		else if(newScore == currentBestScore)
+		{
+			if(newTime < currentBestTime)
+			{
+				yield return new WaitForSeconds(1f);
+				Instantiate(particleBadgeCelebration, newScoreUI.transform.position, particleBadgeCelebration.transform.rotation, UICamera.transform);
+				celebrationSound.Play();
+			}
+		}
 	}
 
 	public void SetBadges()
@@ -108,21 +150,24 @@ public class GameController : MonoBehaviour
 				}
 			}
 		}
-		if (newBadges.Count > 0)
-		{
-			StartCoroutine(ShowNewBadges());
-		}
+		//if (newBadges.Count > 0)
+		//{
+		//	StartCoroutine(ShowNewBadges());
+		//}
 	}
 
 	private IEnumerator ShowNewBadges()
 	{
-		foreach (Image badge in newBadges)
+		if (newBadges.Count > 0)
 		{
-			yield return new WaitForSeconds(1f);
-			badge.color = Color.white;
-			Instantiate(particleBadgeCelebration, badge.transform.position, particleBadgeCelebration.transform.rotation, UICamera.transform);
-			celebrationSound.Play();
-		}
+			foreach (Image badge in newBadges)
+			{
+				yield return new WaitForSeconds(1f);
+				badge.color = Color.white;
+				Instantiate(particleBadgeCelebration, badge.transform.position, particleBadgeCelebration.transform.rotation, UICamera.transform);
+				celebrationSound.Play();
+			}
+		}	
 	}
 
 
@@ -209,6 +254,8 @@ public class GameController : MonoBehaviour
 					leaderboardNames.SetText(oldText + "\n" + leaderboardCounter + ": " +
 							$"{System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(pair.Key).AddColor(Color.red)}");
 					leaderboardPanel.transform.DOScale(new Vector3(1.1f, 1.1f, 1), 0.5f).SetLoops(8, LoopType.Yoyo);
+
+					//ADD UI EFFECTS ON LEADERBOARD
 				}
 				else
 				{

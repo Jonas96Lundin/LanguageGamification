@@ -2315,10 +2315,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointController: {fileID: 508273476}
-  currentBestScore: {fileID: 500713337}
-  currentBestTime: {fileID: 1917884440}
-  newScore: {fileID: 1144552937}
-  newTime: {fileID: 1711161560}
+  currentBestScoreUI: {fileID: 500713337}
+  currentBestTimeUI: {fileID: 1917884440}
+  newScoreUI: {fileID: 1144552937}
+  newTimeUI: {fileID: 1711161560}
   leaderboardNames: {fileID: 1663594566209383005}
   leaderboardScores: {fileID: 829843470}
   leaderboardTimes: {fileID: 1663594566357273861}
@@ -2329,6 +2329,7 @@ MonoBehaviour:
   UICamera: {fileID: 1873811919}
   particleBadgeCelebration: {fileID: 1247311384876784, guid: 28002d4b59957ee4087bb46b369c7176, type: 3}
   particleWanderingSpirits: {fileID: 1781930563638536, guid: 219fba9ab7e2eb747afa3fc6b28cac08, type: 3}
+  particleStarEffect: {fileID: 100006, guid: 2e2b1fa27ca6a5e4497b7b9afd289a44, type: 3}
   celebrationSound: {fileID: 508273481}
   leaderboardPanel: {fileID: 1663594566093373851}
 --- !u!114 &508273476
@@ -12231,6 +12232,18 @@ PrefabInstance:
       value: 952
       objectReference: {fileID: 0}
     - target: {fileID: 4244549294247139995, guid: a6f4073a165c6554991e433dc24a7b4b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244549294247139995, guid: a6f4073a165c6554991e433dc24a7b4b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244549294247139995, guid: a6f4073a165c6554991e433dc24a7b4b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4244549294247139995, guid: a6f4073a165c6554991e433dc24a7b4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -12281,6 +12294,10 @@ PrefabInstance:
     - target: {fileID: 6214221429088280636, guid: a6f4073a165c6554991e433dc24a7b4b, type: 3}
       propertyPath: m_Name
       value: VictoryScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 6214221429088280636, guid: a6f4073a165c6554991e433dc24a7b4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6f4073a165c6554991e433dc24a7b4b, type: 3}
